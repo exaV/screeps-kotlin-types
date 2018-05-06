@@ -56,6 +56,7 @@ inline operator fun <V> MutableStringDict<V>.set(key: String, value: V) {
 
 class Filter(val filter: dynamic)
 
+external fun delete(p: dynamic): Boolean = definedExternally
 
 
 
