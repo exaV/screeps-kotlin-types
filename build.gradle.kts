@@ -42,9 +42,7 @@ publishing {
         "mavenJava"(MavenPublication::class) {
             from(components["java"])
             artifact(sourcesJar)
-
         }
-
     }
 }
 
@@ -57,11 +55,11 @@ bintray {
     publish = true
     setPublications("mavenJava")
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
-        repo = "screeps-kotlin-types"
+        repo = "screeps-kotlin"
         name = "screeps-kotlin-types"
-        userOrg = "delconte"
         websiteUrl = "https://github.com/exaV/screeps-kotlin-types"
-        githubRepo = "https://github.com/exaV/screeps-kotlin-types"
+        githubRepo = "exaV/screeps-kotlin-types"
+        vcsUrl = "https://github.com/exaV/screeps-kotlin-types"
         setLabels("kotlin")
         setLicenses("MIT")
     })
