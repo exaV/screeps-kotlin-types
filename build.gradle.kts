@@ -59,6 +59,7 @@ bintray {
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
         repo = "screeps-kotlin-types"
         name = "screeps-kotlin-types"
+        userOrg = "delconte"
         websiteUrl = "https://github.com/exaV/screeps-kotlin-types"
         githubRepo = "https://github.com/exaV/screeps-kotlin-types"
         setLabels("kotlin")

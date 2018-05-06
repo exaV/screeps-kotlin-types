@@ -22,4 +22,4 @@ jobs:
     - stage: build
       script: ./gradlew build
     - stage: release
-      script: ./gradlew bintrayUpload -x test -Dbintray.user=$BINTRAY_USER -Dbintray.key=$BINTRAY_KEY -Dbuild.number=$TRAVIS_BUILD_NUMBER
+      script: ./gradlew bintrayUpload -x test -P bintrayUser=$BINTRAY_USER -P bintrayApiKey=$BINTRAY_KEY -Dbuild.number=$TRAVIS_BUILD_NUMBER
