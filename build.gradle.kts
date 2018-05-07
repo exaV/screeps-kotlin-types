@@ -33,8 +33,6 @@ tasks {
             moduleKind = "umd"
         }
     }
-
-
 }
 
 publishing {
@@ -46,12 +44,12 @@ publishing {
     }
 }
 
-val bintrayUser: String by project
-val bintrayApiKey: String by project
+val bintrayUser: String? by project
+val bintrayApiKey: String? by project
 
 bintray {
-    user = bintrayUser
-    key = bintrayApiKey
+    user = bintrayUser ?: ""
+    key = bintrayApiKey ?: ""
     publish = true
     setPublications("mavenJava")
     pkg(delegateClosureOf<BintrayExtension.PackageConfig> {
