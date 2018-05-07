@@ -1,5 +1,4 @@
 # screeps-kotlin-types
-screeps-kotlin-types
 
 [ ![Kotlin](https://img.shields.io/badge/Kotlin-1.2.41-blue.svg)](http://kotlinlang.org) 
 [![Build Status](https://travis-ci.org/exaV/screeps-kotlin-types.svg?branch=master)](https://travis-ci.org/exaV/screeps-kotlin-types)
