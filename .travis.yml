@@ -20,6 +20,6 @@ stages:
 jobs:
   include:
     - stage: build
-      script: ./gradlew build -P bintrayUser=$BINTRAY_USER -P bintrayApiKey=$BINTRAY_KEY
+      script: ./gradlew build
     - stage: release
       script: ./gradlew bintrayUpload -x test -P bintrayUser=$BINTRAY_USER -P bintrayApiKey=$BINTRAY_KEY -Dbuild.number=$TRAVIS_BUILD_NUMBER
