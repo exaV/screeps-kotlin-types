@@ -1,14 +1,18 @@
 language: java
-install: true
-
 sudo: false
-addons:
-  apt:
-    packages:
-      - oracle-java8-installer
+jdk:
+  - oraclejdk8
 
-before_install:
-  - chmod +x gradlew
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+install:
+  - ./gradlew assemble
 
 stages:
   - name: build
