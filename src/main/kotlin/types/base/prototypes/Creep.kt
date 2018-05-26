@@ -68,7 +68,7 @@ external interface Storage {
 
 external interface BodyPart {
     val boost: String?
-    val partConstant: BodyPartConstant
+    val type: BodyPartConstant
     val hits: Int
 }
 

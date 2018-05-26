@@ -12,7 +12,7 @@ repositories {
     jcenter()
 }
 dependencies {
-    compile "ch.delconte.screeps-kotlin:screeps-kotlin-types:0.9.0"
+    compile "ch.delconte.screeps-kotlin:screeps-kotlin-types:0.9.1"
 }
 
 ```
