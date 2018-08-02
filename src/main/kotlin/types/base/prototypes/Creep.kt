@@ -11,7 +11,7 @@ external class Creep : RoomObject {
     val body: Array<BodyPart>
     val carry: Storage
     val carryCapacity: Int
-    val fatigue: Number
+    val fatigue: Int
     val hits: Int
     val hitsMax: Int
     val memory: CreepMemory
@@ -55,9 +55,9 @@ external class Creep : RoomObject {
     fun transfer(target: Structure, resourceType: ResourceConstant, amount: Int = definedExternally): ScreepsReturnCode
     fun upgradeController(controller: StructureController): ScreepsReturnCode
     fun withdraw(
-        structure: Structure,
-        resourceType: ResourceConstant,
-        amount: Number = definedExternally
+            structure: Structure,
+            resourceType: ResourceConstant,
+            amount: Int = definedExternally
     ): ScreepsReturnCode
 }
 

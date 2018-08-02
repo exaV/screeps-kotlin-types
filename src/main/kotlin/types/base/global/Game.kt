@@ -78,7 +78,7 @@ external interface CPU {
     /**
      * Get amount of CPU time used from the beginning of the current game tick. Always returns 0 in the Simulation mode.
      */
-    fun getUsed(): Number
+    fun getUsed(): Double
 
     fun getHeapStatistics(): Json
     fun setShardLimits(limits: ShardLimits): ScreepsReturnCode
@@ -86,9 +86,9 @@ external interface CPU {
 
 
 external interface GlobalControlLevel {
-    var level: Number
-    var progress: Number
-    var progressTotal: Number
+    var level: Int
+    var progress: Int
+    var progressTotal: Int
 }
 
 

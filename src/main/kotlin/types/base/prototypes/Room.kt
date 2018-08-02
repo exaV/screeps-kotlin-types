@@ -16,7 +16,7 @@ external class Room {
     val terminal: StructureTerminal?
     val visual: RoomVisual
 
-    fun createConstructionSite(x: Number, y: Number, structureType: StructureConstant): ScreepsReturnCode
+    fun createConstructionSite(x: Int, y: Int, structureType: StructureConstant): ScreepsReturnCode
     fun createConstructionSite(pos: RoomPosition, structureType: StructureConstant): ScreepsReturnCode
     fun createFlag(
         x: Int,

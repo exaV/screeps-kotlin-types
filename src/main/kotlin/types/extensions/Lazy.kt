@@ -9,7 +9,7 @@ import kotlin.reflect.KProperty
  */
 private class TickLazy<in P : Any?, T : Any>(val computeOncePerTick: P.() -> T) : ReadOnlyProperty<P, T> {
     var value: T? = null
-    var tick: Number = -1
+    var tick: Int = -1
 
     override fun getValue(thisRef: P, property: KProperty<*>): T {
         if (Game.time != tick) {

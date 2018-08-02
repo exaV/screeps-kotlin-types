@@ -7,8 +7,8 @@ import types.base.prototypes.structures.Owner
 external class ConstructionSite : RoomObject {
     val my: Boolean
     val owner: Owner
-    val progress: Number
-    val progressTotal: Number
+    val progress: Int
+    val progressTotal: Int
     val structureType: BuildableStructureConstant
     fun remove(): ScreepsReturnCode
 }
