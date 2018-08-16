@@ -17,3 +17,19 @@ dependencies {
 
 ```
           
+### Extensions
+
+Besides the types, 
+the package *types.extensions.** holds some useful functions for playing screeps with Kotlin.
+Some highlights are:
+
+Lazy properties adapted for Screeps:
+
+    val expensiveToCompute: Int by lazyPerTick { <code executed at most once per tick> }
+     
+Typed extensions for `creep.memory
+
+    var CreepMemory.someValue: Int by memoryOrDefault(0)`
+    // access later with creep.memory.someValue
+     
+

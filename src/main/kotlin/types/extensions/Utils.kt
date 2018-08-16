@@ -32,4 +32,4 @@ class Style(val stroke: String = "#ffffff",
 }
 
 fun RoomPosition.copy(x: Int = this.x, y: Int = this.y, name: String = this.roomName) =
-    RoomPosition(x, y, name)
+        RoomPosition(x, y, name)
