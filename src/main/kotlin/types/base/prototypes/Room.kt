@@ -48,6 +48,8 @@ external class Room {
         asArray: Boolean? = definedExternally /* null */
     ): dynamic /* LookAtResultMatrix<dynamic /* String /* "creep" */ | String /* "source" */ | String /* "energy" */ | String /* "resource" */ | String /* "mineral" */ | String /* "structure" */ | String /* "flag" */ | String /* "constructionSite" */ | String /* "nuke" */ | String /* "terrain" */ */> | Array<Any? /* Any? & `T$79` & `T$95` */> */
 
+    fun <T> lookForAt(type: LookConstant, x: Number, y: Number): Array<T>?
+
 
 }
 
