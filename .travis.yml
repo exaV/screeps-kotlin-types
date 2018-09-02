@@ -16,7 +16,7 @@ install:
 
 stages:
   - name: build
-  - name: release
+  - name: snapshot
     if: branch = master
   - name: release
     if: branch = release
