@@ -17,9 +17,8 @@ external class RoomPosition(x: Int, y: Int, roomName: String) {
     ): Any
 
     fun <T : RoomObject> findClosestByPath(
-        type: FindConstant,
-        objects: Array<RoomObject>,
-        opts: dynamic = definedExternally
+            objects: Array<RoomObject>,
+            opts: dynamic = definedExternally
     ): T?
 
     fun <T : RoomObject> findClosestByPath(type: FindConstant, opts: dynamic = definedExternally): T?

@@ -75,6 +75,8 @@ external val FIND_MY_CONSTRUCTION_SITES: FindConstant /* 114 */ = definedExterna
 external val FIND_HOSTILE_CONSTRUCTION_SITES: FindConstant /* 115 */ = definedExternally
 external val FIND_MINERALS: FindConstant /* 116 */ = definedExternally
 external val FIND_NUKES: FindConstant /* 117 */ = definedExternally
+external val FIND_TOMBSTONES: FindConstant /* 118 */ = definedExternally
+
 
 external val TOP: DirectionConstant /* 1 */ = definedExternally
 external val TOP_RIGHT: DirectionConstant /* 2 */ = definedExternally
