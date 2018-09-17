@@ -5,20 +5,12 @@ package types.base.global
 import types.base.JsDict
 import types.base.StringDict
 
-external interface StringConstant
-external interface IntegerConstant
+inline val <T> Constant<T>.value: T get() = this.asDynamic().unsafeCast<T>()
 
-@Suppress("NOTHING_TO_INLINE")
-inline fun StringConstant.stringValue(): String = this.asDynamic() as String
+external interface Constant<T>
 
-@Suppress("NOTHING_TO_INLINE")
-inline fun IntegerConstant.stringValue(): String = this.toString()
-
-@Suppress("NOTHING_TO_INLINE")
-inline fun IntegerConstant.intValue(): Int = this.asDynamic() as Int
-
-@Suppress("NOTHING_TO_INLINE")
-inline fun IntegerConstant.numberValue(): Number = this.asDynamic() as Number
+typealias StringConstant = Constant<String>
+typealias IntegerConstant = Constant<Int>
 
 external interface FindConstant : IntegerConstant
 external interface ScreepsReturnCode : IntegerConstant
