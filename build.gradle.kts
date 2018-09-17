@@ -3,7 +3,7 @@ import org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile
 
 
 plugins {
-    id("kotlin2js") version "1.2.61"
+    id("kotlin2js") version "1.2.70"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.1"
 }
@@ -17,11 +17,11 @@ dependencies {
 }
 
 group = "ch.delconte.screeps-kotlin"
-version = "0.9.9"
+version = "0.9.10"
 
-val sourcesJar by tasks.creating(Jar::class) {
+val sourcesJar by tasks.registering(Jar::class) {
     classifier = "sources"
-    from(java.sourceSets["main"].allSource)
+    from(sourceSets["main"].allSource)
 }
 
 tasks {
@@ -35,10 +35,10 @@ tasks {
 }
 
 publishing {
-    (publications) {
-        "mavenJava"(MavenPublication::class) {
+    publications {
+        register("mavenJava", MavenPublication::class) {
             from(components["java"])
-            artifact(sourcesJar)
+            artifact(sourcesJar.get())
         }
     }
 }
