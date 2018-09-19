@@ -36,20 +36,18 @@ external class Room {
     fun findExitTo(room: String): Any
     fun findExitTo(room: Room): Any
     fun findPath(fromPos: RoomPosition, toPos: RoomPosition, opts: FindPathOpts? = definedExternally): Array<PathStep>
-    fun getPositionAt(x: Number, y: Number): RoomPosition?
-    fun lookAt(x: Number, y: Number): Array<LookAt>
+    fun getPositionAt(x: Int, y: Int): RoomPosition?
+    fun lookAt(x: Int, y: Int): Array<LookAt>
     fun lookAt(target: RoomPosition): Array<LookAt>
     fun lookAtArea(
-        top: Number,
-        left: Number,
-        bottom: Number,
-        right: Number,
+        top: Int,
+        left: Int,
+        bottom: Int,
+        right: Int,
         asArray: Boolean? = definedExternally
     ): dynamic
 
-    fun <T> lookForAt(type: LookConstant, x: Number, y: Number): Array<T>?
-
-
+    fun <T> lookForAt(type: LookConstant, x: Int, y: Int): Array<T>?
 }
 
 external class LookAt {

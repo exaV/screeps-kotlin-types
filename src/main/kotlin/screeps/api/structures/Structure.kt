@@ -1,6 +1,7 @@
 package screeps.api.structures
 
 import screeps.api.RoomObject
+import screeps.api.ScreepsReturnCode
 import screeps.api.StructureConstant
 
 
@@ -9,9 +10,9 @@ open external class Structure : RoomObject {
     val hitsMax: Double
     val structureType: StructureConstant
 
-    fun destroy(): Number
+    fun destroy(): ScreepsReturnCode
     fun isActive(): Boolean
-    fun notifyWhenAttacked(enabled: Boolean): Number
+    fun notifyWhenAttacked(enabled: Boolean): ScreepsReturnCode
 }
 
 open external class OwnedStructure : Structure {
