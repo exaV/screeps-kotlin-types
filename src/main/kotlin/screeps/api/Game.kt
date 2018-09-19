@@ -8,7 +8,7 @@ external object Game {
     /**
      * A hash containing all your construction sites with their id as hash keys.
      */
-    val constructionSites: StringDict<ConstructionSite>
+    val constructionSites: Record<String, ConstructionSite>
     /**
      * An object containing information about your CPU usage
      */
@@ -16,11 +16,11 @@ external object Game {
     /**
      * A hash containing all your creeps with creep names as hash keys.
      */
-    val creeps: StringDict<Creep>
+    val creeps: Record<String, Creep>
     /**
      * A hash containing all your flags with flag names as hash keys.
      */
-    val flags: StringDict<Flag>
+    val flags: Record<String, Flag>
     val gcl: GCL
     val map: Map
     val market: Market
@@ -28,12 +28,12 @@ external object Game {
      * An object with your global resources that are bound to the account, like subscription tokens.
      * Each object key is a resource constant, values are resources amounts.
      */
-    val resources: StringDict<Int>
+    val resources: Record<String, Int>
     /**
      * A hash containing all the rooms available to you with room names as hash keys.
      * A room is visible if you have a creep or an owned structure in it.
      */
-    val rooms: StringDict<Room>
+    val rooms: Record<String, Room>
     /**
      * An object describing the world shard where your script is currently being executed in.
      */
@@ -41,11 +41,11 @@ external object Game {
     /**
      * A hash containing all your spawns with spawn names as hash keys.
      */
-    val spawns: StringDict<StructureSpawn>
+    val spawns: Record<String, StructureSpawn>
     /**
      * A hash containing all your structures with structure id as hash keys.
      */
-    val structures: StringDict<Structure>
+    val structures: Record<String, Structure>
     /**
      * System game tick counter. It is automatically incremented on every tick. [Learn more][http://docs.screeps.com/game-loop.html]
      */
@@ -68,14 +68,14 @@ external object Game {
         val limit: Int
         val tickLimit: Int
         val bucket: Int
-        val shardLimits: StringDict<Int>
+        val shardLimits: Record<String, Int>
         /**
          * Get amount of CPU time used from the beginning of the current game tick. Always returns 0 in the Simulation mode.
          */
         fun getUsed(): Double
 
         fun getHeapStatistics(): Json
-        fun setShardLimits(limits: StringDict<Int>): ScreepsReturnCode
+        fun setShardLimits(limits: Record<String, Int>): ScreepsReturnCode
     }
 
     interface GCL {
@@ -91,7 +91,7 @@ external object Game {
     }
 
     interface Map {
-        fun describeExits(roomName: String): JsDict<DirectionConstant, String>
+        fun describeExits(roomName: String): Record<DirectionConstant, String>
         fun findExit(fromRoom: String, toRoom: String, opts: RouteOptions? = definedExternally): ExitConstant
         fun getRoomLinearDistance(roomName1: String, roomName2: String, continuous: Boolean? = definedExternally): Int
         fun getTerrainAt(x: Int, y: Int, roomName: String): TerrainConstant

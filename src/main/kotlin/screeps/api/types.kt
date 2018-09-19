@@ -1,55 +1,45 @@
 package screeps.api
 
-typealias StringDict<V> = JsDict<String, V>
+import screeps.utils.memory.jsObject
 
-external interface JsDict<K : Any, V>
+external interface JsPair<out F, out S>
+external interface Record<in K, out V>
+external interface MutableRecord<in K, V> : Record<K, V>
 
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun <V> StringDict<V>.get(key: String): V? = asDynamic()[key] as? V
+inline operator fun <F, S> JsPair<F, S>.component1(): F = asDynamic()[0].unsafeCast<F>()
+inline operator fun <F, S> JsPair<F, S>.component2(): S = asDynamic()[1].unsafeCast<S>()
+inline fun <F, S> JsPair<F, S>.toPair() = Pair(this.component1(), this.component2())
 
-inline operator fun <V> StringDict<V>.get(key: StringConstant): V = asDynamic()[key] as V
-inline operator fun <K : IntegerConstant, V> JsDict<K, V>.get(key: K): V = asDynamic()[key] as V
+inline operator fun <K, V> Record<K, V>.get(key: K): V? = this.asDynamic()[key].unsafeCast<V?>()
+inline operator fun <K, V> MutableRecord<K, V>.set(key: K, value: V) {
+    this.asDynamic()[key] = value
+}
 
-val <V> StringDict<V>.keys: Array<String>
-    get() = js("Object").keys(this) as? Array<String> ?: emptyArray()
+inline val <K, V>Record<K, V>.values: Array<V> get () = js("Object").values(this).unsafeCast<Array<V>>()
+inline val <K, V>Record<K, V>.keys: Array<K> get () = js("Object").keys(this).unsafeCast<Array<K>>()
+inline val <K, V>Record<K, V>.entries: Array<JsPair<K, V>> get() = js("Object").entries(this).unsafeCast<Array<JsPair<K, V>>>()
 
-class Entry<K, V>(override val key: K, override val value: V) : Map.Entry<K, V>
+inline operator fun <K, V> Record<K, V>.iterator(): Iterator<JsPair<K, V>> = this.entries.iterator()
+inline fun <K, V> Record<K, V>.asIterable(): Iterable<JsPair<K, V>> = this.entries.asIterable()
 
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun <V> StringDict<V>.iterator(): Iterator<Map.Entry<String, V>> {
-    return object : Iterator<Map.Entry<String, V>> {
-        var currentIndex = 0
+inline operator fun <K, V> Record<K, V>.contains(value: K): Boolean = this.keys.contains(value)
 
-        override fun hasNext(): Boolean = currentIndex < keys.size
-
-        override fun next(): Map.Entry<String, V> {
-            val key = keys[currentIndex]
-            currentIndex += 1
-            val value = this@iterator.asDynamic()[key] as V
-            return Entry(key, value)
-        }
+fun <K, V> Record<K, V>.toMap(): Map<K, V> = this.unsafeCast<MutableRecord<K, V>>().toMap()
+fun <K, V> MutableRecord<K, V>.toMap(): MutableMap<K, V> = mutableMapOf<K, V>().also { map ->
+    this.entries.forEach { (k, v) ->
+        map[k] = v
     }
 }
 
-fun <V> StringDict<V>.toMap(): Map<String, V> {
-    val map: MutableMap<String, V> = linkedMapOf()
-    for (key in keys) {
-        val value: V? = this[key]
-        if (value != null) {
-            map[key] = value
-        } else {
-            println("null value for key $key")
+@Suppress("unused")
+fun <K, V> recordOf(vararg pairs: Pair<K, V>): Record<K, V> = mutableRecordOf(*pairs)
+
+fun <K, V> mutableRecordOf(vararg pairs: Pair<K, V>): MutableRecord<K, V> =
+    jsObject {
+        pairs.forEach { (k, v) ->
+            this[k] = v
         }
     }
-    return map
-}
-
-external interface MutableStringDict<V> : StringDict<V>
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun <V> MutableStringDict<V>.set(key: String, value: V) {
-    asDynamic()[key] = value
-}
 
 class Filter(val filter: dynamic)
 

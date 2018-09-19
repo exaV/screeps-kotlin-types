@@ -110,7 +110,7 @@ external val STRUCTURE_TERMINAL: BuildableStructureConstant
 external val STRUCTURE_CONTAINER: BuildableStructureConstant
 external val STRUCTURE_NUKER: BuildableStructureConstant
 external val STRUCTURE_PORTAL: StructureConstant
-external val CONSTRUCTION_COST: StringDict<Int>
+external val CONSTRUCTION_COST: Record<String, Int>
 external val CONSTRUCTION_COST_ROAD_SWAMP_RATIO: Int
 
 external val RESOURCE_ENERGY: ResourceConstant
@@ -178,7 +178,7 @@ external val RANGED_ATTACK: ActiveBodyPartConstant
 external val TOUGH: ActiveBodyPartConstant
 external val HEAL: ActiveBodyPartConstant
 external val CLAIM: BodyPartConstant
-external val BODYPART_COST: StringDict<Int>
+external val BODYPART_COST: Record<String, Int>
 
 
 external var CREEP_SPAWN_TIME: Int
@@ -228,10 +228,10 @@ external val SOURCE_ENERGY_KEEPER_CAPACITY: Int
 
 external val MINERAL_REGEN_TIME: Int
 external val MINERAL_DENSITY_CHANGE: Double
-external val MINERAL_MIN_AMOUNT: JsDict<MineralConstant, Int>
+external val MINERAL_MIN_AMOUNT: Record<MineralConstant, Int>
 external val MINERAL_RANDOM_FACTOR: Double
-external val MINERAL_DENSITY: JsDict<DensityConstant, Int>
-external val MINERAL_DENSITY_PROBABILITY: JsDict<DensityConstant, Double>
+external val MINERAL_DENSITY: Record<DensityConstant, Int>
+external val MINERAL_DENSITY_PROBABILITY: Record<DensityConstant, Double>
 external val DENSITY_LOW: DensityConstant
 external val DENSITY_MODERATE: DensityConstant
 external val DENSITY_HIGH: DensityConstant
@@ -243,9 +243,9 @@ external val NUKER_ENERGY_CAPACITY: Int
 external val NUKER_GHODIUM_CAPACITY: Int
 external val NUKE_LAND_TIME: Int
 external val NUKE_RANGE: Int
-external val NUKE_DAMAGE: JsDict<Int, Int>
+external val NUKE_DAMAGE: Record<Int, Int>
 
-external val CONTROLLER_DOWNGRADE: JsDict<Int, Int>
+external val CONTROLLER_DOWNGRADE: Record<Int, Int>
 external val CONTROLLER_DOWNGRADE_RESTORE: Int
 external val CONTROLLER_DOWNGRADE_SAFEMODE_THRESHOLD: Int
 external val CONTROLLER_CLAIM_DOWNGRADE: Int
