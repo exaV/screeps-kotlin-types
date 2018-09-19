@@ -1,6 +1,5 @@
 package screeps.api
 
-open external class RoomObject : GameObject {
-    val pos: RoomPosition
+external interface RoomObject : HasPosition {
     val room: Room
 }

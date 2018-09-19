@@ -1,10 +1,11 @@
 package screeps.api.structures
 
 import screeps.api.Creep
+import screeps.api.EnergyContainer
+import screeps.api.Owned
 import screeps.api.ScreepsReturnCode
 
-abstract external class StructureLab : OwnedStructure,
-    EnergyContainingStructure {
+abstract external class StructureLab : Structure, Owned, EnergyContainer {
     val cooldown: Int
     val mineralAmount: Int
     val mineralType: String

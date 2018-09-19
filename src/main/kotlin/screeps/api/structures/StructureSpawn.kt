@@ -2,7 +2,7 @@ package screeps.api.structures
 
 import screeps.api.*
 
-abstract external class StructureSpawn : OwnedStructure, EnergyStructure {
+abstract external class StructureSpawn : Structure, Owned, SpawnEnergyProvider {
     val memory: SpawnMemory
     val name: String
 
@@ -56,7 +56,7 @@ interface SpawnOptions {
 
 open class FullSpawnOptions(
     override val memory: CreepMemory? = null,
-    open val energyContainingStructure: Array<EnergyStructure>? = null,
+    open val energyContainingStructure: Array<SpawnEnergyProvider>? = null,
     open val dryRun: Boolean = false,
     open val directions: Array<DirectionConstant>? = null
 ) : SpawnOptions

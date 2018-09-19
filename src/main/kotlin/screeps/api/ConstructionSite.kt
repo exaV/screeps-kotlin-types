@@ -1,10 +1,6 @@
 package screeps.api
 
-import screeps.api.structures.Owner
-
-external class ConstructionSite : RoomObject {
-    val my: Boolean
-    val owner: Owner
+abstract external class ConstructionSite : RoomObject, Owned, Identifiable {
     val progress: Int
     val progressTotal: Int
     val structureType: BuildableStructureConstant

@@ -1,3 +1,5 @@
 package screeps.api.structures
 
-abstract external class StructureRoad : Structure, DecayingStructure
+import screeps.api.Decaying
+
+abstract external class StructureRoad : Structure, Decaying

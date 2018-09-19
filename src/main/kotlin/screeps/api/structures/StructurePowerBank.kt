@@ -1,6 +1,8 @@
 package screeps.api.structures
 
-abstract external class StructurePowerBank : Structure,
-    DecayingStructure {
+import screeps.api.Container
+import screeps.api.Decaying
+
+abstract external class StructurePowerBank : Structure, Decaying, Container {
     val power: Int
 }

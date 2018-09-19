@@ -1,8 +1,7 @@
 package screeps.api
 
-external class Mineral : RoomObject {
+abstract external class Mineral : RoomObject, Harvestable, Identifiable {
     val density: DensityConstant
     val mineralAmount: Int
     val mineralType: MineralConstant
-    val ticksToRegeneration: Int
 }

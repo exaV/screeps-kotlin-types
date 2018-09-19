@@ -1,5 +1,8 @@
 package screeps.api.structures
 
-abstract external class StructurePortal : Structure, DecayingStructure {
+import screeps.api.Decaying
+
+abstract external class StructurePortal : Structure, Decaying {
     val destination: dynamic
+
 }

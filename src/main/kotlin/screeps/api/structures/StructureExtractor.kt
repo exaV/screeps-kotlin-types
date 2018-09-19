@@ -1,5 +1,7 @@
 package screeps.api.structures
 
-external class StructureExtractor : OwnedStructure {
+import screeps.api.Owned
+
+abstract external class StructureExtractor : Structure, Owned {
     val cooldown: Int
 }
