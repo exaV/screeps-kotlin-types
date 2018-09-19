@@ -44,8 +44,8 @@ external class Room {
         left: Number,
         bottom: Number,
         right: Number,
-        asArray: Boolean? = definedExternally /* null */
-    ): dynamic /* LookAtResultMatrix<dynamic /* String /* "creep" */ | String /* "source" */ | String /* "energy" */ | String /* "resource" */ | String /* "mineral" */ | String /* "structure" */ | String /* "flag" */ | String /* "constructionSite" */ | String /* "nuke" */ | String /* "terrain" */ */> | Array<Any? /* Any? & `T$79` & `T$95` */> */
+        asArray: Boolean? = definedExternally
+    ): dynamic
 
     fun <T> lookForAt(type: LookConstant, x: Number, y: Number): Array<T>?
 
@@ -83,5 +83,5 @@ external interface PathStep {
     var dx: Int
     var y: Int
     var dy: Int
-    var direction: dynamic /* Number /* 1 */ | Number /* 2 */ | Number /* 3 */ | Number /* 4 */ | Number /* 5 */ | Number /* 6 */ | Number /* 7 */ | Number /* 8 */ */
+    var direction: dynamic
 }

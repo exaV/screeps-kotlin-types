@@ -92,6 +92,6 @@ external interface GlobalControlLevel {
 
 external interface Shard {
     var name: String
-    var type: String /* "normal" */
+    var type: String
     var ptr: Boolean
 }

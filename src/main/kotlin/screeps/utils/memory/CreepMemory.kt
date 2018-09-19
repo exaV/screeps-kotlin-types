@@ -8,9 +8,9 @@ import kotlin.reflect.KProperty
 open class CreepMemoryDelegate<T>(protected val default: T) : ReadWriteProperty<CreepMemory, T> {
 
     override fun getValue(thisRef: dynamic, property: KProperty<*>): T =
-            thisRef[property.name] as? T ?: default.also {
-                thisRef[property.name] = default
-            }
+        thisRef[property.name] as? T ?: default.also {
+            thisRef[property.name] = default
+        }
 
     override fun setValue(thisRef: dynamic, property: KProperty<*>, value: T) {
         thisRef[property.name] = value

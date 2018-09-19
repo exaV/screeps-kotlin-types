@@ -25,7 +25,6 @@ val sourcesJar by tasks.registering(Jar::class) {
 }
 
 tasks {
-
     "compileKotlin2Js"(Kotlin2JsCompile::class) {
         kotlinOptions {
             sourceMap = true

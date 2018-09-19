@@ -58,6 +58,7 @@ external class Creep : RoomObject {
         resourceType: ResourceConstant,
         amount: Int = definedExternally
     ): ScreepsReturnCode
+
     fun withdraw(
         tombstone: Tombstone,
         resourceType: ResourceConstant,
