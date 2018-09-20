@@ -12,7 +12,7 @@ typealias IntegerConstant = Constant<Int>
 external interface FindConstant : IntegerConstant
 external interface ScreepsReturnCode : IntegerConstant
 external interface BodyPartConstant : StringConstant
-external interface AcitveBodyPartConstant : BodyPartConstant
+external interface ActiveBodyPartConstant : BodyPartConstant
 external interface StructureConstant : StringConstant
 external interface BuildableStructureConstant : StructureConstant
 external interface LookConstant : StringConstant
@@ -167,13 +167,13 @@ external val LOOK_NUKES: LookConstant
 external val LOOK_TERRAIN: LookConstant
 external val LOOK_TOMBSTONES: LookConstant
 
-external val WORK: AcitveBodyPartConstant
-external val CARRY: AcitveBodyPartConstant
-external val MOVE: AcitveBodyPartConstant
-external val ATTACK: AcitveBodyPartConstant
-external val RANGED_ATTACK: AcitveBodyPartConstant
-external val TOUGH: AcitveBodyPartConstant
-external val HEAL: AcitveBodyPartConstant
+external val WORK: ActiveBodyPartConstant
+external val CARRY: ActiveBodyPartConstant
+external val MOVE: ActiveBodyPartConstant
+external val ATTACK: ActiveBodyPartConstant
+external val RANGED_ATTACK: ActiveBodyPartConstant
+external val TOUGH: ActiveBodyPartConstant
+external val HEAL: ActiveBodyPartConstant
 external val CLAIM: BodyPartConstant
 external val BODYPART_COST: StringDict<Int>
 

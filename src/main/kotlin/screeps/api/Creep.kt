@@ -30,7 +30,7 @@ external class Creep : RoomObject {
     fun dismantle(target: Structure): ScreepsReturnCode
     fun drop(resourceType: ResourceConstant, amount: Int = definedExternally): ScreepsReturnCode
     fun generateSafeMode(target: StructureController): ScreepsReturnCode
-    fun getActiveBodyparts(type: AcitveBodyPartConstant): Int
+    fun getActiveBodyparts(type: ActiveBodyPartConstant): Int
     fun harvest(target: Source): ScreepsReturnCode
     fun harvest(target: Mineral): ScreepsReturnCode
     fun heal(target: Creep): ScreepsReturnCode
