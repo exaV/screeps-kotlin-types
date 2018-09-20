@@ -17,10 +17,12 @@ external interface StructureConstant : StringConstant
 external interface BuildableStructureConstant : StructureConstant
 external interface LookConstant : StringConstant
 external interface DirectionConstant : IntegerConstant
-external interface ResourceConstant : StringConstant
+external interface TradableConstant : StringConstant
+external interface ResourceConstant : TradableConstant
 external interface MineralConstant : ResourceConstant
 external interface ColorConstant : IntegerConstant
 external interface DensityConstant : IntegerConstant
+external interface OrderConstant : StringConstant
 external interface Terrain
 
 external val OK: ScreepsReturnCode
@@ -255,3 +257,7 @@ external val CONTROLLER_NUKE_BLOCKED_UPGRADE: Int
 external val SAFE_MODE_DURATION: Int
 external val SAFE_MODE_COOLDOWN: Int
 external val SAFE_MODE_COST: Int
+
+external val ORDER_SELL: OrderConstant
+external val ORDER_BUY: OrderConstant
+external val SUBSCRIPTION_TOKEN: TradableConstant

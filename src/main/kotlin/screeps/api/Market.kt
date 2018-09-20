@@ -2,71 +2,70 @@ package screeps.api
 
 import screeps.api.structures.Owner
 
-
-//TODO test and improve Market type
-external class Market {
-    val credits: Number
+external interface Market {
+    val credits: Double
     val incomingTransactions: Array<Transaction>
-    val orders: dynamic
+    val orders: StringDict<Order>
     val outgoingTransactions: Array<Transaction>
-    fun calcTransactionCost(amount: Number, roomName1: String, roomName2: String): Number
-    fun cancelOrder(orderId: String): Number
-    fun changeOrderPrice(orderId: String, newPrice: Number): Number
+
+    fun calcTransactionCost(amount: Int, roomName1: String, roomName2: String): Int
+    fun cancelOrder(orderId: String): ScreepsReturnCode
+    fun changeOrderPrice(orderId: String, newPrice: Double): ScreepsReturnCode
     fun createOrder(
         type: String,
-        resourceType: String,
-        price: Number,
-        totalAmount: Number,
+        resourceType: TradableConstant,
+        price: Double,
+        totalAmount: Int,
         roomName: String? = definedExternally
-    ): Number
+    ): ScreepsReturnCode
 
-    fun deal(orderId: String, amount: Number, targetRoomName: String? = definedExternally): Number
-    fun extendOrder(orderId: String, addAmount: Number): Number
-    fun getAllOrders(filter: OrderFilter? = definedExternally): Array<Order>
+    fun deal(orderId: String, amount: Int, targetRoomName: String? = definedExternally): ScreepsReturnCode
+    fun extendOrder(orderId: String, addAmount: Int): ScreepsReturnCode
+    fun getAllOrders(filter: Order.Filter? = definedExternally): Array<Order>
     fun getAllOrders(filter: ((o: Order) -> Boolean)? = definedExternally): Array<Order>
-    fun getOrderById(id: String): Order?
     fun getAllOrders(): Array<Order>
-}
+    fun getOrderById(id: String): Order?
 
-external interface Transaction {
-    var transactionId: String
-    var time: Number
-    var sender: Owner
-    var recipient: Owner
-    var resourceType: dynamic
-    var amount: Number
-    var from: String
-    var to: String
-    var description: String
-    var order: TransactionOrder? get() = definedExternally; set(value) = definedExternally
-}
+    interface Order {
+        val id: String
+        val created: Int
+        val active: Boolean
+        val type: OrderConstant
+        val resourceType: TradableConstant
+        val roomName: String
+        val amount: Int
+        val remainingAmount: Int
+        val totalAmount: Int
+        val price: Double
 
-external interface Order {
-    var id: String
-    var created: Number
-    var active: Boolean?
-    var type: String
-    var resourceType: dynamic
-    var roomName: String?
-    var amount: Number
-    var remainingAmount: Number
-    var totalAmount: Number?
-    var price: Number
-}
+        interface Filter {
+            var id: String?
+            var created: Int?
+            var type: OrderConstant?
+            var resourceType: TradableConstant
+            var roomName: String?
+            var amount: Int?
+            var remainingAmount: Int?
+            var price: Double?
+        }
+    }
 
-external interface TransactionOrder {
-    var id: String
-    var type: String
-    var price: Number
-}
+    interface Transaction {
+        val transactionId: String
+        val time: Int
+        val sender: Owner
+        val recipient: Owner
+        val resourceType: TradableConstant
+        val amount: Int
+        val from: String
+        val to: String
+        val description: String
+        val order: Order?
 
-external interface OrderFilter {
-    var id: String? get() = definedExternally; set(value) = definedExternally
-    var created: Number? get() = definedExternally; set(value) = definedExternally
-    var type: String? get() = definedExternally; set(value) = definedExternally
-    var resourceType: String
-    var roomName: String? get() = definedExternally; set(value) = definedExternally
-    var amount: Number? get() = definedExternally; set(value) = definedExternally
-    var remainingAmount: Number? get() = definedExternally; set(value) = definedExternally
-    var price: Number? get() = definedExternally; set(value) = definedExternally
+        interface Order {
+            val id: String
+            val type: OrderConstant
+            val price: Double
+        }
+    }
 }
