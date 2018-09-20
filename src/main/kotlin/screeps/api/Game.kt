@@ -21,8 +21,8 @@ external object Game {
      * A hash containing all your flags with flag names as hash keys.
      */
     val flags: StringDict<Flag>
-    val gcl: GlobalControlLevel
-    val map: GameMap
+    val gcl: GCL
+    val map: Map
     val market: Market
     /**
      * An object with your global resources that are bound to the account, like subscription tokens.
@@ -63,35 +63,61 @@ external object Game {
      * You can schedule up to 20 notifications during one game tick. Not available in the Simulation Room.
      */
     fun notify(message: String, groupInterval: Int = definedExternally)
+
+    interface CPU {
+        val limit: Int
+        val tickLimit: Int
+        val bucket: Int
+        val shardLimits: StringDict<Int>
+        /**
+         * Get amount of CPU time used from the beginning of the current game tick. Always returns 0 in the Simulation mode.
+         */
+        fun getUsed(): Double
+
+        fun getHeapStatistics(): Json
+        fun setShardLimits(limits: StringDict<Int>): ScreepsReturnCode
+    }
+
+    interface GCL {
+        val level: Int
+        val progress: Int
+        val progressTotal: Int
+    }
+
+    interface Shard {
+        val name: String
+        val type: String
+        val ptr: Boolean
+    }
+
+    interface Map {
+        fun describeExits(roomName: String): JsDict<DirectionConstant, String>
+        fun findExit(fromRoom: String, toRoom: String, opts: RouteOptions? = definedExternally): ExitConstant
+        fun getRoomLinearDistance(roomName1: String, roomName2: String, continuous: Boolean? = definedExternally): Int
+        fun getTerrainAt(x: Int, y: Int, roomName: String): TerrainConstant
+        fun getTerrainAt(pos: RoomPosition): TerrainConstant
+        fun getWorldSize(): Int
+        fun isRoomAvailable(roomName: String): Boolean
+
+        interface RouteResult {
+            val exit: ExitConstant
+            val room: String
+        }
+
+        interface RouteOptions {
+            var routeCallback: (roomName: String, fromRoomName: String) -> Double
+        }
+    }
+}
+
+fun Game.Map.findRoute(
+    fromRoom: String,
+    toRoom: String,
+    opts: Game.Map.RouteOptions? = null
+): Result<ScreepsReturnCode, Array<Game.Map.RouteResult>> {
+    val res = this.asDynamic().findRoute(fromRoom, toRoom, opts)
+    return if (res is Array<*>) Result.Value(res.unsafeCast<Array<Game.Map.RouteResult>>())
+    else Result.Error(res.unsafeCast<ScreepsReturnCode>())
 }
 
 
-private typealias ShardLimits = StringDict<Int>
-
-external interface CPU {
-    var limit: Int
-    var tickLimit: Int
-    var bucket: Int
-    var shardLimits: ShardLimits
-    /**
-     * Get amount of CPU time used from the beginning of the current game tick. Always returns 0 in the Simulation mode.
-     */
-    fun getUsed(): Double
-
-    fun getHeapStatistics(): Json
-    fun setShardLimits(limits: ShardLimits): ScreepsReturnCode
-}
-
-
-external interface GlobalControlLevel {
-    var level: Int
-    var progress: Int
-    var progressTotal: Int
-}
-
-
-external interface Shard {
-    var name: String
-    var type: String
-    var ptr: Boolean
-}
