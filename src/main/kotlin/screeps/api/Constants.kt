@@ -10,6 +10,7 @@ typealias StringConstant = Constant<String>
 typealias IntegerConstant = Constant<Int>
 
 external interface FindConstant : IntegerConstant
+external interface ExitConstant : FindConstant
 external interface ScreepsReturnCode : IntegerConstant
 external interface BodyPartConstant : StringConstant
 external interface ActiveBodyPartConstant : BodyPartConstant
@@ -43,10 +44,10 @@ external val ERR_NOT_ENOUGH_EXTENSIONS: ScreepsReturnCode
 external val ERR_RCL_NOT_ENOUGH: ScreepsReturnCode
 external val ERR_GCL_NOT_ENOUGH: ScreepsReturnCode
 
-external val FIND_EXIT_TOP: FindConstant
-external val FIND_EXIT_RIGHT: FindConstant
-external val FIND_EXIT_BOTTOM: FindConstant
-external val FIND_EXIT_LEFT: FindConstant
+external val FIND_EXIT_TOP: ExitConstant
+external val FIND_EXIT_RIGHT: ExitConstant
+external val FIND_EXIT_BOTTOM: ExitConstant
+external val FIND_EXIT_LEFT: ExitConstant
 external val FIND_EXIT: FindConstant
 external val FIND_CREEPS: FindConstant
 external val FIND_MY_CREEPS: FindConstant
@@ -261,3 +262,10 @@ external val SAFE_MODE_COST: Int
 external val ORDER_SELL: OrderConstant
 external val ORDER_BUY: OrderConstant
 external val SUBSCRIPTION_TOKEN: TradableConstant
+
+// Constants to restrict function arguments
+external interface TerrainConstant : StringConstant
+
+val TERRAIN_PLAIN: TerrainConstant = "plain".unsafeCast<TerrainConstant>()
+val TERRAIN_SWAMP: TerrainConstant = "swamp".unsafeCast<TerrainConstant>()
+val TERRAIN_WALL: TerrainConstant = "wall".unsafeCast<TerrainConstant>()
