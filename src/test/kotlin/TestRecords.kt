@@ -1,6 +1,7 @@
 @file:Suppress("UNCHECKED_CAST_TO_EXTERNAL_INTERFACE")
 
 import screeps.api.*
+import screeps.utils.contains
 import screeps.utils.memory.memoryOrDefault
 import kotlin.test.Test
 import kotlin.test.assertEquals

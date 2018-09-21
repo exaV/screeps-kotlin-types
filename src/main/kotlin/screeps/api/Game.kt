@@ -2,6 +2,7 @@ package screeps.api
 
 import screeps.api.structures.Structure
 import screeps.api.structures.StructureSpawn
+import screeps.utils.Result
 import kotlin.js.Json
 
 external object Game {
