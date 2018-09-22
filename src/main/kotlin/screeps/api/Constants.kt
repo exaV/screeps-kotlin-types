@@ -2,27 +2,26 @@
 
 package screeps.api
 
+external interface Constant<T>
 inline val <T> Constant<T>.value: T get() = this.asDynamic().unsafeCast<T>()
 
-external interface Constant<T>
-
 typealias StringConstant = Constant<String>
-typealias IntegerConstant = Constant<Int>
+typealias IntConstant = Constant<Int>
 
-external interface FindConstant : IntegerConstant
+external interface FindConstant : IntConstant
 external interface ExitConstant : FindConstant
-external interface ScreepsReturnCode : IntegerConstant
+external interface ScreepsReturnCode : IntConstant
 external interface BodyPartConstant : StringConstant
 external interface ActiveBodyPartConstant : BodyPartConstant
 external interface StructureConstant : StringConstant
 external interface BuildableStructureConstant : StructureConstant
 external interface LookConstant : StringConstant
-external interface DirectionConstant : IntegerConstant
+external interface DirectionConstant : IntConstant
 external interface TradableConstant : StringConstant
 external interface ResourceConstant : TradableConstant
 external interface MineralConstant : ResourceConstant
-external interface ColorConstant : IntegerConstant
-external interface DensityConstant : IntegerConstant
+external interface ColorConstant : IntConstant
+external interface DensityConstant : IntConstant
 external interface OrderConstant : StringConstant
 external interface Terrain
 
@@ -219,8 +218,7 @@ external val DISMANTLE_COST: Int
 
 
 external val SYSTEM_USERNAME: String
-external val SIGN_NOVICE_AREA: String
-external val SIGN_RESPAWN_AREA: String
+external val SIGN_PLANNED_AREA: String
 
 external val SOURCE_ENERGY_CAPACITY: Int
 external val SOURCE_ENERGY_NEUTRAL_CAPACITY: Int
