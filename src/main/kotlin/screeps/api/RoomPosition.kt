@@ -45,5 +45,6 @@ external class RoomPosition(x: Int, y: Int, roomName: String) {
     fun isNearTo(target: RoomObject): Boolean
     fun look(): Array<LookAt>
     fun <T> lookFor(type: LookConstant): Array<T>?
-
 }
+
+class Filter(val filter: dynamic)

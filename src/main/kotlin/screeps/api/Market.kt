@@ -5,7 +5,7 @@ import screeps.api.structures.Owner
 external interface Market {
     val credits: Double
     val incomingTransactions: Array<Transaction>
-    val orders: StringDict<Order>
+    val orders: Record<String, Order>
     val outgoingTransactions: Array<Transaction>
 
     fun calcTransactionCost(amount: Int, roomName1: String, roomName2: String): Int

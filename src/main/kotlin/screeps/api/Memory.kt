@@ -1,20 +1,11 @@
 package screeps.api
 
-//TODO the object should probably be empty since all the contents are user defined
-external object Memory {
-    var creeps: MutableStringDict<CreepMemory>
-    var flags: MutableStringDict<FlagMemory>?
-    var rooms: MutableStringDict<RoomMemory>
-    var spawns: MutableStringDict<SpawnMemory>?
+external object Memory : MutableRecord<String, dynamic> {
+    var creeps: MutableRecord<String, CreepMemory>
+    var flags: MutableRecord<String, FlagMemory>?
+    var rooms: MutableRecord<String, RoomMemory>
+    var spawns: MutableRecord<String, SpawnMemory>?
 
-}
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun Memory.get(name: String): Any? = asDynamic()[name]
-
-@Suppress("NOTHING_TO_INLINE")
-inline operator fun Memory.set(name: String, value: Any) {
-    asDynamic()[name] = value
 }
 
 external interface CreepMemory
