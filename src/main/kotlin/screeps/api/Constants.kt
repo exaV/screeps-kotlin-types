@@ -3,6 +3,7 @@
 package screeps.api
 
 external interface Constant<T>
+
 inline val <T> Constant<T>.value: T get() = this.asDynamic().unsafeCast<T>()
 
 typealias StringConstant = Constant<String>
@@ -180,11 +181,11 @@ external val CLAIM: BodyPartConstant
 external val BODYPART_COST: Record<BodyPartConstant, Int>
 
 
-external var CREEP_SPAWN_TIME: Int
-external var CREEP_LIFE_TIME: Int
-external var CREEP_CLAIM_LIFE_TIME: Int
-external var CREEP_CORPSE_RATE: Double
-external var OBSTACLE_OBJECT_TYPES: Array<String>
+external val CREEP_SPAWN_TIME: Int
+external val CREEP_LIFE_TIME: Int
+external val CREEP_CLAIM_LIFE_TIME: Int
+external val CREEP_CORPSE_RATE: Double
+external val OBSTACLE_OBJECT_TYPES: Array<String>
 external val ENERGY_REGEN_TIME: Int
 external val ENERGY_DECAY: Int
 external val REPAIR_COST: Int
