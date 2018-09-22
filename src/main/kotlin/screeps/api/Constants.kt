@@ -178,7 +178,7 @@ external val RANGED_ATTACK: ActiveBodyPartConstant
 external val TOUGH: ActiveBodyPartConstant
 external val HEAL: ActiveBodyPartConstant
 external val CLAIM: BodyPartConstant
-external val BODYPART_COST: Record<String, Int>
+external val BODYPART_COST: Record<BodyPartConstant, Int>
 
 
 external var CREEP_SPAWN_TIME: Int
