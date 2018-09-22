@@ -6,7 +6,7 @@ import screeps.api.structures.StructureController
 
 abstract external class Creep : RoomObject, Owned, Attackable, Container, Identifiable {
     val body: Array<BodyPart>
-    val carry: Storage
+    val carry: StoreDefinition
     val carryCapacity: Int
     val fatigue: Int
     val memory: CreepMemory
@@ -51,11 +51,6 @@ abstract external class Creep : RoomObject, Owned, Attackable, Container, Identi
         resourceType: ResourceConstant,
         amount: Int = definedExternally
     ): ScreepsReturnCode
-}
-
-external interface Storage {
-    val energy: Int
-    val power: Int?
 }
 
 external interface BodyPart {
