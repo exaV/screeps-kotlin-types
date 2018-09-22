@@ -2,7 +2,6 @@ package screeps.api
 
 import screeps.api.structures.Structure
 import screeps.api.structures.StructureController
-import screeps.utils.Style
 
 
 abstract external class Creep : RoomObject, Owned, Attackable, Container, Identifiable {
@@ -69,7 +68,7 @@ class MoveToOpts(
     val reusePath: Int = 5,
     val serializeMemory: Boolean = true,
     val noPathFinding: Boolean = false,
-    val visualizePathStyle: Style = Style(),
+    val visualizePathStyle: RoomVisual.ShapeStyle,
 
     val ignoreCreeps: Boolean = false,
     val ignoreDestructibleStructures: Boolean = false,

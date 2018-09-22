@@ -263,8 +263,19 @@ external val ORDER_BUY: OrderConstant
 external val SUBSCRIPTION_TOKEN: TradableConstant
 
 // Constants to restrict function arguments
+
 external interface TerrainConstant : StringConstant
+external interface LineStyleConstant : StringConstant
+external interface TextAlignConstant : StringConstant
 
 val TERRAIN_PLAIN: TerrainConstant = "plain".unsafeCast<TerrainConstant>()
 val TERRAIN_SWAMP: TerrainConstant = "swamp".unsafeCast<TerrainConstant>()
 val TERRAIN_WALL: TerrainConstant = "wall".unsafeCast<TerrainConstant>()
+
+val LINE_STYLE_DASHED: LineStyleConstant = "dashed".unsafeCast<LineStyleConstant>()
+val LINE_STYLE_DOTTED: LineStyleConstant = "dotted".unsafeCast<LineStyleConstant>()
+val LINE_STYLE_SOLID: LineStyleConstant = undefined.unsafeCast<LineStyleConstant>()
+
+val TEXT_ALIGN_LEFT: TextAlignConstant = "left".unsafeCast<TextAlignConstant>()
+val TEXT_ALIGN_CENTER: TextAlignConstant = "center".unsafeCast<TextAlignConstant>()
+val TEXT_ALIGN_RIGHT: TextAlignConstant = "right".unsafeCast<TextAlignConstant>()
