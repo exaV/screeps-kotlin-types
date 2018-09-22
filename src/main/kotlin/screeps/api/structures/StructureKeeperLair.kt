@@ -1,5 +1,7 @@
 package screeps.api.structures
 
-external class StructureKeeperLair : OwnedStructure {
+import screeps.api.Owned
+
+abstract external class StructureKeeperLair : Structure, Owned {
     val ticksToSpawn: Int
 }

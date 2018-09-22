@@ -1,8 +1,10 @@
 package screeps.api.structures
 
+import screeps.api.Container
+import screeps.api.Owned
 import screeps.api.Storage
 
-external class StructureStorage : OwnedStructure {
+abstract external class StructureStorage : Structure, Owned, Container {
     val store: Storage
     val storeCapacity: Int
 }

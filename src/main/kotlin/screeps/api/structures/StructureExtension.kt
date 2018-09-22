@@ -1,4 +1,6 @@
 package screeps.api.structures
 
-abstract external class StructureExtension : OwnedStructure,
-    EnergyStructure
+import screeps.api.Owned
+import screeps.api.SpawnEnergyProvider
+
+abstract external class StructureExtension : Structure, Owned, SpawnEnergyProvider

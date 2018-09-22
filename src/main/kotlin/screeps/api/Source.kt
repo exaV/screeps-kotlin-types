@@ -1,9 +1,6 @@
 package screeps.api
 
-
-external class Source : RoomObject {
+abstract external class Source : RoomObject, Harvestable, Identifiable {
     val energy: Int
     val energyCapacity: Int
-    val ticksToRegeneration: Int
-
 }

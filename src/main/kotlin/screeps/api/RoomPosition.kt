@@ -1,6 +1,6 @@
 package screeps.api
 
-external class RoomPosition(x: Int, y: Int, roomName: String) {
+external class RoomPosition(x: Int, y: Int, roomName: String) : NavigationTarget {
     val roomName: String
     val x: Int
     val y: Int

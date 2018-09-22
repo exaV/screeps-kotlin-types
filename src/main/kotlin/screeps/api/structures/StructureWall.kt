@@ -1,3 +1,3 @@
 package screeps.api.structures
 
-external class StructureWall : Structure
+abstract external class StructureWall : Structure

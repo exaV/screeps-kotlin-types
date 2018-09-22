@@ -56,7 +56,7 @@ external object Game {
      * Get an object with the specified unique ID. It may be a game object of any type.
      * Only objects from the rooms which are visible to you can be accessed.
      */
-    fun <T : GameObject> getObjectById(id: String?): T?
+    fun <T : Identifiable> getObjectById(id: String?): T?
 
     /**
      * Send a custom message at your profile email.

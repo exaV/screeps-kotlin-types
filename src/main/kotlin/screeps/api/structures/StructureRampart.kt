@@ -1,9 +1,10 @@
 package screeps.api.structures
 
+import screeps.api.Decaying
+import screeps.api.Owned
 import screeps.api.ScreepsReturnCode
 
-external class StructureRampart : OwnedStructure {
+abstract external class StructureRampart : Structure, Owned, Decaying {
     val isPublic: Boolean
-    val ticksToDecay: Int
     fun setPublic(isPublic: Boolean): ScreepsReturnCode
 }

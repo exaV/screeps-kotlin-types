@@ -1,22 +1,17 @@
 package screeps.api
 
-import screeps.api.structures.Owner
 import screeps.api.structures.Structure
 import screeps.api.structures.StructureController
 import screeps.utils.Style
 
 
-external class Creep : RoomObject {
+abstract external class Creep : RoomObject, Owned, Attackable, Container, Identifiable {
     val body: Array<BodyPart>
     val carry: Storage
     val carryCapacity: Int
     val fatigue: Int
-    val hits: Int
-    val hitsMax: Int
     val memory: CreepMemory
-    val my: Boolean
     val name: String
-    val owner: Owner
     val saying: String
     val spawning: Boolean
     val ticksToLive: Int
@@ -50,22 +45,13 @@ external class Creep : RoomObject {
     fun say(message: String, toPublic: Boolean = definedExternally): ScreepsReturnCode
     fun signController(controller: StructureController, text: String): ScreepsReturnCode
     fun suicide(): ScreepsReturnCode
-    fun transfer(target: Creep, resourceType: ResourceConstant, amount: Int = definedExternally): ScreepsReturnCode
-    fun transfer(target: Structure, resourceType: ResourceConstant, amount: Int = definedExternally): ScreepsReturnCode
+    fun transfer(target: Container, resourceType: ResourceConstant, amount: Int = definedExternally): ScreepsReturnCode
     fun upgradeController(controller: StructureController): ScreepsReturnCode
     fun withdraw(
-        structure: Structure,
+        structure: Container,
         resourceType: ResourceConstant,
         amount: Int = definedExternally
     ): ScreepsReturnCode
-
-    fun withdraw(
-        tombstone: Tombstone,
-        resourceType: ResourceConstant,
-        amount: Int = definedExternally
-    ): ScreepsReturnCode
-
-
 }
 
 external interface Storage {

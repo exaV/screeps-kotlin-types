@@ -1,6 +1,6 @@
 package screeps.api
 
-import screeps.api.structures.Owner
+import screeps.api.Owned.Owner
 
 external interface Market {
     val credits: Double
