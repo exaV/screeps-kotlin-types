@@ -46,11 +46,11 @@ abstract external class StructureSpawn : Structure, Owned, SpawnEnergyProvider {
 
         fun cancel(): ScreepsReturnCode
     }
+}
 
-    interface SpawnOptions {
-        var memory: CreepMemory?
-        var energyStructures: Array<SpawnEnergyProvider>?
-        var dryRun: Boolean?
-        var directions: Array<DirectionConstant>?
-    }
+external interface SpawnOptions {
+    var memory: CreepMemory?
+    var energyStructures: Array<SpawnEnergyProvider>?
+    var dryRun: Boolean?
+    var directions: Array<DirectionConstant>?
 }
