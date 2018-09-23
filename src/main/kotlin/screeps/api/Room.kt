@@ -1,15 +1,14 @@
 package screeps.api
 
-import screeps.api.structures.Structure
 import screeps.api.structures.StructureController
 import screeps.api.structures.StructureStorage
 import screeps.api.structures.StructureTerminal
 
-external class Room {
+abstract external class Room {
     val controller: StructureController?
     val energyAvailable: Int
     val energyCapacityAvailable: Int
-    val memory: dynamic
+    val memory: RoomMemory
     val name: String
     val storage: StructureStorage?
     val terminal: StructureTerminal?
@@ -32,54 +31,46 @@ external class Room {
         secondaryColor: ColorConstant = definedExternally
     ): Any
 
-    fun <T : RoomObject> find(FIND_CONSTANT: FindConstant): Array<T>
+    fun <T : RoomObject> find(findConstant: FindConstant, opts: FilterOption<T> = definedExternally): Array<T>
     fun findExitTo(room: String): Any
+
     fun findExitTo(room: Room): Any
-    fun findPath(fromPos: RoomPosition, toPos: RoomPosition, opts: FindPathOpts? = definedExternally): Array<PathStep>
+    fun findPath(fromPos: RoomPosition, toPos: RoomPosition, opts: FindPathOptions = definedExternally): Array<PathStep>
     fun getPositionAt(x: Int, y: Int): RoomPosition?
-    fun lookAt(x: Int, y: Int): Array<LookAt>
-    fun lookAt(target: RoomPosition): Array<LookAt>
-    fun lookAtArea(
-        top: Int,
-        left: Int,
-        bottom: Int,
-        right: Int,
-        asArray: Boolean? = definedExternally
-    ): dynamic
-
+    fun lookAt(x: Int, y: Int): Array<RoomPosition.Look>
+    fun lookAt(target: RoomPosition): Array<RoomPosition.Look>
     fun <T> lookForAt(type: LookConstant, x: Int, y: Int): Array<T>?
+
+    interface PathStep {
+        var x: Int
+        var dx: Int
+        var y: Int
+        var dy: Int
+        var direction: DirectionConstant
+    }
+
+    interface LookAtAreaArrayItem : RoomPosition.Look {
+        val x: Int
+        val y: Int
+    }
 }
 
-external class LookAt {
-    val type: LookConstant
-    val creep: Creep?
-    val structure: Structure?
-    val terrain: String?
-    val constructionSite: ConstructionSite?
-    val resource: Resource?
-}
+private typealias LookAtAreaResult = Record<Int, Record<Int, Array<RoomPosition.Look>>>
 
-fun Room.findCreeps() = find<Creep>(FIND_CREEPS)
-fun Room.findEnergy() = find<Source>(FIND_SOURCES)
-fun Room.findConstructionSites() = find<ConstructionSite>(FIND_CONSTRUCTION_SITES)
-fun Room.findStructures() = find<Structure>(FIND_STRUCTURES)
-fun Room.findDroppedEnergy() = find<Resource>(FIND_DROPPED_RESOURCES).filter { it.resourceType == RESOURCE_ENERGY }
+fun Room.lookAtArea(top: Int, left: Int, bottom: Int, right: Int): LookAtAreaResult =
+    this.asDynamic().lookAtArea(top, left, bottom, right, false).unsafeCast<LookAtAreaResult>()
 
-class FindPathOpts(
-    val ignoreCreeps: Boolean = false,
-    val ignoreDestructibleStructures: Boolean = false,
-    val ignoreRoads: Boolean = false,
-    val maxOps: Int = 2000,
-    val heuristicWeight: Double = 1.2,
-    val serialize: Boolean = false,
-    val maxRooms: Int = 16,
-    val range: Int = 0
-)
+fun Room.lookAtAreaAsArray(top: Int, left: Int, bottom: Int, right: Int): Array<Room.LookAtAreaArrayItem> =
+    this.asDynamic().lookAtArea(top, left, bottom, right, true).unsafeCast<Array<Room.LookAtAreaArrayItem>>()
 
-external interface PathStep {
-    var x: Int
-    var dx: Int
-    var y: Int
-    var dy: Int
-    var direction: dynamic
+external interface FindPathOptions {
+    var ignoreCreeps: Boolean?
+    var ignoreDestructibleStructures: Boolean?
+    var ignoreRoads: Boolean?
+    var costCallback: ((roomName: String, costMatrix: PathFinder.CostMatrix) -> PathFinder.CostMatrix)?
+    var maxOps: Int?
+    var heuristicWeight: Double?
+    var serialize: Boolean?
+    var maxRooms: Int?
+    var range: Int?
 }

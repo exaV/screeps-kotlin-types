@@ -268,6 +268,7 @@ external val SUBSCRIPTION_TOKEN: TradableConstant
 external interface TerrainConstant : StringConstant
 external interface LineStyleConstant : StringConstant
 external interface TextAlignConstant : StringConstant
+external interface AlgorithmConstant : StringConstant
 
 val TERRAIN_PLAIN: TerrainConstant = "plain".unsafeCast<TerrainConstant>()
 val TERRAIN_SWAMP: TerrainConstant = "swamp".unsafeCast<TerrainConstant>()
@@ -280,3 +281,5 @@ val LINE_STYLE_SOLID: LineStyleConstant = undefined.unsafeCast<LineStyleConstant
 val TEXT_ALIGN_LEFT: TextAlignConstant = "left".unsafeCast<TextAlignConstant>()
 val TEXT_ALIGN_CENTER: TextAlignConstant = "center".unsafeCast<TextAlignConstant>()
 val TEXT_ALIGN_RIGHT: TextAlignConstant = "right".unsafeCast<TextAlignConstant>()
+val ALGORITHM_ASTAR: AlgorithmConstant = "astar".unsafeCast<AlgorithmConstant>()
+val ALGORITHM_DIJKSTRA: AlgorithmConstant = "dijkstra".unsafeCast<AlgorithmConstant>()
