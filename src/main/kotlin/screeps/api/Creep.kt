@@ -32,7 +32,7 @@ abstract external class Creep : RoomObject, Owned, Attackable, Container, Identi
     fun move(direction: DirectionConstant): ScreepsReturnCode
     fun moveByPath(path: Array<Room.PathStep>): ScreepsReturnCode
     fun moveByPath(serializedPath: String): ScreepsReturnCode
-    fun moveTo(target: RoomPosition, opts: MoveToOptions = definedExternally): ScreepsReturnCode
+    fun moveTo(target: NavigationTarget, opts: MoveToOptions = definedExternally): ScreepsReturnCode
     fun moveTo(x: Int, y: Int, opts: MoveToOptions = definedExternally): ScreepsReturnCode
     fun notifyWhenAttacked(enable: Boolean): ScreepsReturnCode
     fun pickup(target: Resource): ScreepsReturnCode
