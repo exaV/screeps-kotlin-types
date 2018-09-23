@@ -5,18 +5,16 @@ import screeps.api.*
 abstract external class StructureSpawn : Structure, Owned, SpawnEnergyProvider {
     val memory: SpawnMemory
     val name: String
-
     val spawning: Spawning?
 
     /**
      * Start the creep spawning process. The required energy amount can be withdrawn from all spawns and utils in the room.
      */
-    fun spawnCreep(body: Array<BodyPartConstant>, name: String): ScreepsReturnCode
-
-    /**
-     * Start the creep spawning process. The required energy amount can be withdrawn from all spawns and utils in the room.
-     */
-    fun spawnCreep(body: Array<BodyPartConstant>, name: String, opts: SpawnOptions): ScreepsReturnCode
+    fun spawnCreep(
+        body: Array<BodyPartConstant>,
+        name: String,
+        opts: SpawnOptions? = definedExternally
+    ): ScreepsReturnCode
 
     /**
      * Kill the creep and drop up to 100% of resources spent on its spawning and boosting depending on remaining life time.
@@ -39,24 +37,20 @@ abstract external class StructureSpawn : Structure, Owned, SpawnEnergyProvider {
      * Renewing a creep removes all of its boosts.
      */
     fun renewCreep(target: Creep): ScreepsReturnCode
+
+    interface Spawning {
+        val directions: Array<DirectionConstant>
+        val name: String
+        val needTime: Int
+        val remainingTime: Int
+
+        fun cancel(): ScreepsReturnCode
+    }
+
+    interface SpawnOptions {
+        var memory: CreepMemory?
+        var energyStructures: Array<SpawnEnergyProvider>?
+        var dryRun: Boolean?
+        var directions: Array<DirectionConstant>?
+    }
 }
-
-external class Spawning {
-    val directions: Array<DirectionConstant>
-    val name: String
-    val needTime: Int
-    val remainingTime: Int
-
-    fun cancel(): ScreepsReturnCode
-}
-
-interface SpawnOptions {
-    val memory: CreepMemory?
-}
-
-open class FullSpawnOptions(
-    override val memory: CreepMemory? = null,
-    open val energyContainingStructure: Array<SpawnEnergyProvider>? = null,
-    open val dryRun: Boolean = false,
-    open val directions: Array<DirectionConstant>? = null
-) : SpawnOptions
