@@ -66,10 +66,6 @@ external class RoomPosition(x: Int, y: Int, roomName: String) : NavigationTarget
     }
 }
 
-external interface FilterOption<T> {
-    var filter: ((T) -> Boolean)?
-}
-
 external interface FindClosestByPathOptions<T> : FindPathOptions, FilterOption<T> {
     var algorithm: AlgorithmConstant?
 }

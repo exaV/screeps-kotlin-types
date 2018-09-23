@@ -5,3 +5,7 @@ external interface StoreDefinition {
     val power: Int?
 }
 
+external interface FilterOption<T> {
+    var filter: ((T) -> Boolean)?
+}
+
