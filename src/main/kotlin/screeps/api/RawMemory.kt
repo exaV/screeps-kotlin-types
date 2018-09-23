@@ -10,7 +10,7 @@ external object RawMemory {
     fun get(): String
     fun set(value: String)
     fun setActiveSegments(ids: Array<Int>)
-    fun setActiveForeignSegment(username: String, id: Int? = definedExternally)
+    fun setActiveForeignSegment(username: String, id: Int = definedExternally)
     fun setDefaultPublicSegment(id: Int?)
     fun setPublicSegments(ids: Array<Int>)
 

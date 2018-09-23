@@ -16,13 +16,13 @@ external interface Market {
         resourceType: TradableConstant,
         price: Double,
         totalAmount: Int,
-        roomName: String? = definedExternally
+        roomName: String = definedExternally
     ): ScreepsReturnCode
 
-    fun deal(orderId: String, amount: Int, targetRoomName: String? = definedExternally): ScreepsReturnCode
+    fun deal(orderId: String, amount: Int, targetRoomName: String = definedExternally): ScreepsReturnCode
     fun extendOrder(orderId: String, addAmount: Int): ScreepsReturnCode
-    fun getAllOrders(filter: Order.Filter? = definedExternally): Array<Order>
-    fun getAllOrders(filter: ((o: Order) -> Boolean)? = definedExternally): Array<Order>
+    fun getAllOrders(filter: Order.Filter = definedExternally): Array<Order>
+    fun getAllOrders(filter: ((o: Order) -> Boolean) = definedExternally): Array<Order>
     fun getAllOrders(): Array<Order>
     fun getOrderById(id: String): Order?
 

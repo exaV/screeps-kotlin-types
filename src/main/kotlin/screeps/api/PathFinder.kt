@@ -3,10 +3,10 @@
 package screeps.api
 
 external object PathFinder {
-    fun search(origin: RoomPosition, goal: RoomPosition, options: Options? = definedExternally): Path
-    fun search(origin: RoomPosition, goal: Array<RoomPosition>, options: Options? = definedExternally): Path
-    fun search(origin: RoomPosition, goal: GoalWithRange, options: Options? = definedExternally): Path
-    fun search(origin: RoomPosition, goal: Array<GoalWithRange>, options: Options? = definedExternally): Path
+    fun search(origin: RoomPosition, goal: RoomPosition, options: Options = definedExternally): Path
+    fun search(origin: RoomPosition, goal: Array<RoomPosition>, options: Options = definedExternally): Path
+    fun search(origin: RoomPosition, goal: GoalWithRange, options: Options = definedExternally): Path
+    fun search(origin: RoomPosition, goal: Array<GoalWithRange>, options: Options = definedExternally): Path
 
     class CostMatrix {
         fun set(x: Int, y: Int, cost: Int)
