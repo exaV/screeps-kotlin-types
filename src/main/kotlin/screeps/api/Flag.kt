@@ -6,9 +6,8 @@ abstract external class Flag : RoomObject {
     val name: String
     val secondaryColor: ColorConstant
     fun remove() // always ok
-    fun setColor(color: ColorConstant): ScreepsReturnCode
-    fun setColor(color: ColorConstant, secondaryColor: ColorConstant): ScreepsReturnCode
-    fun setPosition(position: RoomPosition): ScreepsReturnCode
+    fun setColor(color: ColorConstant, secondaryColor: ColorConstant = definedExternally): ScreepsReturnCode
     fun setPosition(x: Int, y: Int): ScreepsReturnCode
-    fun setPosition(roomObject: RoomObject): ScreepsReturnCode
+    fun setPosition(pos: RoomPosition): ScreepsReturnCode
+    fun setPosition(pos: HasPosition): ScreepsReturnCode
 }
