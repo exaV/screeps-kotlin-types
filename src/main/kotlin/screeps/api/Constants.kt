@@ -262,7 +262,8 @@ external val ORDER_SELL: OrderConstant
 external val ORDER_BUY: OrderConstant
 external val SUBSCRIPTION_TOKEN: TradableConstant
 
-// Constants to restrict function arguments
+// Kotlin specific constants - used to indicate a subset of a type
+// E.g. "plain" | "swamp" | "wall" as specified by the API.
 
 external interface TerrainConstant : StringConstant
 external interface LineStyleConstant : StringConstant
