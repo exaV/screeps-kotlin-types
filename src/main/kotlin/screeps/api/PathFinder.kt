@@ -33,7 +33,7 @@ external object PathFinder {
     }
 }
 
-interface SearchOptions {
+interface SearchOptions : Options {
     var roomCallback: ((String) -> PathFinder.CostMatrix)?
     var plainCost: Int?
     var swampCost: Int?
@@ -43,4 +43,3 @@ interface SearchOptions {
     var maxCost: Int?
     var heuristicWeight: Double?
 }
-

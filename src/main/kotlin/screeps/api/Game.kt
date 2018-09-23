@@ -105,7 +105,7 @@ external object Game {
             val room: String
         }
 
-        interface RouteOptions {
+        interface RouteOptions : Options {
             var routeCallback: (roomName: String, fromRoomName: String) -> Double
         }
     }
