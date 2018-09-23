@@ -13,7 +13,7 @@ abstract external class StructureSpawn : Structure, Owned, SpawnEnergyProvider {
     fun spawnCreep(
         body: Array<BodyPartConstant>,
         name: String,
-        opts: SpawnOptions? = definedExternally
+        opts: SpawnOptions = definedExternally
     ): ScreepsReturnCode
 
     /**
