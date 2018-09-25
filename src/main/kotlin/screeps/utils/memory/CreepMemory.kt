@@ -1,10 +1,11 @@
 package screeps.utils.memory
 
-import screeps.api.CreepMemory
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-open class CreepMemoryDelegate<T>(protected val default: T) : ReadWriteProperty<CreepMemory, T> {
+external interface MemoryMarker
+
+open class CreepMemoryDelegate<T>(protected val default: T) : ReadWriteProperty<MemoryMarker, T> {
 
     override fun getValue(thisRef: dynamic, property: KProperty<*>): T =
         thisRef[property.name] as? T ?: default.also {
@@ -31,7 +32,7 @@ open class CreepMemoryDelegate<T>(protected val default: T) : ReadWriteProperty<
  * ### Note: this method only works with primitive screeps. To use complex screeps use *memoryOrDefault*
  *
  */
-fun <T> memory(): ReadWriteProperty<CreepMemory, T?> = CreepMemoryDelegate(null)
+fun <T> memory(): ReadWriteProperty<MemoryMarker, T?> = CreepMemoryDelegate(null)
 
 /**
  * Creates a  property that is persisted in creep.memory
@@ -40,7 +41,7 @@ fun <T> memory(): ReadWriteProperty<CreepMemory, T?> = CreepMemoryDelegate(null)
  *
  * @see memory
  */
-fun <T : Any> memoryOrDefault(default: T): ReadWriteProperty<CreepMemory, T> = CreepMemoryDelegate(default)
+fun <T : Any> memoryOrDefault(default: T): ReadWriteProperty<MemoryMarker, T> = CreepMemoryDelegate(default)
 
 /**
  * Specifically for enums
@@ -48,13 +49,14 @@ fun <T : Any> memoryOrDefault(default: T): ReadWriteProperty<CreepMemory, T> = C
  * @see memory
  */
 inline fun <reified T : Enum<T>> memoryOrDefault(default: T)
-        : ReadWriteProperty<CreepMemory, T> = CreepMemoryMappingDelegate(default, Enum<T>::name) { s -> enumValueOf(s) }
+        : ReadWriteProperty<MemoryMarker, T> =
+    CreepMemoryMappingDelegate(default, Enum<T>::name) { s -> enumValueOf(s) }
 
 open class CreepMemoryMappingDelegate<T>(
     protected val default: T,
     protected val serializer: (T) -> String,
     protected val deserializer: (String) -> T
-) : ReadWriteProperty<CreepMemory, T> {
+) : ReadWriteProperty<MemoryMarker, T> {
 
     override fun getValue(thisRef: dynamic, property: KProperty<*>): T {
         val value = thisRef[property.name] as? String
@@ -73,5 +75,5 @@ open class CreepMemoryMappingDelegate<T>(
 }
 
 fun <T : Any> serializedMemory(default: T, serializer: (T) -> String, deserializer: (String) -> T)
-        : ReadWriteProperty<CreepMemory, T> = CreepMemoryMappingDelegate(default, serializer, deserializer)
+        : ReadWriteProperty<MemoryMarker, T> = CreepMemoryMappingDelegate(default, serializer, deserializer)
 
