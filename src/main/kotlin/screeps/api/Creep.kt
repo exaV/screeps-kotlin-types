@@ -3,10 +3,9 @@ package screeps.api
 import screeps.api.structures.Structure
 import screeps.api.structures.StructureController
 
-
 abstract external class Creep : RoomObject, Owned, Attackable, Container, Identifiable {
     val body: Array<BodyPart>
-    val carry: Storage
+    val carry: StoreDefinition
     val carryCapacity: Int
     val fatigue: Int
     val memory: CreepMemory
@@ -29,10 +28,10 @@ abstract external class Creep : RoomObject, Owned, Attackable, Container, Identi
     fun harvest(target: Mineral): ScreepsReturnCode
     fun heal(target: Creep): ScreepsReturnCode
     fun move(direction: DirectionConstant): ScreepsReturnCode
-    fun moveByPath(path: Array<PathStep>): ScreepsReturnCode
+    fun moveByPath(path: Array<Room.PathStep>): ScreepsReturnCode
     fun moveByPath(serializedPath: String): ScreepsReturnCode
-    fun moveTo(target: RoomPosition, opts: MoveToOpts = definedExternally): ScreepsReturnCode
-    fun moveTo(x: Int, y: Int, opts: MoveToOpts = definedExternally): ScreepsReturnCode
+    fun moveTo(target: NavigationTarget, opts: MoveToOptions = definedExternally): ScreepsReturnCode
+    fun moveTo(x: Int, y: Int, opts: MoveToOptions = definedExternally): ScreepsReturnCode
     fun notifyWhenAttacked(enable: Boolean): ScreepsReturnCode
     fun pickup(target: Resource): ScreepsReturnCode
     fun rangedAttack(target: Creep): ScreepsReturnCode
@@ -51,31 +50,18 @@ abstract external class Creep : RoomObject, Owned, Attackable, Container, Identi
         resourceType: ResourceConstant,
         amount: Int = definedExternally
     ): ScreepsReturnCode
+
+    interface BodyPart {
+        val boost: String?
+        val type: BodyPartConstant
+        val hits: Int
+    }
+
 }
 
-external interface Storage {
-    val energy: Int
-    val power: Int?
+external interface MoveToOptions : FindPathOptions {
+    val reusePath: Int?
+    val serializeMemory: Boolean?
+    val noPathFinding: Boolean?
+    val visualizePathStyle: RoomVisual.Style?
 }
-
-external interface BodyPart {
-    val boost: String?
-    val type: BodyPartConstant
-    val hits: Int
-}
-
-class MoveToOpts(
-    val reusePath: Int = 5,
-    val serializeMemory: Boolean = true,
-    val noPathFinding: Boolean = false,
-    val visualizePathStyle: RoomVisual.ShapeStyle,
-
-    val ignoreCreeps: Boolean = false,
-    val ignoreDestructibleStructures: Boolean = false,
-    val ignoreRoads: Boolean = false,
-    val maxOps: Int = 2000,
-    val serialize: Boolean = false,
-    val maxRooms: Int = 16,
-    val heuristicWeight: Double = 1.2,
-    val range: Int = 0
-) //some options are not included: plaincost, swampcost and costCallback

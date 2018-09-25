@@ -1,5 +1,7 @@
 package screeps.api
 
+import screeps.api.structures.Structure
+
 external class RoomPosition(x: Int, y: Int, roomName: String) : NavigationTarget {
     val roomName: String
     val x: Int
@@ -15,20 +17,28 @@ external class RoomPosition(x: Int, y: Int, roomName: String) : NavigationTarget
 
     fun <T : RoomObject> findClosestByPath(
         objects: Array<RoomObject>,
-        opts: dynamic = definedExternally
+        opts: FindClosestByPathOptions<T> = definedExternally
     ): T?
 
-    fun <T : RoomObject> findClosestByPath(type: FindConstant, opts: dynamic = definedExternally): T?
+    fun <T : RoomObject> findClosestByPath(
+        type: FindConstant,
+        opts: FindClosestByPathOptions<T> = definedExternally
+    ): T?
 
     fun <T : RoomObject> findClosestByRange(
         type: FindConstant,
         objects: Array<RoomObject>,
-        opts: dynamic = definedExternally
+        opts: FilterOption<T> = definedExternally
     ): T?
 
-    fun <T : RoomObject> findClosestByRange(type: FindConstant, opts: dynamic = definedExternally): T?
+    fun <T : RoomObject> findClosestByRange(type: FindConstant, opts: FilterOption<T> = definedExternally): T?
 
-    fun <T : RoomObject> findInRange(type: FindConstant, range: Int, opts: Filter = definedExternally): Array<T>
+    fun <T : RoomObject> findInRange(
+        type: FindConstant,
+        range: Int,
+        opts: FilterOption<T> = definedExternally
+    ): Array<T>
+
     fun getDirectionTo(x: Int, y: Int): DirectionConstant
     fun getDirectionTo(target: RoomPosition): DirectionConstant
     fun getDirectionTo(target: RoomObject): DirectionConstant
@@ -43,8 +53,19 @@ external class RoomPosition(x: Int, y: Int, roomName: String) : NavigationTarget
     fun isNearTo(x: Int, y: Int): Boolean
     fun isNearTo(target: RoomPosition): Boolean
     fun isNearTo(target: RoomObject): Boolean
-    fun look(): Array<LookAt>
+    fun look(): Array<Look>
     fun <T> lookFor(type: LookConstant): Array<T>?
+
+    interface Look {
+        val type: LookConstant
+        val creep: Creep?
+        val structure: Structure?
+        val terrain: String?
+        val constructionSite: ConstructionSite?
+        val resource: Resource?
+    }
 }
 
-class Filter(val filter: dynamic)
+external interface FindClosestByPathOptions<T> : FindPathOptions, FilterOption<T> {
+    var algorithm: AlgorithmConstant?
+}

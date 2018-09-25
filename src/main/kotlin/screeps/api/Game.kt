@@ -93,8 +93,8 @@ external object Game {
 
     interface Map {
         fun describeExits(roomName: String): Record<DirectionConstant, String>
-        fun findExit(fromRoom: String, toRoom: String, opts: RouteOptions? = definedExternally): ExitConstant
-        fun getRoomLinearDistance(roomName1: String, roomName2: String, continuous: Boolean? = definedExternally): Int
+        fun findExit(fromRoom: String, toRoom: String, opts: RouteOptions = definedExternally): ExitConstant
+        fun getRoomLinearDistance(roomName1: String, roomName2: String, continuous: Boolean = definedExternally): Int
         fun getTerrainAt(x: Int, y: Int, roomName: String): TerrainConstant
         fun getTerrainAt(pos: RoomPosition): TerrainConstant
         fun getWorldSize(): Int

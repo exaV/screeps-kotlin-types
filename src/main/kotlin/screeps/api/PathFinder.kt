@@ -3,10 +3,10 @@
 package screeps.api
 
 external object PathFinder {
-    fun search(origin: RoomPosition, goal: RoomPosition, options: Options? = definedExternally): Path
-    fun search(origin: RoomPosition, goal: Array<RoomPosition>, options: Options? = definedExternally): Path
-    fun search(origin: RoomPosition, goal: GoalWithRange, options: Options? = definedExternally): Path
-    fun search(origin: RoomPosition, goal: Array<GoalWithRange>, options: Options? = definedExternally): Path
+    fun search(origin: RoomPosition, goal: RoomPosition, options: SearchOptions = definedExternally): Path
+    fun search(origin: RoomPosition, goal: Array<RoomPosition>, options: SearchOptions = definedExternally): Path
+    fun search(origin: RoomPosition, goal: GoalWithRange, options: SearchOptions = definedExternally): Path
+    fun search(origin: RoomPosition, goal: Array<GoalWithRange>, options: SearchOptions = definedExternally): Path
 
     class CostMatrix {
         fun set(x: Int, y: Int, cost: Int)
@@ -25,17 +25,6 @@ external object PathFinder {
     }
 
 
-    interface Options {
-        var roomCallback: ((String) -> CostMatrix)?
-        var plainCost: Int?
-        var swampCost: Int?
-        var flee: Boolean?
-        var maxOps: Int?
-        var maxRooms: Int?
-        var maxCost: Int?
-        var heuristicWeight: Double?
-    }
-
     interface Path {
         val path: Array<RoomPosition>
         val ops: Int
@@ -43,3 +32,15 @@ external object PathFinder {
         val incomplete: Boolean
     }
 }
+
+interface SearchOptions {
+    var roomCallback: ((String) -> PathFinder.CostMatrix)?
+    var plainCost: Int?
+    var swampCost: Int?
+    var flee: Boolean?
+    var maxOps: Int?
+    var maxRooms: Int?
+    var maxCost: Int?
+    var heuristicWeight: Double?
+}
+
