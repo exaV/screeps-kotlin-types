@@ -1,11 +1,10 @@
 package screeps.utils.memory
 
+import screeps.api.MemoryMarker
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-external interface MemoryMarker
-
-open class CreepMemoryDelegate<T>(protected val default: T) : ReadWriteProperty<MemoryMarker, T> {
+open class MemoryDelegate<T>(protected val default: T) : ReadWriteProperty<MemoryMarker, T> {
 
     override fun getValue(thisRef: dynamic, property: KProperty<*>): T =
         thisRef[property.name] as? T ?: default.also {
@@ -19,6 +18,7 @@ open class CreepMemoryDelegate<T>(protected val default: T) : ReadWriteProperty<
 
 /**
  * Creates a nullable property that is persisted in creep.memory
+ * The property written to memory on the first read or write.
  *
  * Usage:
  *
@@ -29,10 +29,8 @@ open class CreepMemoryDelegate<T>(protected val default: T) : ReadWriteProperty<
  *      val creep : Creep = ...
  *      creep.memory.somevalue = 15 // 15 is saved to the creep's memory
  *
- * ### Note: this method only works with primitive screeps. To use complex screeps use *memoryOrDefault*
- *
  */
-fun <T> memory(): ReadWriteProperty<MemoryMarker, T?> = CreepMemoryDelegate(null)
+fun <T> memory(): ReadWriteProperty<MemoryMarker, T?> = MemoryDelegate(null)
 
 /**
  * Creates a  property that is persisted in creep.memory
@@ -41,18 +39,17 @@ fun <T> memory(): ReadWriteProperty<MemoryMarker, T?> = CreepMemoryDelegate(null
  *
  * @see memory
  */
-fun <T : Any> memoryOrDefault(default: T): ReadWriteProperty<MemoryMarker, T> = CreepMemoryDelegate(default)
+fun <T : Any> memoryOrDefault(default: T): ReadWriteProperty<MemoryMarker, T> = MemoryDelegate(default)
 
 /**
  * Specifically for enums
  *
  * @see memory
  */
-inline fun <reified T : Enum<T>> memoryOrDefault(default: T)
-        : ReadWriteProperty<MemoryMarker, T> =
-    CreepMemoryMappingDelegate(default, Enum<T>::name) { s -> enumValueOf(s) }
+inline fun <reified T : Enum<T>> memoryOrDefault(default: T): ReadWriteProperty<MemoryMarker, T> =
+    MemoryMappingDelegate(default, Enum<T>::name) { s -> enumValueOf(s) }
 
-open class CreepMemoryMappingDelegate<T>(
+open class MemoryMappingDelegate<T>(
     protected val default: T,
     protected val serializer: (T) -> String,
     protected val deserializer: (String) -> T
@@ -74,6 +71,15 @@ open class CreepMemoryMappingDelegate<T>(
     }
 }
 
-fun <T : Any> serializedMemory(default: T, serializer: (T) -> String, deserializer: (String) -> T)
-        : ReadWriteProperty<MemoryMarker, T> = CreepMemoryMappingDelegate(default, serializer, deserializer)
+/**
+ *  Uses a custom serializer and deserializer
+ *
+ *
+ *  An important consequence is that **values are only saved on assignement**, so
+ *  if you do any mutations on an object you have to assign it again
+ *
+ *  @See memory
+ */
+fun <T : Any> memoryWithSerializer(default: T, serializer: (T) -> String, deserializer: (String) -> T)
+        : ReadWriteProperty<MemoryMarker, T> = MemoryMappingDelegate(default, serializer, deserializer)
 

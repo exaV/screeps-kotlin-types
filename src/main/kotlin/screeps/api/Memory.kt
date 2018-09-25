@@ -1,7 +1,5 @@
 package screeps.api
 
-import screeps.utils.memory.MemoryMarker
-
 external object Memory : MutableRecord<String, dynamic> {
     var creeps: MutableRecord<String, CreepMemory>
     var flags: MutableRecord<String, FlagMemory>?
@@ -9,6 +7,11 @@ external object Memory : MutableRecord<String, dynamic> {
     var spawns: MutableRecord<String, SpawnMemory>?
 
 }
+
+/**
+ * Indicates that this type is always a child of the global _Memory_ object
+ */
+external interface MemoryMarker
 
 external interface CreepMemory : MemoryMarker
 external interface FlagMemory : MemoryMarker
