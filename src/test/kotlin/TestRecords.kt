@@ -46,7 +46,7 @@ class TestRecords {
         assertEquals(creeps.size * 2, creeps.values.map { it.health }.sumBy { it * 2 })
     }
 
-    private val CreepMemory.health by memoryOrDefault(1)
+    private val CreepMemory.health by memoryOrDefault { 1 }
 
     private fun createCreeps() = js(
         """

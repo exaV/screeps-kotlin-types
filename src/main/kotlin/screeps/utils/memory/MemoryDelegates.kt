@@ -4,11 +4,11 @@ import screeps.api.MemoryMarker
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 
-open class MemoryDelegate<T>(protected val default: T) : ReadWriteProperty<MemoryMarker, T> {
+open class MemoryDelegate<T>(protected val default: () -> T) : ReadWriteProperty<MemoryMarker, T> {
 
     override fun getValue(thisRef: dynamic, property: KProperty<*>): T =
-        thisRef[property.name] as? T ?: default.also {
-            thisRef[property.name] = default
+        thisRef[property.name] as? T ?: default().also {
+            thisRef[property.name] = it
         }
 
     override fun setValue(thisRef: dynamic, property: KProperty<*>, value: T) {
@@ -30,7 +30,7 @@ open class MemoryDelegate<T>(protected val default: T) : ReadWriteProperty<Memor
  *      creep.memory.somevalue = 15 // 15 is saved to the creep's memory
  *
  */
-fun <T> memory(): ReadWriteProperty<MemoryMarker, T?> = MemoryDelegate(null)
+fun <T> memory(): ReadWriteProperty<MemoryMarker, T?> = MemoryDelegate { null }
 
 /**
  * Creates a  property that is persisted in creep.memory
@@ -39,18 +39,18 @@ fun <T> memory(): ReadWriteProperty<MemoryMarker, T?> = MemoryDelegate(null)
  *
  * @see memory
  */
-fun <T : Any> memoryOrDefault(default: T): ReadWriteProperty<MemoryMarker, T> = MemoryDelegate(default)
+fun <T : Any> memoryOrDefault(default: () -> T): ReadWriteProperty<MemoryMarker, T> = MemoryDelegate(default)
 
 /**
  * Specifically for enums
  *
  * @see memory
  */
-inline fun <reified T : Enum<T>> memoryOrDefault(default: T): ReadWriteProperty<MemoryMarker, T> =
-    MemoryMappingDelegate(default, Enum<T>::name) { s -> enumValueOf(s) }
+inline fun <reified T : Enum<T>> memory(default: T): ReadWriteProperty<MemoryMarker, T> =
+    MemoryMappingDelegate({ default }, Enum<T>::name) { s -> enumValueOf(s) }
 
 open class MemoryMappingDelegate<T>(
-    protected val default: T,
+    protected val default: () -> T,
     protected val serializer: (T) -> String,
     protected val deserializer: (String) -> T
 ) : ReadWriteProperty<MemoryMarker, T> {
@@ -61,8 +61,9 @@ open class MemoryMappingDelegate<T>(
         return if (value != null) {
             deserializer(value)
         } else {
-            thisRef[property.name] = serializer(default)
-            default
+            val defaultValue = default()
+            thisRef[property.name] = serializer(defaultValue)
+            defaultValue
         }
     }
 
@@ -80,6 +81,6 @@ open class MemoryMappingDelegate<T>(
  *
  *  @See memory
  */
-fun <T : Any> memoryWithSerializer(default: T, serializer: (T) -> String, deserializer: (String) -> T)
+fun <T : Any> memoryWithSerializer(default: () -> T, serializer: (T) -> String, deserializer: (String) -> T)
         : ReadWriteProperty<MemoryMarker, T> = MemoryMappingDelegate(default, serializer, deserializer)
 

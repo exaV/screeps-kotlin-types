@@ -1,6 +1,7 @@
 import screeps.api.CreepMemory
 import screeps.api.SearchOptions
 import screeps.utils.jsObject
+import screeps.utils.memory.memory
 import screeps.utils.memory.memoryOrDefault
 import kotlin.test.Test
 import kotlin.test.assertEquals
@@ -8,16 +9,18 @@ import kotlin.test.assertEquals
 
 class TestDelegatesWithDefault {
 
-    var CreepMemory.priority: Int by memoryOrDefault(0)
-    var CreepMemory.options: SearchOptions by memoryOrDefault(jsObject<SearchOptions> {
-        maxCost = 10
-    })
+    var CreepMemory.priority: Int by memoryOrDefault { 0 }
+    var CreepMemory.options: SearchOptions by memoryOrDefault {
+        jsObject<SearchOptions> {
+            maxCost = 10
+        }
+    }
 
     private enum class Color {
         RED, GREEN
     }
 
-    private var CreepMemory.color by memoryOrDefault(Color.GREEN)
+    private var CreepMemory.color by memory(Color.GREEN)
 
     @Test
     fun testDefaultValue() {
@@ -58,5 +61,16 @@ class TestDelegatesWithDefault {
         val parsed = JSON.parse<CreepMemory>(JSON.stringify(memory))
         assertEquals(true, parsed.options.flee, "modification should still be present after deserialisation")
         assertEquals(10, parsed.options.maxCost)
+    }
+
+    @Test
+    fun defaultValueIsNotShared() {
+        val foo = js("{}").unsafeCast<CreepMemory>()
+        val bar = js("{}").unsafeCast<CreepMemory>()
+
+        foo.options.maxCost = 1
+        bar.options.maxCost = 2
+        assertEquals(1, foo.options.maxCost, "foo should be unnaffected by bar")
+        assertEquals(2, bar.options.maxCost, "bar should be unacffected by foo")
     }
 }
