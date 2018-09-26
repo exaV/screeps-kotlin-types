@@ -8,7 +8,12 @@ external object Memory : MutableRecord<String, dynamic> {
 
 }
 
-external interface CreepMemory
-external interface FlagMemory
-external interface RoomMemory
-external interface SpawnMemory
+/**
+ * Indicates that this type is always a child of the global _Memory_ object
+ */
+external interface MemoryMarker
+
+external interface CreepMemory : MemoryMarker
+external interface FlagMemory : MemoryMarker
+external interface RoomMemory : MemoryMarker
+external interface SpawnMemory : MemoryMarker
