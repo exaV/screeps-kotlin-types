@@ -105,16 +105,17 @@ external object Game {
             val room: String
         }
 
-        interface RouteOptions : Options {
-            var routeCallback: (roomName: String, fromRoomName: String) -> Double
-        }
     }
+}
+
+external interface RouteOptions : Options {
+    var routeCallback: (roomName: String, fromRoomName: String) -> Double
 }
 
 fun Game.Map.findRoute(
     fromRoom: String,
     toRoom: String,
-    opts: Game.Map.RouteOptions? = null
+    opts: RouteOptions? = null
 ): Result<ScreepsReturnCode, Array<Game.Map.RouteResult>> {
     val res = this.asDynamic().findRoute(fromRoom, toRoom, opts)
     return if (res is Array<*>) Result.Value(res.unsafeCast<Array<Game.Map.RouteResult>>())
