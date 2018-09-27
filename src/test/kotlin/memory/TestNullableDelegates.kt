@@ -1,9 +1,5 @@
-import screeps.api.CreepMemory
-import screeps.api.Record
-import screeps.api.SearchOptions
-import screeps.api.get
+import screeps.api.*
 import screeps.utils.contains
-import screeps.utils.jsObject
 import screeps.utils.memory.memory
 import kotlin.test.*
 
@@ -51,7 +47,7 @@ class TestNullableDelegates {
         assertNull(memory.options)
         assertNull(memory.options?.maxCost)
 
-        memory.options = jsObject<SearchOptions> {
+        memory.options = options<SearchOptions> {
             maxCost = 15
         }
         assertEquals(15, memory.options?.maxCost)
