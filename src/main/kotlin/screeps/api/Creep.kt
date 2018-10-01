@@ -5,7 +5,7 @@ import screeps.api.structures.StructureController
 
 abstract external class Creep : RoomObject, Owned, Attackable, Container, Identifiable {
     val body: Array<BodyPart>
-    val carry: StoreDefinition
+    val carry: Record<ResourceConstant, Int>
     val carryCapacity: Int
     val fatigue: Int
     val memory: CreepMemory
