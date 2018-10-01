@@ -48,7 +48,7 @@ abstract external class StructureSpawn : Structure, Owned, SpawnEnergyProvider {
     }
 }
 
-external interface SpawnOptions {
+external interface SpawnOptions : Options {
     var memory: CreepMemory?
     var energyStructures: Array<SpawnEnergyProvider>?
     var dryRun: Boolean?
