@@ -1,6 +1,6 @@
 import screeps.api.CreepMemory
 import screeps.api.SearchOptions
-import screeps.utils.jsObject
+import screeps.api.options
 import screeps.utils.memory.memory
 import screeps.utils.memory.memoryOrDefault
 import kotlin.test.Test
@@ -11,7 +11,7 @@ class TestDelegatesWithDefault {
 
     var CreepMemory.priority: Int by memoryOrDefault { 0 }
     var CreepMemory.options: SearchOptions by memoryOrDefault {
-        jsObject<SearchOptions> {
+        options<SearchOptions> {
             maxCost = 10
         }
     }

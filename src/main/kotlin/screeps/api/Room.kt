@@ -63,7 +63,7 @@ fun Room.lookAtArea(top: Int, left: Int, bottom: Int, right: Int): LookAtAreaRes
 fun Room.lookAtAreaAsArray(top: Int, left: Int, bottom: Int, right: Int): Array<Room.LookAtAreaArrayItem> =
     this.asDynamic().lookAtArea(top, left, bottom, right, true).unsafeCast<Array<Room.LookAtAreaArrayItem>>()
 
-external interface FindPathOptions {
+external interface FindPathOptions : Options {
     var ignoreCreeps: Boolean?
     var ignoreDestructibleStructures: Boolean?
     var ignoreRoads: Boolean?
