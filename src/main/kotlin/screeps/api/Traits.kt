@@ -31,11 +31,7 @@ external interface HasPosition : NavigationTarget {
     val pos: RoomPosition
 }
 
-external interface Container
-
-external interface EnergyContainer : Container {
+external interface EnergyContainer {
     val energy: Int
     val energyCapacity: Int
 }
-
-external interface SpawnEnergyProvider : EnergyContainer
