@@ -2,9 +2,8 @@ package screeps.api
 
 import screeps.utils.jsObject
 
-external interface StoreDefinition {
+external interface StoreDefinition : Record<ResourceConstant, Int> {
     val energy: Int
-    val power: Int?
 }
 
 external interface FilterOption<T> {

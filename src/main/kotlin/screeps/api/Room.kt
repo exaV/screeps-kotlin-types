@@ -40,6 +40,12 @@ abstract external class Room {
     fun lookAt(x: Int, y: Int): Array<RoomPosition.Look>
     fun lookAt(target: RoomPosition): Array<RoomPosition.Look>
     fun <T> lookForAt(type: LookConstant, x: Int, y: Int): Array<T>?
+    fun getTerrain(): Terrain
+
+    class Terrain(roomName: String) {
+        val roomName: String
+        fun get(x: Int, y: Int): TerrainMaskConstant
+    }
 
     interface PathStep {
         var x: Int

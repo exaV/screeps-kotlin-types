@@ -1,6 +1,6 @@
 package screeps.api.structures
 
+import screeps.api.EnergyContainer
 import screeps.api.Owned
-import screeps.api.SpawnEnergyProvider
 
-abstract external class StructureExtension : Structure, Owned, SpawnEnergyProvider
+abstract external class StructureExtension : Structure, Owned, EnergyContainer

@@ -99,6 +99,7 @@ external object Game {
         fun getTerrainAt(pos: RoomPosition): TerrainConstant
         fun getWorldSize(): Int
         fun isRoomAvailable(roomName: String): Boolean
+        fun getRoomTerrain(roomName: String): Room.Terrain
 
         interface RouteResult {
             val exit: ExitConstant

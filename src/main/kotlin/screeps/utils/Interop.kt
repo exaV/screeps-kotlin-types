@@ -1,5 +1,7 @@
 package screeps.utils
 
+import screeps.api.*
+
 /**
  * Instantiate an anonymous js object.
  *
@@ -37,3 +39,11 @@ sealed class Result<out E, out V> {
     class Error<out E>(override val error: E) : Result<E, Nothing>()
     class Value<out V>(override val value: V) : Result<Nothing, V>()
 }
+
+
+val TerrainMaskConstant.terrain: TerrainConstant
+    get() = when (this) {
+        TERRAIN_MASK_WALL -> TERRAIN_WALL
+        TERRAIN_MASK_SWAMP -> TERRAIN_SWAMP
+        else -> TERRAIN_PLAIN
+    }

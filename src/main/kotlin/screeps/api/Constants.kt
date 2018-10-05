@@ -269,10 +269,15 @@ external interface TerrainConstant : StringConstant
 external interface LineStyleConstant : StringConstant
 external interface TextAlignConstant : StringConstant
 external interface AlgorithmConstant : StringConstant
+external interface TerrainMaskConstant : IntConstant
 
 val TERRAIN_PLAIN: TerrainConstant = "plain".unsafeCast<TerrainConstant>()
 val TERRAIN_SWAMP: TerrainConstant = "swamp".unsafeCast<TerrainConstant>()
 val TERRAIN_WALL: TerrainConstant = "wall".unsafeCast<TerrainConstant>()
+
+external val TERRAIN_MASK_WALL: TerrainMaskConstant
+external val TERRAIN_MASK_SWAMP: TerrainMaskConstant
+val TERRAIN_MASK_NONE: IntConstant = 0.unsafeCast<TerrainMaskConstant>()
 
 val LINE_STYLE_DASHED: LineStyleConstant = "dashed".unsafeCast<LineStyleConstant>()
 val LINE_STYLE_DOTTED: LineStyleConstant = "dotted".unsafeCast<LineStyleConstant>()
