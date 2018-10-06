@@ -2,7 +2,7 @@
 
 import screeps.api.*
 import screeps.utils.contains
-import screeps.utils.memory.memoryOrDefault
+import screeps.utils.memory.memory
 import kotlin.test.Test
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
@@ -46,7 +46,7 @@ class TestRecords {
         assertEquals(creeps.size * 2, creeps.values.map { it.health }.sumBy { it * 2 })
     }
 
-    private val CreepMemory.health by memoryOrDefault { 1 }
+    private val CreepMemory.health by memory { 1 }
 
     private fun createCreeps() = js(
         """

@@ -2,25 +2,19 @@ import screeps.api.CreepMemory
 import screeps.api.SearchOptions
 import screeps.api.options
 import screeps.utils.memory.memory
-import screeps.utils.memory.memoryOrDefault
 import kotlin.test.Test
 import kotlin.test.assertEquals
 
 
 class TestDelegatesWithDefault {
 
-    var CreepMemory.priority: Int by memoryOrDefault { 0 }
-    var CreepMemory.options: SearchOptions by memoryOrDefault {
+    var CreepMemory.priority: Int by memory { 0 }
+    var CreepMemory.color by memory(Color.GREEN)
+    var CreepMemory.options: SearchOptions by memory {
         options<SearchOptions> {
             maxCost = 10
         }
     }
-
-    private enum class Color {
-        RED, GREEN
-    }
-
-    private var CreepMemory.color by memory(Color.GREEN)
 
     @Test
     fun testDefaultValue() {
@@ -73,4 +67,9 @@ class TestDelegatesWithDefault {
         assertEquals(1, foo.options.maxCost, "foo should be unnaffected by bar")
         assertEquals(2, bar.options.maxCost, "bar should be unacffected by foo")
     }
+
+    enum class Color {
+        RED, GREEN
+    }
+
 }

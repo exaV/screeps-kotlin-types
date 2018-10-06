@@ -39,15 +39,15 @@ fun <T> memory(): ReadWriteProperty<MemoryMarker, T?> = MemoryDelegate { null }
  *
  * @see memory
  */
-fun <T : Any> memoryOrDefault(default: () -> T): ReadWriteProperty<MemoryMarker, T> = MemoryDelegate(default)
+fun <T : Any> memory(defaultValue: () -> T): ReadWriteProperty<MemoryMarker, T> = MemoryDelegate(defaultValue)
 
 /**
  * Specifically for enums
  *
  * @see memory
  */
-inline fun <reified T : Enum<T>> memory(default: T): ReadWriteProperty<MemoryMarker, T> =
-    MemoryMappingDelegate({ default }, Enum<T>::name) { s -> enumValueOf(s) }
+inline fun <reified T : Enum<T>> memory(defaultValue: Enum<T>): ReadWriteProperty<MemoryMarker, Enum<T>> =
+    MemoryMappingDelegate({ defaultValue }, Enum<T>::name) { s -> enumValueOf<T>(s) }
 
 open class MemoryMappingDelegate<T>(
     protected val default: () -> T,
