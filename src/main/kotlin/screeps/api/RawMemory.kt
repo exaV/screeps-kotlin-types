@@ -3,7 +3,7 @@
 package screeps.api
 
 external object RawMemory {
-    val segments: Record<Int, String>
+    val segments: MutableRecord<Int, String>
     val foreignSegment: ForeignSegment?
     val interShardSegment: String?
 
