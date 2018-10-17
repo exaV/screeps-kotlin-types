@@ -9,7 +9,7 @@ import org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile
 
 
 plugins {
-    id("kotlin2js") version "1.2.70"
+    id("kotlin2js") version "1.2.71"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.1"
     id("com.moowork.node") version "1.2.0"
