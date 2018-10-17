@@ -13,5 +13,5 @@ fun <T> jsonToMap(json: Json): Map<String, T> {
     return map
 }
 
-fun RoomPosition.copy(x: Int = this.x, y: Int = this.y, name: String = this.roomName) =
+fun RoomPosition.copy(x: Int = this.x, y: Int = this.y, name: String = this.roomName): RoomPosition =
     RoomPosition(x, y, name)

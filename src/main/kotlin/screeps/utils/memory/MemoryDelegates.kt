@@ -35,7 +35,7 @@ fun <T> memory(): ReadWriteProperty<MemoryMarker, T?> = MemoryDelegate { null }
 /**
  * Creates a  property that is persisted in creep.memory
  *
- * @param default is written to memory if it does not contain the property
+ * @param defaultValue is written to memory if it does not contain the property
  *
  * @see memory
  */
@@ -76,7 +76,7 @@ open class MemoryMappingDelegate<T>(
  *  Uses a custom serializer and deserializer
  *
  *
- *  An important consequence is that **values are only saved on assignement**, so
+ *  An important consequence is that **values are only saved on assignment**, so
  *  if you do any mutations on an object you have to assign it again
  *
  *  @See memory

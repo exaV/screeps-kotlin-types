@@ -1,5 +1,3 @@
-@file:Suppress("unused")
-
 package screeps.api
 
 external object RawMemory {
