@@ -1,6 +1,7 @@
 package screeps.utils
 
 import screeps.api.*
+import screeps.utils.unsafe.jsObject
 
 // Creators
 

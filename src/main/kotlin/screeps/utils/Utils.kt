@@ -2,7 +2,7 @@
 
 package screeps.utils
 
-import screeps.api.RoomPosition
+import screeps.api.*
 import kotlin.js.Json
 
 fun <T> jsonToMap(json: Json): Map<String, T> {
@@ -15,3 +15,10 @@ fun <T> jsonToMap(json: Json): Map<String, T> {
 
 fun RoomPosition.copy(x: Int = this.x, y: Int = this.y, name: String = this.roomName): RoomPosition =
     RoomPosition(x, y, name)
+
+val TerrainMaskConstant.terrain: TerrainConstant
+    get() = when (this) {
+        TERRAIN_MASK_WALL -> TERRAIN_WALL
+        TERRAIN_MASK_SWAMP -> TERRAIN_SWAMP
+        else -> TERRAIN_PLAIN
+    }
