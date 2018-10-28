@@ -1,14 +1,9 @@
 package screeps.api.structures
 
-import screeps.api.Owned
-import screeps.api.ResourceConstant
-import screeps.api.ScreepsReturnCode
-import screeps.api.StoreDefinition
+import screeps.api.*
 
-abstract external class StructureTerminal : Structure, Owned {
+abstract external class StructureTerminal : Structure, Owned, Store {
     val cooldown: Int
-    val store: StoreDefinition
-    val storeCapacity: Int
     fun send(
         resourceType: ResourceConstant,
         amount: Int,

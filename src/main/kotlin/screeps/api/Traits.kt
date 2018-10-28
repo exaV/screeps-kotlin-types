@@ -35,3 +35,8 @@ external interface EnergyContainer {
     val energy: Int
     val energyCapacity: Int
 }
+
+external interface Store {
+    val store: StoreDefinition
+    val storeCapacity: Int
+}
