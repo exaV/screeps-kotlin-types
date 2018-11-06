@@ -54,13 +54,13 @@ external class RoomPosition(x: Int, y: Int, roomName: String) : NavigationTarget
     fun isNearTo(target: RoomPosition): Boolean
     fun isNearTo(target: RoomObject): Boolean
     fun look(): Array<Look>
-    fun <T> lookFor(type: LookConstant): Array<T>?
+    fun <T> lookFor(type: LookConstant<T>): Array<T>?
 
     interface Look {
-        val type: LookConstant
+        val type: LookConstant<Any>
         val creep: Creep?
         val structure: Structure?
-        val terrain: String?
+        val terrain: TerrainConstant?
         val constructionSite: ConstructionSite?
         val resource: Resource?
     }

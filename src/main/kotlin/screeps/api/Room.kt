@@ -23,24 +23,20 @@ abstract external class Room {
         color: ColorConstant = definedExternally,
         secondaryColor: ColorConstant = definedExternally
     ): Any
-
     fun createFlag(
         pos: RoomPosition,
         name: String = definedExternally,
         color: ColorConstant = definedExternally,
         secondaryColor: ColorConstant = definedExternally
     ): Any
-
     fun <T> find(findConstant: FindConstant<T>, opts: FilterOption<T> = definedExternally): Array<T>
-
-    fun findExitTo(room: String): Any
-
-    fun findExitTo(room: Room): Any
+    fun findExitTo(room: String): ExitConstant
+    fun findExitTo(room: Room): ExitConstant
     fun findPath(fromPos: RoomPosition, toPos: RoomPosition, opts: FindPathOptions = definedExternally): Array<PathStep>
     fun getPositionAt(x: Int, y: Int): RoomPosition?
     fun lookAt(x: Int, y: Int): Array<RoomPosition.Look>
     fun lookAt(target: RoomPosition): Array<RoomPosition.Look>
-    fun <T> lookForAt(type: LookConstant, x: Int, y: Int): Array<T>?
+    fun <T> lookForAt(type: LookConstant<T>, x: Int, y: Int): Array<T>?
     fun getTerrain(): Terrain
 
     class Terrain(roomName: String) {

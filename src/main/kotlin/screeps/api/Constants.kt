@@ -19,7 +19,7 @@ external interface BodyPartConstant : StringConstant
 external interface ActiveBodyPartConstant : BodyPartConstant
 external interface StructureConstant : StringConstant
 external interface BuildableStructureConstant : StructureConstant
-external interface LookConstant : StringConstant
+external interface LookConstant<T> : StringConstant
 external interface DirectionConstant : IntConstant
 external interface TradableConstant : StringConstant
 external interface ResourceConstant : TradableConstant
@@ -27,7 +27,6 @@ external interface MineralConstant : ResourceConstant
 external interface ColorConstant : IntConstant
 external interface DensityConstant : IntConstant
 external interface OrderConstant : StringConstant
-external interface Terrain
 
 external val OK: ScreepsReturnCode
 external val ERR_NOT_OWNER: ScreepsReturnCode
@@ -160,17 +159,17 @@ external val RESOURCE_CATALYZED_ZYNTHIUM_ALKALIDE: ResourceConstant
 external val RESOURCE_CATALYZED_GHODIUM_ACID: ResourceConstant
 external val RESOURCE_CATALYZED_GHODIUM_ALKALIDE: ResourceConstant
 
-external val LOOK_CREEPS: LookConstant
-external val LOOK_ENERGY: LookConstant
-external val LOOK_RESOURCES: LookConstant
-external val LOOK_SOURCES: LookConstant
-external val LOOK_MINERALS: LookConstant
-external val LOOK_STRUCTURES: LookConstant
-external val LOOK_FLAGS: LookConstant
-external val LOOK_CONSTRUCTION_SITES: LookConstant
-external val LOOK_NUKES: LookConstant
-external val LOOK_TERRAIN: LookConstant
-external val LOOK_TOMBSTONES: LookConstant
+external val LOOK_CREEPS: LookConstant<Creep>
+external val LOOK_ENERGY: LookConstant<Resource>
+external val LOOK_RESOURCES: LookConstant<Resource>
+external val LOOK_SOURCES: LookConstant<Source>
+external val LOOK_MINERALS: LookConstant<Mineral>
+external val LOOK_STRUCTURES: LookConstant<Structure>
+external val LOOK_FLAGS: LookConstant<Flag>
+external val LOOK_CONSTRUCTION_SITES: LookConstant<ConstructionSite>
+external val LOOK_NUKES: LookConstant<Nuke>
+external val LOOK_TERRAIN: LookConstant<TerrainConstant>
+external val LOOK_TOMBSTONES: LookConstant<Tombstone>
 
 external val WORK: ActiveBodyPartConstant
 external val CARRY: ActiveBodyPartConstant
