@@ -31,7 +31,8 @@ abstract external class Room {
         secondaryColor: ColorConstant = definedExternally
     ): Any
 
-    fun <T : RoomObject> find(findConstant: FindConstant, opts: FilterOption<T> = definedExternally): Array<T>
+    fun <T> find(findConstant: FindConstant<T>, opts: FilterOption<T> = definedExternally): Array<T>
+
     fun findExitTo(room: String): Any
 
     fun findExitTo(room: Room): Any

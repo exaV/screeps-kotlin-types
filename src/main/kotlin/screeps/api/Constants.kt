@@ -2,6 +2,9 @@
 
 package screeps.api
 
+import screeps.api.structures.Structure
+import screeps.api.structures.StructureSpawn
+
 external interface Constant<T>
 
 inline val <T> Constant<T>.value: T get() = this.asDynamic().unsafeCast<T>()
@@ -9,8 +12,8 @@ inline val <T> Constant<T>.value: T get() = this.asDynamic().unsafeCast<T>()
 typealias StringConstant = Constant<String>
 typealias IntConstant = Constant<Int>
 
-external interface FindConstant : IntConstant
-external interface ExitConstant : FindConstant
+external interface FindConstant<T> : IntConstant
+external interface ExitConstant : FindConstant<RoomPosition>
 external interface ScreepsReturnCode : IntConstant
 external interface BodyPartConstant : StringConstant
 external interface ActiveBodyPartConstant : BodyPartConstant
@@ -48,27 +51,26 @@ external val FIND_EXIT_TOP: ExitConstant
 external val FIND_EXIT_RIGHT: ExitConstant
 external val FIND_EXIT_BOTTOM: ExitConstant
 external val FIND_EXIT_LEFT: ExitConstant
-external val FIND_EXIT: FindConstant
-external val FIND_CREEPS: FindConstant
-external val FIND_MY_CREEPS: FindConstant
-external val FIND_HOSTILE_CREEPS: FindConstant
-external val FIND_SOURCES_ACTIVE: FindConstant
-external val FIND_SOURCES: FindConstant
-external val FIND_DROPPED_ENERGY: FindConstant
-external val FIND_DROPPED_RESOURCES: FindConstant
-external val FIND_STRUCTURES: FindConstant
-external val FIND_MY_STRUCTURES: FindConstant
-external val FIND_HOSTILE_STRUCTURES: FindConstant
-external val FIND_FLAGS: FindConstant
-external val FIND_CONSTRUCTION_SITES: FindConstant
-external val FIND_MY_SPAWNS: FindConstant
-external val FIND_HOSTILE_SPAWNS: FindConstant
-external val FIND_MY_CONSTRUCTION_SITES: FindConstant
-external val FIND_HOSTILE_CONSTRUCTION_SITES: FindConstant
-external val FIND_MINERALS: FindConstant
-external val FIND_NUKES: FindConstant
-external val FIND_TOMBSTONES: FindConstant
-
+external val FIND_EXIT: FindConstant<RoomPosition>
+external val FIND_CREEPS: FindConstant<Creep>
+external val FIND_MY_CREEPS: FindConstant<Creep>
+external val FIND_HOSTILE_CREEPS: FindConstant<Creep>
+external val FIND_SOURCES_ACTIVE: FindConstant<Source>
+external val FIND_SOURCES: FindConstant<Source>
+external val FIND_DROPPED_ENERGY: FindConstant<Resource>
+external val FIND_DROPPED_RESOURCES: FindConstant<Resource>
+external val FIND_STRUCTURES: FindConstant<Structure>
+external val FIND_MY_STRUCTURES: FindConstant<Structure>
+external val FIND_HOSTILE_STRUCTURES: FindConstant<Structure>
+external val FIND_FLAGS: FindConstant<Flag>
+external val FIND_CONSTRUCTION_SITES: FindConstant<ConstructionSite>
+external val FIND_MY_SPAWNS: FindConstant<StructureSpawn>
+external val FIND_HOSTILE_SPAWNS: FindConstant<StructureSpawn>
+external val FIND_MY_CONSTRUCTION_SITES: FindConstant<ConstructionSite>
+external val FIND_HOSTILE_CONSTRUCTION_SITES: FindConstant<ConstructionSite>
+external val FIND_MINERALS: FindConstant<Mineral>
+external val FIND_NUKES: FindConstant<Nuke>
+external val FIND_TOMBSTONES: FindConstant<Tombstone>
 
 external val TOP: DirectionConstant
 external val TOP_RIGHT: DirectionConstant
