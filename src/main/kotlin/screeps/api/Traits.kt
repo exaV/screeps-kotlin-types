@@ -15,10 +15,15 @@ external interface Decaying {
 external interface Owned {
     val my: Boolean
     val owner: Owner
+}
 
-    interface Owner {
-        val username: String
-    }
+external interface OwnedNullable {
+    val my: Boolean
+    val owner: Owner?
+}
+
+external interface Owner {
+    val username: String
 }
 
 external interface Attackable {
