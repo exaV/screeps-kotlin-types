@@ -1,7 +1,5 @@
 package screeps.api
 
-import screeps.api.Owned.Owner
-
 external interface Market {
     val credits: Double
     val incomingTransactions: Array<Transaction>
