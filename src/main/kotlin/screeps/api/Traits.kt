@@ -14,7 +14,7 @@ external interface Decaying {
 
 external interface Owned {
     val my: Boolean
-    val owner: Owner
+    val owner: Owner?
 
     interface Owner {
         val username: String
