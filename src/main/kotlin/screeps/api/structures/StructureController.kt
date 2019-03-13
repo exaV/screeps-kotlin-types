@@ -1,6 +1,6 @@
 package screeps.api.structures
 
-import screeps.api.Owned
+import screeps.api.OwnedNullable
 import screeps.api.ScreepsReturnCode
 import kotlin.js.Date
 
