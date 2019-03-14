@@ -12,13 +12,17 @@ external interface Decaying {
     val ticksToDecay: Int
 }
 
-external interface Owned {
-    val my: Boolean
-    val owner: Owner
+external interface Owned : OwnedNullable{
+    override val owner: Owner
+}
 
-    interface Owner {
-        val username: String
-    }
+external interface OwnedNullable {
+    val my: Boolean
+    val owner: Owner?
+}
+
+external interface Owner {
+    val username: String
 }
 
 external interface Attackable {

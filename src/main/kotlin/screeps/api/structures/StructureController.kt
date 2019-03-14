@@ -1,10 +1,10 @@
 package screeps.api.structures
 
-import screeps.api.Owned
+import screeps.api.OwnedNullable
 import screeps.api.ScreepsReturnCode
 import kotlin.js.Date
 
-abstract external class StructureController : Structure, Owned {
+abstract external class StructureController : Structure, OwnedNullable {
     val level: Int
     val progress: Int
     val progressTotal: Int
