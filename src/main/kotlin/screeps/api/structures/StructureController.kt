@@ -5,6 +5,7 @@ import screeps.api.ScreepsReturnCode
 import kotlin.js.Date
 
 abstract external class StructureController : Structure, OwnedNullable {
+    val isPowerEnabled: Boolean
     val level: Int
     val progress: Int
     val progressTotal: Int
