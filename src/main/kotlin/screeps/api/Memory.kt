@@ -13,12 +13,14 @@ external interface MemoryMarker
  */
 external object Memory : MutableRecord<String, dynamic>, MemoryMarker {
     var creeps: MutableRecord<String, CreepMemory>
+    var powerCreeps: MutableRecord<String, PowerCreepMemory>
     var flags: MutableRecord<String, FlagMemory>?
     var rooms: MutableRecord<String, RoomMemory>
     var spawns: MutableRecord<String, SpawnMemory>?
 }
 
 external interface CreepMemory : MemoryMarker
+external interface PowerCreepMemory : MemoryMarker
 external interface FlagMemory : MemoryMarker
 external interface RoomMemory : MemoryMarker
 external interface SpawnMemory : MemoryMarker

@@ -261,6 +261,22 @@ external val SAFE_MODE_DURATION: Int
 external val SAFE_MODE_COOLDOWN: Int
 external val SAFE_MODE_COST: Int
 
+// Add missing Tower and Observer constants here
+
+external val POWER_BANK_HITS: Int
+external val POWER_BANK_CAPACITY_MAX: Int
+external val POWER_BANK_CAPACITY_MIN: Int
+external val POWER_BANK_CAPACITY_CRIT: Float
+external val POWER_BANK_DECAY: Int
+external val POWER_BANK_HIT_BACK: Float
+
+external val POWER_SPAWN_HITS: Int
+external val POWER_SPAWN_ENERGY_CAPACITY: Int
+external val POWER_SPAWN_POWER_CAPACITY: Int
+external val POWER_SPAWN_ENERGY_RATIO: Int
+
+// Add missing Extractor and Lab
+
 external val ORDER_SELL: OrderConstant
 external val ORDER_BUY: OrderConstant
 external val SUBSCRIPTION_TOKEN: TradableConstant
@@ -291,3 +307,38 @@ val TEXT_ALIGN_CENTER: TextAlignConstant = "center".unsafeCast<TextAlignConstant
 val TEXT_ALIGN_RIGHT: TextAlignConstant = "right".unsafeCast<TextAlignConstant>()
 val ALGORITHM_ASTAR: AlgorithmConstant = "astar".unsafeCast<AlgorithmConstant>()
 val ALGORITHM_DIJKSTRA: AlgorithmConstant = "dijkstra".unsafeCast<AlgorithmConstant>()
+
+
+external interface PowerClassConstant : StringConstant
+external interface PowerEffectConstant : IntConstant
+
+enum class POWER_CLASS(val value: PowerClassConstant) {
+    OPERATOR("operator".unsafeCast<PowerClassConstant>())
+}
+
+external val POWER_LEVEL_MULTIPLY: Int
+external val POWER_LEVEL_POW: Int
+external val POWER_CREEP_SPAWN_COOLDOWN: Int
+external val POWER_CREEP_DELETE_COOLDOWN: Int
+external val POWER_CREEP_MAX_LEVEL: Int
+external val POWER_CREEP_LIFE_TIME: Int
+
+external val PWR_GENERATE_OPS: PowerEffectConstant
+external val PWR_OPERATE_SPAWN: PowerEffectConstant
+external val PWR_OPERATE_TOWER: PowerEffectConstant
+external val PWR_OPERATE_STORAGE: PowerEffectConstant
+external val PWR_OPERATE_LAB: PowerEffectConstant
+external val PWR_OPERATE_EXTENSION: PowerEffectConstant
+external val PWR_OPERATE_OBSERVER: PowerEffectConstant
+external val PWR_OPERATE_TERMINAL: PowerEffectConstant
+external val PWR_DISRUPT_SPAWN: PowerEffectConstant
+external val PWR_DISRUPT_TOWER: PowerEffectConstant
+external val PWR_DISRUPT_SOURCE: PowerEffectConstant
+external val PWR_SHIELD: PowerEffectConstant
+external val PWR_REGEN_SOURCE: PowerEffectConstant
+external val PWR_REGEN_MINERAL: PowerEffectConstant
+external val PWR_DISRUPT_TERMINAL: PowerEffectConstant
+external val PWR_OPERATE_POWER: PowerEffectConstant
+external val PWR_FORTIFY: PowerEffectConstant
+external val PWR_OPERATE_CONTROLLER: PowerEffectConstant
+external val PWR_OPERATE_FACTORY: PowerEffectConstant
