@@ -245,6 +245,8 @@ external val NUKE_LAND_TIME: Int
 external val NUKE_RANGE: Int
 external val NUKE_DAMAGE: Record<Int, Int>
 
+external val CONTROLLER_LEVELS: Record<Int, Int>
+external val CONTROLLER_STRUCTURES: Record<StructureConstant, Record<Int, Int>>
 external val CONTROLLER_DOWNGRADE: Record<Int, Int>
 external val CONTROLLER_DOWNGRADE_RESTORE: Int
 external val CONTROLLER_DOWNGRADE_SAFEMODE_THRESHOLD: Int
