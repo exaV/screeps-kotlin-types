@@ -17,7 +17,12 @@ abstract external class PowerCreep: RoomObject, Owned, Attackable, Identifiable 
     val level: Int
     val memory: PowerCreepMemory
     val name: String
-    //val powers // Not sure how to do this
+
+    external interface Powers {
+         level: Int
+         cooldown: Int?
+    }
+    val powers : Powers // Not sure how to do this
     val saying: String
     val shard: String?
     val spawnCooldownTime: Int?
