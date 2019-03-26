@@ -1,6 +1,6 @@
 package screeps.api
 
-abstract external class Flag : RoomObject {
+abstract external class Flag : RoomObjectNullable {
     val color: ColorConstant
     val memory: FlagMemory
     val name: String
