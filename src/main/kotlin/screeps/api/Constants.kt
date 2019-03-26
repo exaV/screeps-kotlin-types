@@ -312,10 +312,9 @@ val ALGORITHM_DIJKSTRA: AlgorithmConstant = "dijkstra".unsafeCast<AlgorithmConst
 external interface PowerClassConstant : StringConstant
 external interface PowerEffectConstant : IntConstant
 
-enum class POWER_CLASS(val value: PowerClassConstant) {
-    OPERATOR("operator".unsafeCast<PowerClassConstant>())
+external interface POWER_CLASS {
+    val OPERATOR: PowerClassConstant
 }
-
 external val POWER_LEVEL_MULTIPLY: Int
 external val POWER_LEVEL_POW: Int
 external val POWER_CREEP_SPAWN_COOLDOWN: Int
