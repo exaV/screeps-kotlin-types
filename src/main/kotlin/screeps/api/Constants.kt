@@ -315,9 +315,8 @@ external interface PowerEffectConstant : IntConstant
 external interface PowerClass {
     val OPERATOR: PowerClassConstant
 }
+
 external val POWER_CLASS: PowerClass
-    val OPERATOR: PowerClassConstant
-}
 external val POWER_LEVEL_MULTIPLY: Int
 external val POWER_LEVEL_POW: Int
 external val POWER_CREEP_SPAWN_COOLDOWN: Int
