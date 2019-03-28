@@ -67,13 +67,15 @@ fun Room.lookAtAreaAsArray(top: Int, left: Int, bottom: Int, right: Int): Array<
     this.asDynamic().lookAtArea(top, left, bottom, right, true).unsafeCast<Array<Room.LookAtAreaArrayItem>>()
 
 external interface FindPathOptions : Options {
-    var ignoreCreeps: Boolean?
-    var ignoreDestructibleStructures: Boolean?
-    var ignoreRoads: Boolean?
+    var ignoreCreeps: Boolean? get() = definedExternally; set(value) = definedExternally
+    var ignoreDestructibleStructures: Boolean? get() = definedExternally; set(value) = definedExternally
+    var ignoreRoads: Boolean? get() = definedExternally; set(value) = definedExternally
     var costCallback: ((roomName: String, costMatrix: PathFinder.CostMatrix) -> PathFinder.CostMatrix)?
-    var maxOps: Int?
-    var heuristicWeight: Double?
-    var serialize: Boolean?
-    var maxRooms: Int?
-    var range: Int?
+        get() = definedExternally; set(value) = definedExternally
+
+    var maxOps: Int? get() = definedExternally; set(value) = definedExternally
+    var heuristicWeight: Double? get() = definedExternally; set(value) = definedExternally
+    var serialize: Boolean? get() = definedExternally; set(value) = definedExternally
+    var maxRooms: Int? get() = definedExternally; set(value) = definedExternally
+    var range: Int? get() = definedExternally; set(value) = definedExternally
 }
