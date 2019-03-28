@@ -8,7 +8,6 @@ class TestNullableDelegates {
 
     var CreepMemory.priority: Int? by memory()
     var CreepMemory.message: String? by memory()
-    var CreepMemory.options: SearchOptions? by memory()
 
     @Test
     fun existingValue() {
@@ -41,20 +40,6 @@ class TestNullableDelegates {
         assertEquals("Hello", parsed.unsafeCast<Record<String, String>>()["message"])
     }
 
-    @Test
-    fun testObject() {
-        val memory = js("{}").unsafeCast<CreepMemory>()
-        assertNull(memory.options)
-        assertNull(memory.options?.maxCost)
 
-        memory.options = options<SearchOptions> {
-            maxCost = 15
-        }
-        assertEquals(15, memory.options?.maxCost)
-
-        val parsed = JSON.parse<CreepMemory>(JSON.stringify(memory))
-        assertNotNull(parsed.options)
-        assertEquals(15, parsed.options?.maxCost)
-    }
 
 }
