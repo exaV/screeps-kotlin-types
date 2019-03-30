@@ -67,8 +67,8 @@ abstract external class Creep : RoomObject, Owned, Attackable, Identifiable {
 }
 
 external interface MoveToOptions : FindPathOptions {
-    val reusePath: Int?
-    val serializeMemory: Boolean?
-    val noPathFinding: Boolean?
-    val visualizePathStyle: RoomVisual.Style?
+    val reusePath: Int? get() = definedExternally
+    val serializeMemory: Boolean? get() = definedExternally
+    val noPathFinding: Boolean? get() = definedExternally
+    val visualizePathStyle: RoomVisual.Style? get() = definedExternally
 }
