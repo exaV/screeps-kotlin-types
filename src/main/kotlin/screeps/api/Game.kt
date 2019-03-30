@@ -22,7 +22,8 @@ external object Game {
      * A hash containing all your flags with flag names as hash keys.
      */
     val flags: Record<String, Flag>
-    val gcl: GCL
+    val gcl: GCPL
+    val gpl: GCPL
     val map: Map
     val market: Market
     /**
@@ -79,7 +80,7 @@ external object Game {
         fun setShardLimits(limits: Record<String, Int>): ScreepsReturnCode
     }
 
-    interface GCL {
+    interface GCPL {
         val level: Int
         val progress: Int
         val progressTotal: Int
