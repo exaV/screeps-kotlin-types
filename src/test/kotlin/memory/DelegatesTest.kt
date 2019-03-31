@@ -1,10 +1,15 @@
-import screeps.api.*
+import screeps.api.CreepMemory
+import screeps.api.Record
+import screeps.api.get
 import screeps.utils.contains
 import screeps.utils.memory.memory
-import kotlin.test.*
+import kotlin.test.Test
+import kotlin.test.assertEquals
+import kotlin.test.assertNull
+import kotlin.test.assertTrue
 
 
-class TestNullableDelegates {
+class DelegatesTest {
 
     var CreepMemory.priority: Int? by memory()
     var CreepMemory.message: String? by memory()

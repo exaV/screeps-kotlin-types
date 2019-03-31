@@ -5,53 +5,44 @@ import screeps.utils.memory.memory
 import screeps.utils.unsafe.jsObject
 import kotlin.test.*
 
+/**
+ * This test shows how to save a nested structure of objects into screeps' Memory
+ *
+ * Unfortunately there is one big caveat:
+ * We *must not* save Kotlin classes to memory, because names of fields will get mangled
+ * (read more about why here: https://discuss.kotlinlang.org/t/mandatory-method-mangling-when-compiling-to-js/7644/2 )
+ *
+ * So we only use external interfaces, that are instantiated with the `jsObject` helper function
+ * The only problem we have with `jsObject` is that there can be no compile-time checks that ensure all of the
+ * fields of of the created object will be initialized by the programmer. So you should always use nullable fields
+ *
+ * We may include Arrays in our external interface because they are compiled to actual js arrays
+ *
+ * https://kotlinlang.org/docs/reference/js-interop.html#external-interfaces
+ * https://kotlinlang.org/docs/reference/js-to-kotlin-interop.html#representing-kotlin-types-in-javascript
+ */
+
 private external interface Person {
-    var name: String
-    var age: Int
+    var name: String?
+    var age: Int // non nullable type here is dangerous because we could forget initialization
 }
 
 private external interface Kangaroo {
     var belly: Person?
     var name: String
+    var friends: Array<Person>?
 }
-
-private class NicePerson {
-    @JsName("name")
-    var name: String = "bla"
-    @JsName("age")
-    var age: Int = 5
-}
-
 
 class TestObjects {
+
     private var CreepMemory.person: Person? by memory()
-    private var CreepMemory.nicePerson: NicePerson? by memory()
-
-    private var CreepMemory.nonNullPerson: Person by memory {
-        jsObject<Person> {
-            name = "Max Muster"
-            age = 53
-        }
-    }
-    private var CreepMemory.kangaroo: Kangaroo by memory {
-        jsObject<Kangaroo> {
-            name = "Kang"
-        }
-    }
-
 
     @Test
-    fun nullableObject() {
+    @JsName("saveAndRestoreNullableObject")
+    fun `save and restore a nullable object`() {
 
         val memory = js("{}").unsafeCast<CreepMemory>()
-        assertNull(memory.person)
-        assertNull(memory.person?.name)
-        assertNull(memory.person?.age)
 
-//        memory.person = object : Person {
-//            override var name = "Max Muster"
-//            override var age = 53
-//        }
         memory.person = jsObject<Person> {
             name = "Max Muster"
             age = 53
@@ -64,8 +55,16 @@ class TestObjects {
         assertEquals("Max Muster", parsed.person?.name)
     }
 
+    private var CreepMemory.nonNullPerson: Person by memory {
+        jsObject<Person> {
+            name = "Max Muster"
+            age = 53
+        }
+    }
+
     @Test
-    fun testNonNullableObject() {
+    @JsName("saveAndRestoreObject")
+    fun `save and restore an object`() {
         val memory = js("{}").unsafeCast<CreepMemory>()
         assertNotNull(memory.nonNullPerson)
         assertNotNull(memory.nonNullPerson.name)
@@ -82,8 +81,15 @@ class TestObjects {
     }
 
 
+    private var CreepMemory.kangaroo: Kangaroo by memory {
+        jsObject<Kangaroo> {
+            name = "Kang"
+        }
+    }
+
     @Test
-    fun testNestedObjects() {
+    fun nestedObjects() {
+
         val memory = js("{}").unsafeCast<CreepMemory>()
         assertNotNull(memory.kangaroo)
         assertNull(memory.kangaroo.belly)
@@ -92,7 +98,6 @@ class TestObjects {
             name = "Peter Parker"
             age = 17
         }
-
         assertNotNull(memory.kangaroo.belly)
         assertEquals(17, memory.kangaroo.belly?.age)
         assertEquals("Peter Parker", memory.kangaroo.belly?.name)
@@ -102,18 +107,27 @@ class TestObjects {
             assertEquals(17, parsed.kangaroo.belly?.age, "age not correct after deserialization")
             assertEquals("Peter Parker", parsed.kangaroo.belly?.name, "name not correct after deserialization")
         }
+    }
 
+    @Test
+    fun objectWithArrayTest() {
+        val memory = js("{}").unsafeCast<CreepMemory>()
 
-        memory.kangaroo.belly = jsObject<Person> {
-            name = "Peter Parker"
-        }
+        assertNull(memory.kangaroo.friends)
+        memory.kangaroo.friends = arrayOf(jsObject { age = 1 }, jsObject { age = 5 })
+        assertEquals(2, memory.kangaroo.friends?.size)
+
         JSON.parse<CreepMemory>(JSON.stringify(memory)).let { parsed ->
-            assertNotNull(memory.kangaroo.belly)
-            assertEquals("Peter Parker", parsed.kangaroo.belly?.name)
+            assertEquals(2, parsed.kangaroo.friends?.size)
+            assertEquals(1, parsed.kangaroo.friends?.first()?.age)
+            assertEquals(5, parsed.kangaroo.friends?.drop(1)?.first()?.age)
         }
     }
 
 
+    /**
+     * This test demonstrates why Kotlin classes won't work because of name mangling
+     */
     @Ignore
     @Test
     fun anonymousClass() {
@@ -122,7 +136,7 @@ class TestObjects {
         assertNull(memory.kangaroo.belly)
 
         memory.kangaroo.belly = object : Person {
-            override var name = "Peter Parker"
+            override var name: String? = "Peter Parker"
             override var age = 17
         }
 
@@ -143,42 +157,5 @@ class TestObjects {
         assertEquals(17, parsed.kangaroo.belly?.age)
         assertEquals("Peter Parker", parsed.kangaroo.belly?.name)
     }
-
-    @Test
-    fun anonymousClassPlainKotlin() {
-        val memory = js("{}").unsafeCast<CreepMemory>()
-        assertNotNull(memory.kangaroo)
-        assertNull(memory.kangaroo.belly)
-
-        memory.nicePerson = NicePerson().apply {
-            name = "Peter Parker"
-            age = 17
-        }
-
-        assertEquals(17, memory.nicePerson?.age)
-        assertEquals("Peter Parker", memory.nicePerson?.name)
-
-        val stringyfied = JSON.stringify(memory)
-        println(stringyfied)
-        val parsed = JSON.parse<CreepMemory>(stringyfied)
-        println(parsed)
-
-        println(js("Object.keys(parsed)"))
-        println(js("Object.keys(parsed['nicePerson'])"))
-
-        assertEquals(17, parsed.nicePerson?.age)
-        assertEquals("Peter Parker", parsed.nicePerson?.name)
-        assertEquals(memory.nicePerson, NicePerson().apply {
-            name = "Peter Parker"
-            age = 17
-        })
-        assertEquals(NicePerson().apply {
-            name = "Peter Parker"
-            age = 17
-        }, memory.nicePerson)
-
-
-    }
-
 
 }

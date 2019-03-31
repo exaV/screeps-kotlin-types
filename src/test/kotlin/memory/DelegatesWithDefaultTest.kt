@@ -6,7 +6,7 @@ import kotlin.test.Test
 import kotlin.test.assertEquals
 
 
-class TestDelegatesWithDefault {
+class DelegatesWithDefaultTest {
 
     var CreepMemory.priority: Int by memory { 0 }
     var CreepMemory.color by memory(Color.GREEN)
