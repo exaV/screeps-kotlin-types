@@ -3,7 +3,7 @@ package screeps.api
 import screeps.api.structures.Structure
 import screeps.api.structures.StructureController
 
-abstract external class Creep : RoomObject, Owned, Attackable, Identifiable {
+abstract external class Creep : RoomObjectNotNull, Owned, Attackable, Identifiable {
     val body: Array<BodyPart>
     val carry: StoreDefinition
     val carryCapacity: Int
