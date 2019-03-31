@@ -20,7 +20,7 @@ dependencies {
 }
 
 group = "ch.delconte.screeps-kotlin"
-version = "1.1.1"
+version = "1.2.0"
 
 val sourcesJar by tasks.registering(Jar::class) {
     classifier = "sources"
