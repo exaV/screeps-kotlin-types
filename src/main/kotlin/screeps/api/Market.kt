@@ -10,7 +10,7 @@ external interface Market {
     fun cancelOrder(orderId: String): ScreepsReturnCode
     fun changeOrderPrice(orderId: String, newPrice: Double): ScreepsReturnCode
     fun createOrder(
-        type: String,
+        type: OrderConstant,
         resourceType: TradableConstant,
         price: Double,
         totalAmount: Int,
