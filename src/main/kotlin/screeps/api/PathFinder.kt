@@ -6,7 +6,7 @@ external object PathFinder {
     fun search(origin: RoomPosition, goal: GoalWithRange, options: SearchOptions = definedExternally): Path
     fun search(origin: RoomPosition, goal: Array<GoalWithRange>, options: SearchOptions = definedExternally): Path
 
-    class CostMatrix {
+    class CostMatrix : screeps.api.CostMatrix {
         fun set(x: Int, y: Int, cost: Int)
         fun get(x: Int, y: Int): Int
         fun clone(): CostMatrix
@@ -32,7 +32,7 @@ external object PathFinder {
 }
 
 external interface SearchOptions : Options {
-    var roomCallback: ((String) -> PathFinder.CostMatrix?)? get() = definedExternally; set(value) = definedExternally
+    var roomCallback: ((String) -> CostMatrix)? get() = definedExternally; set(value) = definedExternally
     var plainCost: Int? get() = definedExternally; set(value) = definedExternally
     var swampCost: Int? get() = definedExternally; set(value) = definedExternally
     var flee: Boolean? get() = definedExternally; set(value) = definedExternally
@@ -41,3 +41,6 @@ external interface SearchOptions : Options {
     var maxCost: Int? get() = definedExternally; set(value) = definedExternally
     var heuristicWeight: Double? get() = definedExternally; set(value) = definedExternally
 }
+external interface CostMatrix
+
+val COSTMATRIX_FALSE : CostMatrix = false.unsafeCast<CostMatrix>()
