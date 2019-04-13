@@ -4,7 +4,7 @@ import com.moowork.gradle.node.task.NodeTask
 import org.jetbrains.kotlin.gradle.tasks.Kotlin2JsCompile
 
 plugins {
-    id("kotlin2js") version "1.3.21"
+    id("kotlin2js") version "1.3.30"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.1"
     id("com.moowork.node") version "1.2.0"
@@ -20,7 +20,7 @@ dependencies {
 }
 
 group = "ch.delconte.screeps-kotlin"
-version = "1.2.0"
+version = "1.2.1"
 
 val sourcesJar by tasks.registering(Jar::class) {
     classifier = "sources"
