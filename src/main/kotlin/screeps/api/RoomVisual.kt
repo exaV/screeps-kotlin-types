@@ -18,7 +18,7 @@ external class RoomVisual(roomName: String) {
     fun clear(): RoomVisual
     fun getSize(): Int
 
-    interface Style {
+    interface Style : Options {
         var opacity: Double?
         var lineStyle: LineStyleConstant?
     }
