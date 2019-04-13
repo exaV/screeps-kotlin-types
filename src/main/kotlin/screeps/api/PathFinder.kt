@@ -32,7 +32,7 @@ external object PathFinder {
 }
 
 external interface SearchOptions : Options {
-    var roomCallback: ((String) -> PathFinder.CostMatrix)? get() = definedExternally; set(value) = definedExternally
+    var roomCallback: ((String) -> PathFinder.CostMatrix?)? get() = definedExternally; set(value) = definedExternally
     var plainCost: Int? get() = definedExternally; set(value) = definedExternally
     var swampCost: Int? get() = definedExternally; set(value) = definedExternally
     var flee: Boolean? get() = definedExternally; set(value) = definedExternally
