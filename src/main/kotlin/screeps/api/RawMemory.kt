@@ -4,6 +4,7 @@ external object RawMemory {
     val segments: MutableRecord<Int, String>
     val foreignSegment: ForeignSegment?
     val interShardSegment: String?
+    var _parsed: GlobalMemory
 
     fun get(): String
     fun set(value: String)
