@@ -12,7 +12,7 @@ external interface Decaying {
     val ticksToDecay: Int
 }
 
-external interface Owned : OwnedNullable{
+external interface Owned : OwnedNullable {
     override val owner: Owner
 }
 
@@ -35,12 +35,20 @@ external interface HasPosition : NavigationTarget {
     val pos: RoomPosition
 }
 
-external interface EnergyContainer {
+external interface IStructure : RoomObjectNotNull, Attackable, Identifiable, OwnedNullable {
+    val structureType: StructureConstant
+
+    fun destroy(): ScreepsReturnCode
+    fun isActive(): Boolean
+    fun notifyWhenAttacked(enabled: Boolean): ScreepsReturnCode
+}
+
+external interface EnergyContainer : IStructure, Owned {
     val energy: Int
     val energyCapacity: Int
 }
 
-external interface Store {
+external interface Store : IStructure, Owned {
     val store: StoreDefinition
     val storeCapacity: Int
 }

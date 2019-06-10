@@ -1,12 +1,14 @@
 package screeps.api.structures
 
-import screeps.api.*
+import screeps.api.IStructure
+import screeps.api.ScreepsReturnCode
+import screeps.api.StructureConstant
 
 
-abstract external class Structure : RoomObjectNotNull, Attackable, Identifiable {
-    val structureType: StructureConstant
+abstract external class Structure : IStructure {
+    override val structureType: StructureConstant
 
-    fun destroy(): ScreepsReturnCode
-    fun isActive(): Boolean
-    fun notifyWhenAttacked(enabled: Boolean): ScreepsReturnCode
+    override fun destroy(): ScreepsReturnCode
+    override fun isActive(): Boolean
+    override fun notifyWhenAttacked(enabled: Boolean): ScreepsReturnCode
 }
