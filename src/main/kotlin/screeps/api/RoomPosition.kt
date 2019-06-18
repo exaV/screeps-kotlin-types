@@ -39,6 +39,12 @@ external class RoomPosition(x: Int, y: Int, roomName: String) : NavigationTarget
         opts: FilterOption<T> = definedExternally
     ): Array<T>
 
+    fun <T : NavigationTarget> findInRange(
+        objects: Array<T>,
+        range: Int,
+        opts: FilterOption<T> = definedExternally
+    ): Array<T>
+
     fun getDirectionTo(x: Int, y: Int): DirectionConstant
     fun getDirectionTo(target: RoomPosition): DirectionConstant
     fun getDirectionTo(target: RoomObject): DirectionConstant
