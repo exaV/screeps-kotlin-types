@@ -42,6 +42,7 @@ abstract external class Room {
     class Terrain(roomName: String) {
         val roomName: String
         fun get(x: Int, y: Int): TerrainMaskConstant
+        fun getRawBuffer() : Array<Int>
     }
 
     interface PathStep {
