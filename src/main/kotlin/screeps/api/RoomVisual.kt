@@ -38,7 +38,7 @@ external class RoomVisual(roomName: String) {
         var radius: Double?
     }
 
-    interface TextStyle {
+    interface TextStyle : Options {
         var color: String?
         var font: String?
         var stroke: String?
