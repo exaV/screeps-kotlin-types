@@ -11,6 +11,7 @@ external object PathFinder {
         fun get(x: Int, y: Int): Int
         fun clone(): CostMatrix
         fun serialize(): Array<Int>
+        var _bits: Array<Int>
 
         companion object {
             fun deserialize(serializedCostMatrix: Array<Int>): CostMatrix
