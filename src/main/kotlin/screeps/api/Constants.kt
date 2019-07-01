@@ -159,6 +159,8 @@ external val RESOURCE_CATALYZED_ZYNTHIUM_ALKALIDE: ResourceConstant
 external val RESOURCE_CATALYZED_GHODIUM_ACID: ResourceConstant
 external val RESOURCE_CATALYZED_GHODIUM_ALKALIDE: ResourceConstant
 
+external val RESOURCE_OPS: ResourceConstant
+
 external val LOOK_CREEPS: LookConstant<Creep>
 external val LOOK_ENERGY: LookConstant<Resource>
 external val LOOK_RESOURCES: LookConstant<Resource>
