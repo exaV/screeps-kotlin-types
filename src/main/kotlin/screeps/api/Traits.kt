@@ -50,6 +50,7 @@ external interface Store {
 external interface GenericCreep {
     val carry: StoreDefinition
     val carryCapacity: Int
+    val memory: MemoryMarker
     val name: String
     val saying: String
     val ticksToLive: Int?

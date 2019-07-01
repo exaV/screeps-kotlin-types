@@ -6,7 +6,7 @@ import screeps.api.structures.StructureController
 abstract external class Creep : GenericCreep, RoomObjectNotNull, Owned, Attackable, Identifiable {
     val body: Array<BodyPart>
     val fatigue: Int
-    val memory: CreepMemory
+    override val memory: CreepMemory
     val spawning: Boolean
     override val ticksToLive: Int
 

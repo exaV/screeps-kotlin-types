@@ -12,7 +12,7 @@ abstract external class PowerCreep: GenericCreep, RoomObject, Owned, Attackable,
     val className: PowerClassConstant
     val deleteTime: Int?
     val level: Int
-    val memory: PowerCreepMemory
+    override val memory: PowerCreepMemory
 
     val powers : Powers
     val shard: String?
