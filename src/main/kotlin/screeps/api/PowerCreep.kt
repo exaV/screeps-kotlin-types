@@ -18,7 +18,7 @@ abstract external class PowerCreep: RoomObject, Owned, Attackable, Identifiable 
     val memory: PowerCreepMemory
     val name: String
 
-    val powers : Powers
+    val powers : Record<PowerEffectConstant, Power>
     val saying: String
     val shard: String?
     val spawnCooldownTime: Int?
@@ -44,6 +44,7 @@ abstract external class PowerCreep: RoomObject, Owned, Attackable, Identifiable 
     fun transfer(target: Structure, resourceType: ResourceConstant, amount: Int = definedExternally): ScreepsReturnCode
     fun transfer(target: Creep, resourceType: ResourceConstant, amount: Int = definedExternally): ScreepsReturnCode
     fun upgrade(power: PowerEffectConstant): ScreepsReturnCode
+    fun usePower(power: PowerEffectConstant): ScreepsReturnCode
     fun usePower(power: PowerEffectConstant, target: RoomObject = definedExternally): ScreepsReturnCode
     fun usePower(power: PowerEffectConstant, target: RoomPosition = definedExternally): ScreepsReturnCode
     fun withdraw(
@@ -59,7 +60,7 @@ abstract external class PowerCreep: RoomObject, Owned, Attackable, Identifiable 
     ): ScreepsReturnCode
 }
 
-external interface Powers {
+external interface Power {
     val level: Int
     val cooldown: Int?
 }
