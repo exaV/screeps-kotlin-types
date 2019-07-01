@@ -4,7 +4,7 @@ import screeps.api.structures.StructureController
 import screeps.api.structures.StructurePowerBank
 import screeps.api.structures.StructurePowerSpawn
 
-abstract external class PowerCreep: GenericCreep, RoomObject, Owned, Attackable, Identifiable {
+abstract external class PowerCreep: GenericCreep {
     companion object {
         fun create(name: String, className: PowerClassConstant): ScreepsReturnCode
     }

@@ -47,7 +47,7 @@ external interface Store {
     val storeCapacity: Int
 }
 
-external interface GenericCreep {
+external interface GenericCreep : RoomObjectNotNull, Owned, Attackable, Identifiable {
     val carry: StoreDefinition
     val carryCapacity: Int
     val memory: MemoryMarker
