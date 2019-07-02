@@ -70,6 +70,9 @@ external val FIND_HOSTILE_CONSTRUCTION_SITES: FindConstant<ConstructionSite>
 external val FIND_MINERALS: FindConstant<Mineral>
 external val FIND_NUKES: FindConstant<Nuke>
 external val FIND_TOMBSTONES: FindConstant<Tombstone>
+external val FIND_POWER_CREEPS: FindConstant<PowerCreep>
+external val FIND_MY_POWER_CREEPS: FindConstant<PowerCreep>
+external val FIND_HOSTILE_POWER_CREEPS: FindConstant<PowerCreep>
 
 external val TOP: DirectionConstant
 external val TOP_RIGHT: DirectionConstant
