@@ -19,6 +19,10 @@ external object Game {
      */
     val creeps: Record<String, Creep>
     /**
+     * A hash containing all your power creeps with creep names as hash keys.
+     */
+    val powerCreeps: Record<String, PowerCreep>
+    /**
      * A hash containing all your flags with flag names as hash keys.
      */
     val flags: Record<String, Flag>
