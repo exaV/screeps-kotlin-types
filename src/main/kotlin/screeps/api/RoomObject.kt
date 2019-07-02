@@ -6,7 +6,7 @@ external interface RoomObjectNotNull : RoomObject {
 
 external interface RoomObject : HasPosition {
     val room: Room?
-    val effects: List<RoomEffect>
+    val effects: Array<RoomEffect>
 
     interface RoomEffect {
         val power: PowerEffectConstant
