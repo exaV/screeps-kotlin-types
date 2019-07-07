@@ -79,4 +79,6 @@ external interface FindPathOptions : Options {
     var serialize: Boolean? get() = definedExternally; set(value) = definedExternally
     var maxRooms: Int? get() = definedExternally; set(value) = definedExternally
     var range: Int? get() = definedExternally; set(value) = definedExternally
+    var plainCost: Int? get() = definedExternally; set(value) = definedExternally
+    var swampCost: Int? get() = definedExternally; set(value) = definedExternally
 }
