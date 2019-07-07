@@ -1,7 +1,5 @@
 package screeps.api
 
-import screeps.api.structures.Structure
-
 external interface Identifiable {
     val id: String
 }
