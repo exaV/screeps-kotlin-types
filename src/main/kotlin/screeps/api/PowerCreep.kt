@@ -14,7 +14,9 @@ abstract external class PowerCreep: GenericCreep {
     val level: Int
     override val memory: PowerCreepMemory
 
-    val powers : Powers
+
+    val powers : Record<PowerEffectConstant, Power>
+    val saying: String
     val shard: String?
     val spawnCooldownTime: Int?
 
@@ -26,11 +28,12 @@ abstract external class PowerCreep: GenericCreep {
     fun renew(target: StructurePowerSpawn): ScreepsReturnCode
     fun spawn(powerSpawn: StructurePowerSpawn): ScreepsReturnCode
     fun upgrade(power: PowerEffectConstant): ScreepsReturnCode
+    fun usePower(power: PowerEffectConstant): ScreepsReturnCode
     fun usePower(power: PowerEffectConstant, target: RoomObject = definedExternally): ScreepsReturnCode
     fun usePower(power: PowerEffectConstant, target: RoomPosition = definedExternally): ScreepsReturnCode
  }
 
-external interface Powers {
+external interface Power {
     val level: Int
     val cooldown: Int?
 }
