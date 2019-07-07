@@ -16,7 +16,6 @@ abstract external class PowerCreep: GenericCreep {
 
 
     val powers : Record<PowerEffectConstant, Power>
-    val saying: String
     val shard: String?
     val spawnCooldownTime: Int?
 
