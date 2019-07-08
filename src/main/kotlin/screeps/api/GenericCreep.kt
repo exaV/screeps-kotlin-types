@@ -40,8 +40,8 @@ external interface GenericCreep : RoomObjectNotNull, Owned, Attackable, Identifi
 }
 
 external interface MoveToOptions : FindPathOptions {
-    val reusePath: Int? get() = definedExternally
-    val serializeMemory: Boolean? get() = definedExternally
-    val noPathFinding: Boolean? get() = definedExternally
-    val visualizePathStyle: RoomVisual.Style? get() = definedExternally
+    var reusePath: Int? get() = definedExternally; set(value) = definedExternally
+    var serializeMemory: Boolean? get() = definedExternally; set(value) = definedExternally
+    var noPathFinding: Boolean? get() = definedExternally; set(value) = definedExternally
+    var visualizePathStyle: RoomVisual.Style? get() = definedExternally; set(value) = definedExternally
 }
