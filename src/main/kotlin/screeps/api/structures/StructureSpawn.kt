@@ -50,7 +50,7 @@ abstract external class StructureSpawn : Structure, Owned, EnergyContainer {
 
 external interface SpawnOptions : Options {
     var memory: CreepMemory?
-    var energyStructures: Array<Structure>?
+    var energyStructures: Array<EnergyContainer>?
     var dryRun: Boolean?
     var directions: Array<DirectionConstant>?
 }
