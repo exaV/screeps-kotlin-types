@@ -1,12 +1,10 @@
 package screeps.api.structures
 
-import screeps.api.EnergyContainer
 import screeps.api.Owned
 import screeps.api.ScreepsReturnCode
+import screeps.api.IStore
 
-abstract external class StructurePowerSpawn : Structure, Owned, EnergyContainer {
-    val power: Int
-    val powerCapacity: Int
+abstract external class StructurePowerSpawn : Structure, Owned, IStore {
     fun createPowerCreep(name: String): ScreepsReturnCode
     fun processPower(): ScreepsReturnCode
 }

@@ -1,8 +1,6 @@
 package screeps.api
 
-external interface GenericCreep : RoomObjectNotNull, Owned, Attackable, Identifiable {
-    val carry: StoreDefinition
-    val carryCapacity: Int
+external interface GenericCreep : RoomObjectNotNull, Owned, Attackable, Identifiable, IStore {
     val memory: MemoryMarker
     val name: String
     val saying: String

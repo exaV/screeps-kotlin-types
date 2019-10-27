@@ -2,7 +2,7 @@ package screeps.api.structures
 
 import screeps.api.*
 
-abstract external class StructureSpawn : Structure, Owned, EnergyContainer {
+abstract external class StructureSpawn : Structure, Owned, IStore {
     val memory: SpawnMemory
     val name: String
     val spawning: Spawning?
@@ -50,7 +50,7 @@ abstract external class StructureSpawn : Structure, Owned, EnergyContainer {
 
 external interface SpawnOptions : Options {
     var memory: CreepMemory?
-    var energyStructures: Array<EnergyContainer>?
+    var energyStructures: Array<IStore>?
     var dryRun: Boolean?
     var directions: Array<DirectionConstant>?
 }

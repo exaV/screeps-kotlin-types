@@ -1,7 +1,8 @@
 package screeps.api
 
-abstract external class Tombstone : RoomObjectNotNull, Decaying, Identifiable {
-    val creep: Creep
-    val deathTime: Int
-    val store: StoreDefinition
+import screeps.api.structures.Structure
+
+abstract external class Tombstone : RoomObjectNotNull, Decaying, Identifiable, IStore {
+    val structure: Structure
+    val destroyTime: Int
 }

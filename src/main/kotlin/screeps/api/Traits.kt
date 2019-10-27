@@ -4,8 +4,14 @@ external interface Identifiable {
     val id: String
 }
 
-external interface Harvestable {
+external interface Harvestable
+
+external interface RenewableHarvestable : Harvestable {
     val ticksToRegeneration: Int
+}
+
+external interface WithCooldown {
+    val cooldown: Int
 }
 
 external interface Decaying {
@@ -43,12 +49,6 @@ external interface IStructure : RoomObjectNotNull, Attackable, Identifiable, Own
     fun notifyWhenAttacked(enabled: Boolean): ScreepsReturnCode
 }
 
-external interface EnergyContainer : IStructure, Owned {
-    val energy: Int
-    val energyCapacity: Int
-}
-
-external interface Store : IStructure, Owned {
+external interface IStore {
     val store: StoreDefinition
-    val storeCapacity: Int
 }
