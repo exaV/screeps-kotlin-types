@@ -2,7 +2,7 @@ package screeps.api.structures
 
 import screeps.api.*
 
-abstract external class StructureFactory : Structure, Owned, IStore, WithCooldown {
+abstract external class StructureFactory : Structure, Owned, StoreOwner, WithCooldown {
     val level: Int
 
     /**

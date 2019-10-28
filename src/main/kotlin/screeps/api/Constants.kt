@@ -4,7 +4,6 @@ package screeps.api
 
 import screeps.api.structures.Structure
 import screeps.api.structures.StructureSpawn
-import kotlin.contracts.Effect
 
 external interface Constant<T>
 

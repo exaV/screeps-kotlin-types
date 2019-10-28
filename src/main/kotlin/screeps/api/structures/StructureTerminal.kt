@@ -2,7 +2,7 @@ package screeps.api.structures
 
 import screeps.api.*
 
-abstract external class StructureTerminal : Structure, Owned, IStore, WithCooldown {
+abstract external class StructureTerminal : Structure, Owned, StoreOwner, WithCooldown {
     fun send(
         resourceType: ResourceConstant,
         amount: Int,

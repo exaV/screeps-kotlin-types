@@ -1,6 +1,6 @@
 package screeps.api
 
-external interface StoreDefinition : Record<ResourceConstant, Int> {
+external interface Store : Record<ResourceConstant, Int> {
     /**
      * Returns total store capacity
      */

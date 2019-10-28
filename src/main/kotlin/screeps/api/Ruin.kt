@@ -1,6 +1,8 @@
 package screeps.api
 
-abstract external class Ruin : RoomObjectNotNull, Decaying, Identifiable, IStore {
-    val creep: Creep
-    val deathTime: Int
+import screeps.api.structures.Structure
+
+abstract external class Ruin : RoomObjectNotNull, Decaying, Identifiable, StoreOwner {
+    val structure: Structure
+    val destroyTime: Int
 }
