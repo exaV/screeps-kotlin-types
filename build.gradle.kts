@@ -1,7 +1,7 @@
 import com.jfrog.bintray.gradle.BintrayExtension
 
 plugins {
-    kotlin("js") version "1.3.40"
+    kotlin("js") version "1.3.50"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.1"
 }
@@ -15,7 +15,7 @@ dependencies {
 }
 
 group = "ch.delconte.screeps-kotlin"
-version = "1.5.0"
+version = "1.6.0"
 
 kotlin {
     target {
