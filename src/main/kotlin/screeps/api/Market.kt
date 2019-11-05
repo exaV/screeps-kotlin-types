@@ -1,5 +1,7 @@
 package screeps.api
 
+import kotlin.js.Date
+
 external interface Market {
     val credits: Double
     val incomingTransactions: Array<Transaction>
@@ -9,18 +11,18 @@ external interface Market {
     fun calcTransactionCost(amount: Int, roomName1: String, roomName2: String): Int
     fun cancelOrder(orderId: String): ScreepsReturnCode
     fun changeOrderPrice(orderId: String, newPrice: Double): ScreepsReturnCode
-    fun createOrder(
-        type: OrderConstant,
-        resourceType: TradableConstant,
-        price: Double,
-        totalAmount: Int,
-        roomName: String = definedExternally
-    ): ScreepsReturnCode
+    fun createOrder(params: Order.CreationParams = definedExternally): ScreepsReturnCode
 
     fun deal(orderId: String, amount: Int, targetRoomName: String = definedExternally): ScreepsReturnCode
     fun extendOrder(orderId: String, addAmount: Int): ScreepsReturnCode
     fun getAllOrders(filter: Order.Filter = definedExternally): Array<Order>
     fun getAllOrders(filter: ((o: Order) -> Boolean) = definedExternally): Array<Order>
+
+    /**
+     * Get daily price history of the specified resource on the market for the last 14 days
+     */
+    fun getHistory(resourceType: TradableConstant?): Array<HistoryEntry>
+
     fun getAllOrders(): Array<Order>
     fun getOrderById(id: String): Order?
 
@@ -46,6 +48,14 @@ external interface Market {
             var remainingAmount: Int?
             var price: Double?
         }
+
+        interface CreationParams {
+            var type: OrderConstant
+            var resourceType: TradableConstant
+            var price: Double
+            var totalAmount: Int
+            var roomName: String?
+        }
     }
 
     interface Transaction {
@@ -65,5 +75,14 @@ external interface Market {
             val type: OrderConstant
             val price: Double
         }
+    }
+
+    interface HistoryEntry {
+        val resourceType: ResourceConstant
+        val date: Date
+        val transactions: Int
+        val volume: Int
+        val avgPrice: Float
+        val stddevPrice: Float
     }
 }

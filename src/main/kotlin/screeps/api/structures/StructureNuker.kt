@@ -1,13 +1,7 @@
 package screeps.api.structures
 
-import screeps.api.EnergyContainer
-import screeps.api.Owned
-import screeps.api.RoomPosition
-import screeps.api.ScreepsReturnCode
+import screeps.api.*
 
-abstract external class StructureNuker : Structure, Owned, EnergyContainer {
-    val ghodium: Int
-    val ghodiumCapacity: Int
-    val coolDown: Int
+abstract external class StructureNuker : Structure, Owned, StoreOwner, WithCooldown {
     fun launchNuke(position: RoomPosition): ScreepsReturnCode
 }

@@ -9,7 +9,7 @@ external interface RoomObject : HasPosition {
     val effects: Array<RoomEffect>?
 
     interface RoomEffect {
-        val power: PowerEffectConstant
+        val effect: EffectConstant
         val level: Int
         val ticksRemaining: Int
     }

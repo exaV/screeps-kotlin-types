@@ -1,7 +1,6 @@
 package screeps.api.structures
 
 import screeps.api.Owned
-import screeps.api.Store
-import screeps.api.StoreDefinition
+import screeps.api.StoreOwner
 
-abstract external class StructureStorage : Structure, Owned, Store
+abstract external class StructureStorage : Structure, Owned, StoreOwner

@@ -12,6 +12,8 @@ inline val <T> Constant<T>.value: T get() = this.asDynamic().unsafeCast<T>()
 typealias StringConstant = Constant<String>
 typealias IntConstant = Constant<Int>
 
+external interface EffectConstant : IntConstant
+external interface PowerEffectConstant : EffectConstant
 external interface FindConstant<T> : IntConstant
 external interface ExitConstant : FindConstant<RoomPosition>
 external interface ScreepsReturnCode : IntConstant
@@ -23,7 +25,9 @@ external interface LookConstant<T> : StringConstant
 external interface DirectionConstant : IntConstant
 external interface TradableConstant : StringConstant
 external interface ResourceConstant : TradableConstant
+external interface CompressedResourceConstant : ResourceConstant
 external interface MineralConstant : ResourceConstant
+external interface DepositResourceConstant : ResourceConstant
 external interface ColorConstant : IntConstant
 external interface DensityConstant : IntConstant
 external interface OrderConstant : StringConstant
@@ -56,7 +60,6 @@ external val FIND_MY_CREEPS: FindConstant<Creep>
 external val FIND_HOSTILE_CREEPS: FindConstant<Creep>
 external val FIND_SOURCES_ACTIVE: FindConstant<Source>
 external val FIND_SOURCES: FindConstant<Source>
-external val FIND_DROPPED_ENERGY: FindConstant<Resource>
 external val FIND_DROPPED_RESOURCES: FindConstant<Resource>
 external val FIND_STRUCTURES: FindConstant<Structure>
 external val FIND_MY_STRUCTURES: FindConstant<Structure>
@@ -73,6 +76,8 @@ external val FIND_TOMBSTONES: FindConstant<Tombstone>
 external val FIND_POWER_CREEPS: FindConstant<PowerCreep>
 external val FIND_MY_POWER_CREEPS: FindConstant<PowerCreep>
 external val FIND_HOSTILE_POWER_CREEPS: FindConstant<PowerCreep>
+external val FIND_DEPOSITS: FindConstant<Deposit>
+external val FIND_RUINS: FindConstant<Ruin>
 
 external val TOP: DirectionConstant
 external val TOP_RIGHT: DirectionConstant
@@ -109,6 +114,8 @@ external val STRUCTURE_OBSERVER: BuildableStructureConstant
 external val STRUCTURE_POWER_BANK: StructureConstant
 external val STRUCTURE_POWER_SPAWN: BuildableStructureConstant
 external val STRUCTURE_EXTRACTOR: BuildableStructureConstant
+external val STRUCTURE_FACTORY: BuildableStructureConstant
+external val STRUCTURE_INVADER_CORE: StructureConstant
 external val STRUCTURE_LAB: BuildableStructureConstant
 external val STRUCTURE_TERMINAL: BuildableStructureConstant
 external val STRUCTURE_CONTAINER: BuildableStructureConstant
@@ -127,6 +134,11 @@ external val RESOURCE_ZYNTHIUM: MineralConstant
 external val RESOURCE_OXYGEN: MineralConstant
 external val RESOURCE_HYDROGEN: MineralConstant
 external val RESOURCE_CATALYST: MineralConstant
+
+external val RESOURCE_SILICON: DepositResourceConstant
+external val RESOURCE_METAL: DepositResourceConstant
+external val RESOURCE_BIOMASS: DepositResourceConstant
+external val RESOURCE_MIST: DepositResourceConstant
 
 external val RESOURCE_HYDROXIDE: ResourceConstant
 external val RESOURCE_ZYNTHIUM_KEANITE: ResourceConstant
@@ -164,17 +176,73 @@ external val RESOURCE_CATALYZED_GHODIUM_ALKALIDE: ResourceConstant
 
 external val RESOURCE_OPS: ResourceConstant
 
+external val RESOURCE_UTRIUM_BAR: CompressedResourceConstant
+external val RESOURCE_LEMERGIUM_BAR: CompressedResourceConstant
+external val RESOURCE_ZYNTHIUM_BAR: CompressedResourceConstant
+external val RESOURCE_KEANIUM_BAR: CompressedResourceConstant
+external val RESOURCE_GHODIUM_MELT: CompressedResourceConstant
+external val RESOURCE_OXIDANT: CompressedResourceConstant
+external val RESOURCE_REDUCTANT: CompressedResourceConstant
+external val RESOURCE_PURIFIER: CompressedResourceConstant
+external val RESOURCE_BATTERY: CompressedResourceConstant
+
+external val RESOURCE_COMPOSITE: ResourceConstant
+external val RESOURCE_CRYSTAL: ResourceConstant
+external val RESOURCE_LIQUID: ResourceConstant
+
+external val RESOURCE_WIRE: ResourceConstant
+external val RESOURCE_SWITCH: ResourceConstant
+external val RESOURCE_TRANSISTOR: ResourceConstant
+external val RESOURCE_MICROCHIP: ResourceConstant
+external val RESOURCE_CIRCUIT: ResourceConstant
+external val RESOURCE_DEVICE: ResourceConstant
+
+external val RESOURCE_CELL: ResourceConstant
+external val RESOURCE_PHLEGM: ResourceConstant
+external val RESOURCE_TISSUE: ResourceConstant
+external val RESOURCE_MUSCLE: ResourceConstant
+external val RESOURCE_ORGANOID: ResourceConstant
+external val RESOURCE_ORGANISM: ResourceConstant
+
+external val RESOURCE_ALLOY: ResourceConstant
+external val RESOURCE_TUBE: ResourceConstant
+external val RESOURCE_FIXTURES: ResourceConstant
+external val RESOURCE_FRAME: ResourceConstant
+external val RESOURCE_HYDRAULICS: ResourceConstant
+external val RESOURCE_MACHINE: ResourceConstant
+
+external val RESOURCE_CONDENSATE: ResourceConstant
+external val RESOURCE_CONCENTRATE: ResourceConstant
+external val RESOURCE_EXTRACT: ResourceConstant
+external val RESOURCE_SPIRIT: ResourceConstant
+external val RESOURCE_EMANATION: ResourceConstant
+external val RESOURCE_ESSENCE: ResourceConstant
+
+external interface CommodityRecipe {
+    val level: Int?
+    val amount: Int
+    val cooldown: Int
+    val components: Record<ResourceConstant, Int>
+}
+
+external val COMMODITIES: Record<ResourceConstant, CommodityRecipe>
+
+external val REACTIONS: Record<ResourceConstant, Record<ResourceConstant, ResourceConstant>>
+external val REACTION_TIME: Record<ResourceConstant, Int>
+
 external val LOOK_CREEPS: LookConstant<Creep>
 external val LOOK_ENERGY: LookConstant<Resource>
 external val LOOK_RESOURCES: LookConstant<Resource>
 external val LOOK_SOURCES: LookConstant<Source>
 external val LOOK_MINERALS: LookConstant<Mineral>
+external val LOOK_DEPOSITS: LookConstant<Deposit>
 external val LOOK_STRUCTURES: LookConstant<Structure>
 external val LOOK_FLAGS: LookConstant<Flag>
 external val LOOK_CONSTRUCTION_SITES: LookConstant<ConstructionSite>
 external val LOOK_NUKES: LookConstant<Nuke>
 external val LOOK_TERRAIN: LookConstant<TerrainConstant>
 external val LOOK_TOMBSTONES: LookConstant<Tombstone>
+external val LOOK_RUINS: LookConstant<Ruin>
 
 external val WORK: ActiveBodyPartConstant
 external val CARRY: ActiveBodyPartConstant
@@ -210,9 +278,11 @@ external val LINK_LOSS_RATIO: Double
 external val STORAGE_CAPACITY: Int
 external val STORAGE_HITS: Int
 external val BODYPARTS_ALL: Array<BodyPartConstant>
+external val RESOURCES_ALL: Array<ResourceConstant>
 external val CARRY_CAPACITY: Int
 external val HARVEST_POWER: Int
 external val HARVEST_MINERAL_POWER: Int
+external val HARVEST_DEPOSIT_POWER: Int
 external val REPAIR_POWER: Int
 external val DISMANTLE_POWER: Int
 external val BUILD_POWER: Int
@@ -250,6 +320,15 @@ external val NUKE_LAND_TIME: Int
 external val NUKE_RANGE: Int
 external val NUKE_DAMAGE: Record<Int, Int>
 
+external val FACTORY_HITS: Int
+external val FACTORY_CAPACITY: Int
+
+external val TOMBSTONE_DECAY_PER_PART: Int
+external val TOMBSTONE_DECAY_POWER_CREEP: Int
+
+external val RUIN_DECAY: Int
+external val RUIN_DECAY_STRUCTURES: Record<StructureConstant, Int>
+
 external val CONTROLLER_LEVELS: Record<Int, Int>
 external val CONTROLLER_STRUCTURES: Record<StructureConstant, Record<Int, Int>>
 external val CONTROLLER_DOWNGRADE: Record<Int, Int>
@@ -284,6 +363,14 @@ external val POWER_SPAWN_ENERGY_RATIO: Int
 
 external val ORDER_SELL: OrderConstant
 external val ORDER_BUY: OrderConstant
+
+external val MARKET_FEE: Number
+
+external val MARKET_MAX_ORDERS: Int
+external val MARKET_ORDER_LIFE_TIME: Int
+
+external val FLAGS_LIMIT: Int
+
 external val SUBSCRIPTION_TOKEN: TradableConstant
 
 // Kotlin specific constants - used to indicate a subset of a type
@@ -315,7 +402,6 @@ val ALGORITHM_DIJKSTRA: AlgorithmConstant = "dijkstra".unsafeCast<AlgorithmConst
 
 
 external interface PowerClassConstant : StringConstant
-external interface PowerEffectConstant : IntConstant
 
 external interface PowerClass {
     val OPERATOR: PowerClassConstant
@@ -348,3 +434,14 @@ external val PWR_OPERATE_POWER: PowerEffectConstant
 external val PWR_FORTIFY: PowerEffectConstant
 external val PWR_OPERATE_CONTROLLER: PowerEffectConstant
 external val PWR_OPERATE_FACTORY: PowerEffectConstant
+
+external val EFFECT_INVULNERABILITY: EffectConstant
+external val EFFECT_COLLAPSE_TIMER: EffectConstant
+
+external val INVADER_CORE_HITS: Int
+external val INVADER_CORE_CREEP_SPAWN_TIME: Record<Int, Int>
+external val INVADER_CORE_EXPAND_TIME: Record<Int, Int>
+external val INVADER_CORE_CONTROLLER_POWER: Int
+external val INVADER_CORE_CONTROLLER_DOWNGRADE: Int
+external val STRONGHOLD_RAMPART_HITS: Record<Int, Int>
+external val STRONGHOLD_DECAY_TICKS: Int
