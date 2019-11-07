@@ -49,7 +49,7 @@ external interface Market {
             var price: Double?
         }
 
-        interface CreationParams {
+        interface CreationParams : Options {
             var type: OrderConstant
             var resourceType: TradableConstant
             var price: Double
