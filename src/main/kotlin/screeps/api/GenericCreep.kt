@@ -35,6 +35,12 @@ external interface GenericCreep : RoomObjectNotNull, Owned, Attackable, Identifi
         amount: Int = definedExternally
     ): ScreepsReturnCode
 
+    fun withdraw(
+        target: Ruin,
+        resourceType: ResourceConstant,
+        amount: Int = definedExternally
+    ): ScreepsReturnCode
+
 
 }
 
