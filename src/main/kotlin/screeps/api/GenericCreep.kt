@@ -16,31 +16,8 @@ external interface GenericCreep : RoomObjectNotNull, Owned, Attackable, Identifi
     fun pickup(target: Resource): ScreepsReturnCode
     fun say(message: String, toPublic: Boolean = definedExternally): ScreepsReturnCode
     fun suicide(): ScreepsReturnCode
-    fun transfer(target: IStructure, resourceType: ResourceConstant, amount: Int = definedExternally): ScreepsReturnCode
-    fun transfer(
-        target: GenericCreep,
-        resourceType: ResourceConstant,
-        amount: Int = definedExternally
-    ): ScreepsReturnCode
-
-    fun withdraw(
-        target: IStructure,
-        resourceType: ResourceConstant,
-        amount: Int = definedExternally
-    ): ScreepsReturnCode
-
-    fun withdraw(
-        target: Tombstone,
-        resourceType: ResourceConstant,
-        amount: Int = definedExternally
-    ): ScreepsReturnCode
-
-    fun withdraw(
-        target: Ruin,
-        resourceType: ResourceConstant,
-        amount: Int = definedExternally
-    ): ScreepsReturnCode
-
+    fun transfer(target: StoreOwner, resourceType: ResourceConstant, amount: Int = definedExternally): ScreepsReturnCode
+    fun withdraw(target: StoreOwner, resourceType: ResourceConstant, amount: Int = definedExternally): ScreepsReturnCode
 
 }
 
