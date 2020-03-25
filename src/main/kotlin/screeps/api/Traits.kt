@@ -49,6 +49,6 @@ external interface IStructure : RoomObjectNotNull, Attackable, Identifiable, Own
     fun notifyWhenAttacked(enabled: Boolean): ScreepsReturnCode
 }
 
-external interface StoreOwner : Identifiable {
+external interface StoreOwner : Identifiable, HasPosition {
     val store: Store
 }
