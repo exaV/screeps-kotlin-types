@@ -18,12 +18,6 @@ external object PathFinder {
         }
     }
 
-    interface GoalWithRange {
-        var pos: RoomPosition
-        var range: Int
-    }
-
-
     interface Path {
         val path: Array<RoomPosition>
         val ops: Int
@@ -45,3 +39,11 @@ external interface SearchOptions : Options {
 external interface CostMatrix
 
 val COSTMATRIX_FALSE : CostMatrix = false.unsafeCast<CostMatrix>()
+
+data class GoalWithRange (
+        @JsName("pos")
+        val pos: RoomPosition,
+
+        @JsName("range")
+        val range: Int
+)
