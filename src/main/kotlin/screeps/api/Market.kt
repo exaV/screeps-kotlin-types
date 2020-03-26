@@ -11,7 +11,7 @@ external interface Market {
     fun calcTransactionCost(amount: Int, roomName1: String, roomName2: String): Int
     fun cancelOrder(orderId: String): ScreepsReturnCode
     fun changeOrderPrice(orderId: String, newPrice: Double): ScreepsReturnCode
-    fun createOrder(params: Order.CreationParams = definedExternally): ScreepsReturnCode
+    fun createOrder(params: OrderCreationParams): ScreepsReturnCode
 
     fun deal(orderId: String, amount: Int, targetRoomName: String = definedExternally): ScreepsReturnCode
     fun extendOrder(orderId: String, addAmount: Int): ScreepsReturnCode
@@ -48,14 +48,6 @@ external interface Market {
             var remainingAmount: Int?
             var price: Double?
         }
-
-        interface CreationParams {
-            var type: OrderConstant
-            var resourceType: TradableConstant
-            var price: Double
-            var totalAmount: Int
-            var roomName: String?
-        }
     }
 
     interface Transaction {
@@ -86,3 +78,20 @@ external interface Market {
         val stddevPrice: Float
     }
 }
+
+data class OrderCreationParams (
+    @JsName("type")
+    val type: OrderConstant,
+
+    @JsName("resourceType")
+    val resourceType: TradableConstant,
+
+    @JsName("price")
+    val price: Double,
+
+    @JsName("totalAmount")
+    val totalAmount: Int,
+
+    @JsName("roomName")
+    val roomName: String? = null
+)
