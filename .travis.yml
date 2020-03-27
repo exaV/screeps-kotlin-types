@@ -19,11 +19,11 @@ stages:
   - name: snapshot
     if: branch = master
   - name: release
-    if: branch = release
+    if: branch = master && tag IS present
 
 jobs:
   include:
     - stage: build
       script: ./gradlew build
     - stage: release
-      script: ./gradlew bintrayUpload -P bintrayUser=$BINTRAY_USER -P bintrayApiKey=$BINTRAY_KEY -Dbuild.number=$TRAVIS_BUILD_NUMBER
+      script: ./gradlew bintrayUpload -P bintrayUser=$BINTRAY_USER -P bintrayApiKey=$BINTRAY_KEY -Dbuild.number=$TRAVIS_BUILD_NUMBER -P version=$TRAVIS_TAG

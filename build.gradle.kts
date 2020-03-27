@@ -16,7 +16,6 @@ dependencies {
 }
 
 group = "ch.delconte.screeps-kotlin"
-version = "1.7.0"
 
 kotlin {
     target {
