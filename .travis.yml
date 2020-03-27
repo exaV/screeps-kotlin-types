@@ -19,7 +19,7 @@ stages:
   - name: snapshot
     if: branch = master
   - name: release
-    if: branch = master && tag IS present
+    if: tag IS present
 
 jobs:
   include:
