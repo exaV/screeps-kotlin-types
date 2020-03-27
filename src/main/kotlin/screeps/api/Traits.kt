@@ -31,7 +31,7 @@ external interface Owner {
     val username: String
 }
 
-external interface Attackable {
+external interface Attackable : Identifiable, RoomObjectNotNull {
     val hits: Int
     val hitsMax: Int
 }
