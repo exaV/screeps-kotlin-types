@@ -9,8 +9,7 @@ abstract external class Creep : GenericCreep {
     val spawning: Boolean
     override val ticksToLive: Int
 
-    fun attack(target: Creep): ScreepsReturnCode
-    fun attack(target: IStructure): ScreepsReturnCode
+    fun attack(target: Attackable): ScreepsReturnCode
     fun attackController(target: StructureController): ScreepsReturnCode
     fun build(target: ConstructionSite): ScreepsReturnCode
     fun cancelOrder(methodName: String): ScreepsReturnCode
@@ -20,10 +19,9 @@ abstract external class Creep : GenericCreep {
     fun getActiveBodyparts(type: ActiveBodyPartConstant): Int
     fun harvest(target: Source): ScreepsReturnCode
     fun harvest(target: Mineral): ScreepsReturnCode
-    fun heal(target: Creep): ScreepsReturnCode
-    fun rangedAttack(target: Creep): ScreepsReturnCode
-    fun rangedAttack(target: IStructure): ScreepsReturnCode
-    fun rangedHeal(target: Creep): ScreepsReturnCode
+    fun heal(target: GenericCreep): ScreepsReturnCode
+    fun rangedAttack(target: Attackable): ScreepsReturnCode
+    fun rangedHeal(target: GenericCreep): ScreepsReturnCode
     fun rangedMassAttack(): ScreepsReturnCode
     fun repair(structure: IStructure): ScreepsReturnCode
     fun reserveController(controller: StructureController): ScreepsReturnCode
