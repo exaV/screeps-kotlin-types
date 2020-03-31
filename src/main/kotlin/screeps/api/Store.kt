@@ -4,7 +4,7 @@ external interface Store : Record<ResourceConstant, Int> {
     /**
      * Returns total store capacity
      */
-    fun getCapacity(): Int
+    fun getCapacity(): Int?
 
     /**
      * Returns capacity number, or null in case of a not valid resource for this store type of this store
