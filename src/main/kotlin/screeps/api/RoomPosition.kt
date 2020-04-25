@@ -20,7 +20,7 @@ external class RoomPosition(x: Int, y: Int, roomName: String) : NavigationTarget
         opts: FindClosestByPathOptions<T> = definedExternally
     ): T?
 
-    fun <T : RoomObject> findClosestByPath(
+    fun <T> findClosestByPath(
         type: FindConstant<T>,
         opts: FindClosestByPathOptions<T> = definedExternally
     ): T?
