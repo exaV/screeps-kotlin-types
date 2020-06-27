@@ -8,10 +8,10 @@ class InterShardMemory {
                 = eval("if(global.InterShardMemory) global.InterShardMemory.getLocal()")?.unsafeCast<String>()
 
         fun setLocal(value: String)
-                = eval("if(global.InterShardMemory) global.InterShardMemory.setLocal($value)")
+                = eval("if(global.InterShardMemory) global.InterShardMemory.setLocal('$value')")
 
         fun getRemote(shard: String) : String?
-                = eval("if(global.InterShardMemory) global.InterShardMemory.getRemote($shard)")?.unsafeCast<String>()
+                = eval("if(global.InterShardMemory) global.InterShardMemory.getRemote('$shard')")?.unsafeCast<String>()
 
     }
 }
