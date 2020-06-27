@@ -4,16 +4,14 @@ package screeps.api
 
 class InterShardMemory {
     companion object {
-        fun getLocal() : String
+        fun getLocal() : String?
                 = eval("if(global.InterShardMemory) global.InterShardMemory.getLocal()")?.unsafeCast<String>()
-                ?: ""
 
         fun setLocal(value: String)
                 = eval("if(global.InterShardMemory) global.InterShardMemory.setLocal($value)")
 
-        fun getRemote(shard: String) : String
+        fun getRemote(shard: String) : String?
                 = eval("if(global.InterShardMemory) global.InterShardMemory.getRemote($shard)")?.unsafeCast<String>()
-                ?: ""
 
     }
 }
