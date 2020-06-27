@@ -75,6 +75,9 @@ external object Game {
         val tickLimit: Int
         val bucket: Int
         val shardLimits: Record<String, Int>
+        val unlocked: Boolean
+        val unlockedTime: Long
+
         /**
          * Get amount of CPU time used from the beginning of the current game tick. Always returns 0 in the Simulation mode.
          */
@@ -82,6 +85,9 @@ external object Game {
 
         fun getHeapStatistics(): Json
         fun setShardLimits(limits: Record<String, Int>): ScreepsReturnCode
+        fun unlock(): ScreepsReturnCode
+        fun generatePixel(): ScreepsReturnCode
+        fun halt()
     }
 
     interface GCPL {
