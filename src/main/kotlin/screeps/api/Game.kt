@@ -111,10 +111,16 @@ external object Game {
         fun getWorldSize(): Int
         fun isRoomAvailable(roomName: String): Boolean
         fun getRoomTerrain(roomName: String): Room.Terrain
+        fun getRoomStatus(roomName: String): RoomStatusResult
 
         interface RouteResult {
             val exit: ExitConstant
             val room: String
+        }
+
+        interface RoomStatusResult {
+            val status: String
+            val timestamp: Long?
         }
 
     }
