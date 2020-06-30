@@ -1,7 +1,7 @@
 package screeps.api
 
-external object InterShardMemory {
-    fun getLocal() : String
+external interface InterShardMemory {
+    fun getLocal(): String?
     fun setLocal(value: String)
-    fun getRemote(shard: String) : String
+    fun getRemote(shard: String): String?
 }
