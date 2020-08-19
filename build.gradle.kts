@@ -1,9 +1,9 @@
 import com.jfrog.bintray.gradle.BintrayExtension
 
 plugins {
-    kotlin("js") version "1.3.71"
+    kotlin("js") version "1.4.0"
     `maven-publish`
-    id("com.jfrog.bintray") version "1.8.1"
+    id("com.jfrog.bintray") version "1.8.5"
 }
 
 repositories {
@@ -11,27 +11,27 @@ repositories {
 }
 
 dependencies {
-    implementation(kotlin("stdlib-js"))
     testImplementation(kotlin("test-js"))
 }
 
 group = "ch.delconte.screeps-kotlin"
 
 kotlin {
-    target {
+    js(BOTH) {
         useCommonJs()
         nodejs()
     }
 }
 
 
-val kotlinSourcesJar by tasks
-
 publishing {
     publications {
-        register("kotlin", MavenPublication::class) {
+        create<MavenPublication>("kotlin") {
             from(components["kotlin"])
-            artifact(kotlinSourcesJar)
+            groupId = project.group.toString()
+            artifactId = project.name
+
+            artifact(tasks.getByName<Zip>("jsLegacySourcesJar"))
         }
     }
 }
