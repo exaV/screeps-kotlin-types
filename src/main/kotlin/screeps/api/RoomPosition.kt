@@ -44,6 +44,9 @@ external class RoomPosition(x: Int, y: Int, roomName: String) : NavigationTarget
         opts: FilterOption<T> = definedExternally
     ): Array<T>
 
+    fun findPathTo(x: Int, y: Int, opts: FindPathOptions = definedExternally): Array<Room.PathStep>
+    fun findPathTo(target: NavigationTarget, opts: FindPathOptions = definedExternally): Array<Room.PathStep>
+
     fun getDirectionTo(x: Int, y: Int): DirectionConstant
     fun getDirectionTo(target: RoomPosition): DirectionConstant
     fun getDirectionTo(target: RoomObject): DirectionConstant
