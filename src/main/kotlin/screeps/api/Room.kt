@@ -14,8 +14,6 @@ abstract external class Room {
     val terminal: StructureTerminal?
     val visual: RoomVisual
 
-    fun serializePath(path: Array<PathStep>)
-    fun deserializePath(path: String): Array<PathStep>
     fun createConstructionSite(x: Int, y: Int, structureType: StructureConstant): ScreepsReturnCode
     fun createConstructionSite(pos: RoomPosition, structureType: StructureConstant): ScreepsReturnCode
     fun createFlag(
@@ -58,6 +56,11 @@ abstract external class Room {
     interface LookAtAreaArrayItem : RoomPosition.Look {
         val x: Int
         val y: Int
+    }
+
+    companion object {
+        fun serializePath(path: Array<PathStep>)
+        fun deserializePath(path: String): Array<PathStep>
     }
 }
 
