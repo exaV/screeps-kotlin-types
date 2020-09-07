@@ -15,8 +15,8 @@ external class RoomPosition(x: Int, y: Int, roomName: String) : NavigationTarget
         secondaryColor: ColorConstant
     ): Any
 
-    fun <T> findClosestByPath(
-        objects: Array<RoomObject>,
+    fun <T : RoomObject> findClosestByPath(
+        objects: Array<T>,
         opts: FindClosestByPathOptions<T> = definedExternally
     ): T?
 
@@ -26,8 +26,7 @@ external class RoomPosition(x: Int, y: Int, roomName: String) : NavigationTarget
     ): T?
 
     fun <T : RoomObject> findClosestByRange(
-        type: FindConstant<T>,
-        objects: Array<NavigationTarget>,
+        objects: Array<T>,
         opts: FilterOption<T> = definedExternally
     ): T?
 
