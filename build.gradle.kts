@@ -3,7 +3,7 @@ import com.jfrog.bintray.gradle.tasks.BintrayUploadTask
 import org.gradle.api.publish.maven.internal.artifact.FileBasedMavenArtifact
 
 plugins {
-    kotlin("js") version "1.4.0"
+    kotlin("js") version "1.4.10"
     `maven-publish`
     id("com.jfrog.bintray") version "1.8.5"
 }
@@ -28,11 +28,8 @@ kotlin {
 
 publishing {
     publications {
-        create<MavenPublication>("kotlin") {
+        register<MavenPublication>("kotlin") {
             from(components["kotlin"])
-            groupId = project.group.toString()
-            artifactId = project.name
-
             artifact(tasks.getByName<Zip>("jsLegacySourcesJar"))
         }
     }
