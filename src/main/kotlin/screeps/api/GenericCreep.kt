@@ -10,6 +10,7 @@ external interface GenericCreep : RoomObjectNotNull, Owned, Attackable, Identifi
     fun move(direction: DirectionConstant): ScreepsReturnCode
     fun moveByPath(path: Array<Room.PathStep>): ScreepsReturnCode
     fun moveByPath(serializedPath: String): ScreepsReturnCode
+    fun moveByPath(path: Array<RoomPosition>): ScreepsReturnCode
     fun moveTo(target: NavigationTarget, opts: MoveToOptions = definedExternally): ScreepsReturnCode
     fun moveTo(x: Int, y: Int, opts: MoveToOptions = definedExternally): ScreepsReturnCode
     fun notifyWhenAttacked(enable: Boolean): ScreepsReturnCode
