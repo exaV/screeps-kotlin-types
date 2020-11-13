@@ -24,6 +24,22 @@ To get started, just clone this repository, and install the required dependencie
 ./gradlew build
 ```
 
+## Testing Locally 
+
+Install the library locally
+
+* Run `./gradlew publishKotlinPublicationToMavenLocal` to install the library locally on your machine
+* Add `mavenLocal()` to the repositories section of your bots build.gradle.kts
+* Change the dependency in your bot to `ch.delconte.screeps-kotlin:screeps-kotlin-types:SNAPSHOT`
+
+OR
+
+Using https://jitpack.io/
+
+* Add `maven( url="https://jitpack.io")` to the repositories section of your bots build.gradle
+* Add the branch or last commit of your PR as a dependency to your bot implementation eg `com.github.<github_user>:screeps-kotlin-types:<branch_name>-SNAPSHOT")`
+
+
 ## Filing Issues
 
 Please feel free to submit issues for bugs and feature requests, I promise to get back to you ASAP!
