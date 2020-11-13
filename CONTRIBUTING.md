@@ -36,7 +36,7 @@ OR
 
 Using https://jitpack.io/
 
-* Add `maven( url="https://jitpack.io")` to the repositories section of your bots build.gradle
+* Add `maven( url="https://jitpack.io")` to the repositories section of your bots build.gradle.kts
 * Add the branch or last commit of your PR as a dependency to your bot implementation eg `com.github.<github_user>:screeps-kotlin-types:<branch_name>-SNAPSHOT")`
 
 
