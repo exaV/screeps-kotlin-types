@@ -7,8 +7,8 @@ external object PathFinder {
     fun search(origin: RoomPosition, goal: Array<GoalWithRange>, options: SearchOptions = definedExternally): Path
 
     class CostMatrix : screeps.api.CostMatrix {
-        fun set(x: Int, y: Int, cost: Int)
-        fun get(x: Int, y: Int): Int
+        operator fun set(x: Int, y: Int, cost: Int)
+        operator fun get(x: Int, y: Int): Int
         fun clone(): CostMatrix
         fun serialize(): Array<Int>
         var _bits: Array<Int>
