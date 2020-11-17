@@ -9,6 +9,7 @@ external interface GenericCreep : RoomObjectNotNull, Owned, Attackable, Identifi
     fun drop(resourceType: ResourceConstant, amount: Int = definedExternally): ScreepsReturnCode
     fun move(direction: DirectionConstant): ScreepsReturnCode
     fun moveByPath(path: Array<Room.PathStep>): ScreepsReturnCode
+    fun moveByPath(path: Array<RoomPosition>): ScreepsReturnCode
     fun moveByPath(serializedPath: String): ScreepsReturnCode
     fun moveTo(target: NavigationTarget, opts: MoveToOptions = definedExternally): ScreepsReturnCode
     fun moveTo(x: Int, y: Int, opts: MoveToOptions = definedExternally): ScreepsReturnCode
