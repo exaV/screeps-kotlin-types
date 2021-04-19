@@ -20,6 +20,7 @@ abstract external class Creep : GenericCreep {
     fun harvest(target: Source): ScreepsReturnCode
     fun harvest(target: Mineral): ScreepsReturnCode
     fun heal(target: GenericCreep): ScreepsReturnCode
+    fun pull(target: GenericCreep): ScreepsReturnCode
     fun rangedAttack(target: Attackable): ScreepsReturnCode
     fun rangedHeal(target: GenericCreep): ScreepsReturnCode
     fun rangedMassAttack(): ScreepsReturnCode
