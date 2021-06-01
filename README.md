@@ -9,12 +9,12 @@ Start here: https://github.com/exaV/screeps-kotlin-starter
 
 ### Gradle
 
-``` Groovy
+``` Kotlin
 repositories {
-    jcenter()
+    url("https://jitpack.io")
 }
 dependencies {
-    compile "ch.delconte.screeps-kotlin:screeps-kotlin-types:<version>"
+    implementation("com.github.exaV:screeps-kotlin-types:<version or commit hash>")
 }
 
 ```
