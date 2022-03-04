@@ -1,5 +1,8 @@
 name: Build and test
-on: [push]
+on:
+  push:
+    tags-ignore:
+      - '**'
 jobs:
   build-and-run-tests:
     runs-on: ubuntu-latest
