@@ -1,8 +1,8 @@
 # screeps-kotlin-types
 
-[ ![Kotlin](https://img.shields.io/badge/Kotlin-1.4.10-blue.svg)](http://kotlinlang.org) 
-[![Build Status](https://travis-ci.org/exaV/screeps-kotlin-types.svg?branch=master)](https://travis-ci.org/exaV/screeps-kotlin-types)
-[ ![Download](https://api.bintray.com/packages/exav/screeps-kotlin/screeps-kotlin-types/images/download.svg) ](https://bintray.com/exav/screeps-kotlin/screeps-kotlin-types/_latestVersion)
+[ ![Kotlin](https://img.shields.io/badge/Kotlin-1.6.10-blue.svg)](http://kotlinlang.org) 
+[![Build Status](https://github.com/exav/screeps-kotlin-types/actions/workflows/build.yml/badge.svg)](https://github.com/exav/screeps-kotlin-types/actions)
+[ ![Download](https://img.shields.io/maven-central/v/io.github.exav/screeps-kotlin-types) ](https://search.maven.org/artifact/io.github.exav/screeps-kotlin-types)
 > The repository for *Screep's* Kotlin type definitions. https://screeps.com/
 
 Start here: https://github.com/exaV/screeps-kotlin-starter
@@ -14,7 +14,7 @@ repositories {
     mavenCentral()
 }
 dependencies {
-    implementation("io.github.exaV:screeps-kotlin-types:<version>")
+    implementation("io.github.exav:screeps-kotlin-types:<version>")
 }
 
 ```
