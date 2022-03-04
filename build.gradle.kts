@@ -1,6 +1,7 @@
 plugins {
     kotlin("js") version "1.6.10"
     `maven-publish`
+    signing
 }
 
 group = "io.github.exav"
@@ -65,3 +66,11 @@ publishing {
         }
     }
 }
+
+signing {
+    val signingKey: String? by project
+    val signingPassword: String? by project
+    useInMemoryPgpKeys(signingKey, signingPassword)
+    sign(publishing.publications["kotlin"])
+}
+

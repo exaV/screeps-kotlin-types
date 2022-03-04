@@ -1,5 +1,6 @@
 name: Publish package to the Maven Central Repository
 on:
+  push:
   release:
     types: [created]
 jobs:
@@ -15,7 +16,7 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
       - name: Build and publish
-        run: ./gradlew -Pversion=${{github.ref_name}} publish
+        run: ./gradlew -Pversion=1.13.0 publish
         env:
           MAVEN_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           MAVEN_PASSWORD: ${{ secrets.OSSRH_TOKEN }}
