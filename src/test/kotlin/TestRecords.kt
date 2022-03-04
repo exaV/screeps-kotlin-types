@@ -43,7 +43,7 @@ class TestRecords {
         val creeps = createCreeps()
 
         assertEquals(creeps.size, creeps.values.count())
-        assertEquals(creeps.size * 2, creeps.values.map { it.health }.sumBy { it * 2 })
+        assertEquals(creeps.size * 2, creeps.values.map { it.health }. sumOf { it * 2 })
     }
 
     private val CreepMemory.health by memory { 1 }

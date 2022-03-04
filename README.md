@@ -11,10 +11,10 @@ Start here: https://github.com/exaV/screeps-kotlin-starter
 
 ``` Kotlin
 repositories {
-    url("https://jitpack.io")
+    mavenCentral()
 }
 dependencies {
-    implementation("com.github.exaV:screeps-kotlin-types:<version or commit hash>")
+    implementation("io.github.exaV:screeps-kotlin-types:<version>")
 }
 
 ```
