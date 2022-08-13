@@ -19,6 +19,7 @@ abstract external class Creep : GenericCreep {
     fun getActiveBodyparts(type: ActiveBodyPartConstant): Int
     fun harvest(target: Source): ScreepsReturnCode
     fun harvest(target: Mineral): ScreepsReturnCode
+    fun harvest(target: Deposit): ScreepsReturnCode
     fun heal(target: GenericCreep): ScreepsReturnCode
     fun pull(target: GenericCreep): ScreepsReturnCode
     fun rangedAttack(target: Attackable): ScreepsReturnCode
