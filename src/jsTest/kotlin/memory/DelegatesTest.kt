@@ -3,10 +3,7 @@ import screeps.api.Record
 import screeps.api.get
 import screeps.utils.contains
 import screeps.utils.memory.memory
-import kotlin.test.Test
-import kotlin.test.assertEquals
-import kotlin.test.assertNull
-import kotlin.test.assertTrue
+import kotlin.test.*
 
 
 class DelegatesTest {

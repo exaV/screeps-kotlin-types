@@ -1,5 +1,5 @@
 plugins {
-    kotlin("js") version "1.7.10"
+    kotlin("multiplatform") version "2.0.0-RC1"
     `maven-publish`
     signing
 }
@@ -10,15 +10,25 @@ repositories {
     mavenCentral()
 }
 
-dependencies {
-    testImplementation(kotlin("test-js"))
-}
-
 
 kotlin {
-    js(BOTH) {
-        useCommonJs()
-        nodejs()
+
+    sourceSets {
+        jsMain {
+        }
+        jsTest {
+            dependencies {
+                implementation(kotlin("test"))
+            }
+
+        }
+    }
+    js {
+        nodejs {
+            binaries.library()
+            testTask {
+            }
+        }
     }
 }
 
@@ -28,7 +38,6 @@ publishing {
     publications {
         register<MavenPublication>("kotlin") {
             from(components["kotlin"])
-            artifact(tasks.getByName<Zip>("jsLegacySourcesJar"))
 
             pom {
                 name.set("screeps-kotlin-types")
@@ -68,6 +77,8 @@ publishing {
 }
 
 signing {
+//    setRequired(false)
+
     val signingKey: String? by project
     val signingPassword: String? by project
     useInMemoryPgpKeys(signingKey, signingPassword)
