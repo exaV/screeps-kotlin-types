@@ -1,6 +1,6 @@
 # screeps-kotlin-types
 
-[ ![Kotlin](https://img.shields.io/badge/Kotlin-1.6.10-blue.svg)](http://kotlinlang.org) 
+[ ![Kotlin](https://img.shields.io/badge/Kotlin-2.0.0-blue.svg)](http://kotlinlang.org) 
 [![Build Status](https://github.com/exav/screeps-kotlin-types/actions/workflows/build.yml/badge.svg)](https://github.com/exav/screeps-kotlin-types/actions)
 [ ![Download](https://img.shields.io/maven-central/v/io.github.exav/screeps-kotlin-types) ](https://search.maven.org/artifact/io.github.exav/screeps-kotlin-types)
 > The repository for *Screep's* Kotlin type definitions. https://screeps.com/
