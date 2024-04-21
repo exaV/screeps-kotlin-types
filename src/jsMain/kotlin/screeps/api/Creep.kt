@@ -17,9 +17,7 @@ abstract external class Creep : GenericCreep {
     fun dismantle(target: IStructure): ScreepsReturnCode
     fun generateSafeMode(target: StructureController): ScreepsReturnCode
     fun getActiveBodyparts(type: ActiveBodyPartConstant): Int
-    fun harvest(target: Source): ScreepsReturnCode
-    fun harvest(target: Mineral): ScreepsReturnCode
-    fun harvest(target: Deposit): ScreepsReturnCode
+    fun harvest(target: Harvestable): ScreepsReturnCode
     fun heal(target: GenericCreep): ScreepsReturnCode
     fun pull(target: GenericCreep): ScreepsReturnCode
     fun rangedAttack(target: Attackable): ScreepsReturnCode

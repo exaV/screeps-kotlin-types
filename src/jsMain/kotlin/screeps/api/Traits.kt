@@ -4,7 +4,7 @@ external interface Identifiable {
     val id: String
 }
 
-external interface Harvestable
+external interface Harvestable: Identifiable
 
 external interface RenewableHarvestable : Harvestable {
     val ticksToRegeneration: Int
