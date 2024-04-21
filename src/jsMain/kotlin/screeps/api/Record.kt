@@ -12,9 +12,9 @@ inline operator fun <K, V> MutableRecord<K, V>.set(key: K, value: V) {
     this.asDynamic()[key] = value
 }
 
-inline val <K, V>Record<K, V>.entries: Array<JsPair<K, V>> get() = js("Object").entries(this).unsafeCast<Array<JsPair<K, V>>>()
+inline val <K, V>Record<K, V>.entries: Array<JsPair<String, V>> get() = js("Object").entries(this).unsafeCast<Array<JsPair<String, V>>>()
 inline val <K, V>Record<K, V>.values: Array<V> get () = js("Object").values(this).unsafeCast<Array<V>>()
-inline val <K, V>Record<K, V>.keys: Array<K> get () = js("Object").keys(this).unsafeCast<Array<K>>()
+inline val <K, V>Record<K, V>.keys: Array<String> get () = js("Object").keys(this).unsafeCast<Array<String>>()
 inline val <K, V>Record<K, V>.size: Int get() = keys.size
 
-inline operator fun <K, V> Record<K, V>.iterator(): Iterator<JsPair<K, V>> = entries.iterator()
+inline operator fun <K, V> Record<K, V>.iterator(): Iterator<JsPair<String, V>> = entries.iterator()
