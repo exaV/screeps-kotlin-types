@@ -35,10 +35,8 @@ kotlin {
 
 publishing {
 
-    publications {
-        register<MavenPublication>("kotlin") {
-            from(components["kotlin"])
-
+    publications.configureEach {
+        if (this is MavenPublication) {
             pom {
                 name.set("screeps-kotlin-types")
                 description.set("The repository for Screep's Kotlin type definitions. https://screeps.com/")
@@ -77,8 +75,6 @@ publishing {
 }
 
 signing {
-//    setRequired(false)
-
     val signingKey: String? by project
     val signingPassword: String? by project
     useInMemoryPgpKeys(signingKey, signingPassword)
