@@ -1,6 +1,6 @@
 package screeps.api
 
-external class RoomVisual(roomName: String) {
+external class RoomVisual(roomName: String = definedExternally) {
     val roomName: String
 
     fun line(x1: Double, y1: Double, x2: Double, y2: Double, style: LineStyle = definedExternally): RoomVisual
