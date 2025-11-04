@@ -38,6 +38,7 @@ abstract external class Room {
     fun lookAt(target: RoomPosition): Array<RoomPosition.Look>
     fun <T> lookForAt(type: LookConstant<T>, x: Int, y: Int): Array<T>?
     fun getTerrain(): Terrain
+    fun getEventLog(): Array<RoomEvent<out RoomEventData>>
 
     class Terrain(roomName: String) {
         val roomName: String
@@ -63,6 +64,9 @@ abstract external class Room {
         fun deserializePath(path: String): Array<PathStep>
     }
 }
+
+fun Room.getEventLogRaw(): String =
+    this.asDynamic().getEventLog(true).unsafeCast<String>()
 
 private typealias LookAtAreaResult = Record<Int, Record<Int, Array<RoomPosition.Look>>>
 
