@@ -22,6 +22,9 @@ external interface ActiveBodyPartConstant : BodyPartConstant
 external interface StructureConstant : StringConstant
 external interface BuildableStructureConstant : StructureConstant
 external interface LookConstant<T> : StringConstant
+external interface EventConstant<T> : IntConstant
+external interface EventAttackTypeConstant : IntConstant
+external interface EventHealTypeConstant : IntConstant
 external interface DirectionConstant : IntConstant
 external interface TradableConstant : StringConstant
 external interface ResourceConstant : TradableConstant
@@ -479,29 +482,28 @@ external val SIGN_NOVICE_AREA: String
 external val SIGN_RESPAWN_AREA: String
 external val SIGN_PLANNED_AREA: String
 
-// Events should also be some sort of constant
-external val EVENT_ATTACK: Int
-external val EVENT_OBJECT_DESTROYED: Int
-external val EVENT_ATTACK_CONTROLLER: Int
-external val EVENT_BUILD: Int
-external val EVENT_HARVEST: Int
-external val EVENT_HEAL: Int
-external val EVENT_REPAIR: Int
-external val EVENT_RESERVE_CONTROLLER: Int
-external val EVENT_UPGRADE_CONTROLLER: Int
-external val EVENT_EXIT: Int
-external val EVENT_POWER: Int
-external val EVENT_TRANSFER: Int
+external val EVENT_ATTACK: EventConstant<AttackEvent>
+external val EVENT_OBJECT_DESTROYED: EventConstant<DestroyedEvent>
+external val EVENT_ATTACK_CONTROLLER: EventConstant<AttackControllerEvent>
+external val EVENT_BUILD: EventConstant<BuildEvent>
+external val EVENT_HARVEST: EventConstant<HarvestEvent>
+external val EVENT_HEAL: EventConstant<HealEvent>
+external val EVENT_REPAIR: EventConstant<RepairEvent>
+external val EVENT_RESERVE_CONTROLLER: EventConstant<ReserveControllerEvent>
+external val EVENT_UPGRADE_CONTROLLER: EventConstant<UpgradeControllerEvent>
+external val EVENT_EXIT: EventConstant<ExitEvent>
+external val EVENT_POWER: EventConstant<PowerEvent>
+external val EVENT_TRANSFER: EventConstant<TransferEvent>
 
-external val EVENT_ATTACK_TYPE_MELEE: Int
-external val EVENT_ATTACK_TYPE_RANGED: Int
-external val EVENT_ATTACK_TYPE_RANGED_MASS: Int
-external val EVENT_ATTACK_TYPE_DISMANTLE: Int
-external val EVENT_ATTACK_TYPE_HIT_BACK: Int
-external val EVENT_ATTACK_TYPE_NUKE: Int
+external val EVENT_ATTACK_TYPE_MELEE: EventAttackTypeConstant
+external val EVENT_ATTACK_TYPE_RANGED: EventAttackTypeConstant
+external val EVENT_ATTACK_TYPE_RANGED_MASS: EventAttackTypeConstant
+external val EVENT_ATTACK_TYPE_DISMANTLE: EventAttackTypeConstant
+external val EVENT_ATTACK_TYPE_HIT_BACK: EventAttackTypeConstant
+external val EVENT_ATTACK_TYPE_NUKE: EventAttackTypeConstant
 
-external val EVENT_HEAL_TYPE_MELEE: Int
-external val EVENT_HEAL_TYPE_RANGED: Int
+external val EVENT_HEAL_TYPE_MELEE: EventHealTypeConstant
+external val EVENT_HEAL_TYPE_RANGED: EventHealTypeConstant
 
 external interface PowerClassConstant : StringConstant
 
