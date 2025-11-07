@@ -112,6 +112,7 @@ external object Game {
         fun isRoomAvailable(roomName: String): Boolean
         fun getRoomTerrain(roomName: String): Room.Terrain
         fun getRoomStatus(roomName: String): RoomStatusResult
+        val visual: MapVisual
 
         interface RouteResult {
             val exit: ExitConstant
