@@ -1,5 +1,13 @@
 package screeps.api
 
+fun <T : RoomEventData, R> RoomEvent<*>.handle(
+    eventType: EventConstant<T>,
+    handler: (RoomEvent<T>) -> R,
+): R? {
+    if (this.event != eventType) return null
+    return handler.invoke(this.unsafeCast<RoomEvent<T>>())
+}
+
 external interface RoomEvent<T : RoomEventData> {
     val event: EventConstant<T>
     val objectId: String
