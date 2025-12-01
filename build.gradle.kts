@@ -1,7 +1,6 @@
 plugins {
-    kotlin("multiplatform") version "2.0.0"
-    `maven-publish`
-    signing
+    kotlin("multiplatform") version "2.2.21"
+    id("com.vanniktech.maven.publish") version "0.35.0"
 }
 
 group = "io.github.exav"
@@ -32,52 +31,35 @@ kotlin {
     }
 }
 
+mavenPublishing {
+    signAllPublications()
+    publishToMavenCentral(automaticRelease = true)
 
-publishing {
+    coordinates("io.github.exav", "screeps-kotlin-types", project.version.toString())
 
-    publications.configureEach {
-        if (this is MavenPublication) {
-            pom {
-                name.set("screeps-kotlin-types")
-                description.set("The repository for Screep's Kotlin type definitions. https://screeps.com/")
-                url.set("https://github.com/exaV/screeps-kotlin-types")
-                licenses {
-                    license {
-                        name.set("MIT License")
-                        url.set("https://opensource.org/licenses/mit-license.php")
-                    }
-                }
-                scm {
-                    connection.set("scm:git:git://github.com/exaV/screeps-kotlin-types.git")
-                    developerConnection.set("scm:git:ssh://github.com/exaV/screeps-kotlin-types.git")
-                    url.set("https://github.com/exaV/screeps-kotlin-types")
-                }
-                developers {
-                    developer {
-                        name.set("Patrick Del Conte")
-                        organizationUrl.set("https://github.com/exaV")
-                    }
-                }
+    pom {
+        name.set("screeps-kotlin-types")
+        description.set("The repository for Screep's Kotlin type definitions. https://screeps.com/")
+        url.set("https://github.com/exaV/screeps-kotlin-types")
+        licenses {
+            license {
+                name.set("MIT License")
+                url.set("https://opensource.org/licenses/mit-license.php")
             }
-
         }
-    }
-
-    repositories {
-        maven {
-            url = uri(System.getenv("MAVEN_URL") ?: "")
-            credentials {
-                username = System.getenv("MAVEN_USERNAME") ?: ""
-                password = System.getenv("MAVEN_PASSWORD") ?: ""
+        scm {
+            connection.set("scm:git:git://github.com/exaV/screeps-kotlin-types.git")
+            developerConnection.set("scm:git:ssh://github.com/exaV/screeps-kotlin-types.git")
+            url.set("https://github.com/exaV/screeps-kotlin-types")
+        }
+        developers {
+            developer {
+                name.set("Patrick Del Conte")
+                organizationUrl.set("https://github.com/exaV")
             }
         }
     }
+
 }
 
-signing {
-    val signingKey: String? by project
-    val signingPassword: String? by project
-    useInMemoryPgpKeys(signingKey, signingPassword)
-    sign(publishing.publications)
-}
 
