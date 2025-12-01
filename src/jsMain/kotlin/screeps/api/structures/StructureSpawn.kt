@@ -11,7 +11,7 @@ abstract external class StructureSpawn : Structure, Owned, StoreOwner {
      * Start the creep spawning process. The required energy amount can be withdrawn from all spawns and utils in the room.
      */
     fun spawnCreep(
-        body: Array<BodyPartConstant>,
+        body: Array<out BodyPartConstant>,
         name: String,
         opts: SpawnOptions = definedExternally
     ): ScreepsReturnCode
